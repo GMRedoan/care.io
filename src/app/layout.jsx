@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
         className={`${poppins.className}`}
       >
         <header><Navbar></Navbar></header>
-        <main>
+        <main className="mt-15">
           {children}
         </main>
         <footer><Footer></Footer></footer>
