@@ -1,5 +1,5 @@
 import React from 'react';
-
+ 
 const Banner = () => {
     return (
         <section className="relative overflow-hidden text-white">
@@ -41,14 +41,14 @@ const Banner = () => {
 
                 {/* Floating Info Cards */}
                 <div className="mt-16 grid md:grid-cols-3 gap-6">
+                          <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:scale-105 transition">
+                            <h3 className="font-semibold text-lg">Verified Caregivers</h3>
+                            <p className="text-white/80 mt-2 text-sm">
+                                Background-checked professionals you can trust.
+                            </p>
+                        </div>
 
-                    <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:scale-105 transition">
-                        <h3 className="font-semibold text-lg">Verified Caregivers</h3>
-                        <p className="text-white/80 mt-2 text-sm">
-                            Background-checked professionals you can trust.
-                        </p>
-                    </div>
-
+ 
                     <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:scale-105 transition">
                         <h3 className="font-semibold text-lg">Easy Booking</h3>
                         <p className="text-white/80 mt-2 text-sm">

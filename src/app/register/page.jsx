@@ -144,7 +144,7 @@ const Register = () => {
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="w-full py-2 rounded-xl bg-white text-[#11B2ED] font-semibold hover:bg-gray-200 hover:text-black transition shadow-lg"
+                            className="w-full py-2 rounded-xl bg-white text-[#11B2ED] font-semibold hover:bg-gray-200 hover:text-black transition-all duration-300 shadow-lg hover:scale-105"
                         >
                             {isSubmitting ? "Creating Account..." : "Register Now"}
                         </button>
