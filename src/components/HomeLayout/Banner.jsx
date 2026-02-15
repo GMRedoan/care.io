@@ -2,16 +2,16 @@ import React from 'react';
  
 const Banner = () => {
     return (
-        <section className="relative overflow-hidden text-white">
+        <section className="relative overflow-hidden">
 
             {/* Abstract Shapes */}
-            <div className="absolute top-0 left-0 w-72 h-72 bg-white/20 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-400/50 rounded-full blur-3xl"></div>
+            <div className="absolute top-0 left-0 w-72 h-72 bg-white/20 rounded-full blur-3xl z-10"></div>
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-400/50 rounded-full blur-3xl z-10"></div>
 
-            <div className="relative px-16 py-24 text-center">
+            <div className="relative px-16 py-24 text-center bg-base-200">
 
                 {/* Small Badge */}
-                <div className="inline-block mb-6 px-4 py-2 bg-white/15 backdrop-blur-md rounded-full text-sm tracking-wide">
+                <div className="inline-block mb-6 px-4 py-2 bg-base-100 backdrop-blur-md rounded-full text-sm tracking-wide">
                     Trusted by Families Everywhere
                 </div>
 
@@ -20,13 +20,13 @@ const Banner = () => {
                     Care That Feels Like Family
                 </h1>
 
-                <p className="mt-6 text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
+                <p className="mt-6 text-lg md:text-xl text-accent max-w-2xl mx-auto">
                     Care.io helps you instantly connect with verified caregivers for
                     children, seniors, and loved ones — safe, secure, and stress-free.
                 </p>
 
                 {/* Search Style CTA */}
-                <div className="mt-10 max-w-2xl mx-auto bg-white rounded-2xl p-3 shadow-2xl flex flex-col md:flex-row gap-3">
+                <div className="mt-10 max-w-2xl mx-auto bg-white rounded-2xl p-3 shadow-xl flex flex-col md:flex-row gap-3">
 
                     <input
                         type="text"
@@ -43,22 +43,22 @@ const Banner = () => {
                 <div className="mt-16 grid md:grid-cols-3 gap-6">
                           <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:scale-105 transition">
                             <h3 className="font-semibold text-lg">Verified Caregivers</h3>
-                            <p className="text-white/80 mt-2 text-sm">
+                            <p className="text-accent mt-2 text-sm">
                                 Background-checked professionals you can trust.
                             </p>
                         </div>
 
  
-                    <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:scale-105 transition">
+                    <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:scale-105 transition z-20">
                         <h3 className="font-semibold text-lg">Easy Booking</h3>
-                        <p className="text-white/80 mt-2 text-sm">
+                        <p className="text-accent mt-2 text-sm">
                             Book reliable care in just a few clicks.
                         </p>
                     </div>
 
-                    <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:scale-105 transition">
+                    <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:scale-105 transition z-20">
                         <h3 className="font-semibold text-lg">Secure Platform</h3>
-                        <p className="text-white/80 mt-2 text-sm">
+                        <p className="text-accent mt-2 text-sm">
                             Safe payments and protected communication.
                         </p>
                     </div>

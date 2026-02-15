@@ -18,7 +18,7 @@ const Login = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center px-6">
+        <div className="min-h-screen flex items-center justify-center px-6 bg-base-200">
 
 
             {/* Glow Effects */}
@@ -27,7 +27,7 @@ const Login = () => {
 
 
             {/* Card */}
-            <div className="w-full max-w-5xl bg-white rounded-3xl shadow-2xl grid md:grid-cols-2 overflow-hidden z-30">
+            <div className="w-full max-w-5xl bg-base-100 rounded-3xl shadow-2xl grid md:grid-cols-2 overflow-hidden z-30">
 
                 {/* Left Side */}
                 <div className="hidden md:flex flex-col justify-center bg-linear-to-bl from-blue-700 to-cyan-300 text-white p-12 relative">
@@ -45,7 +45,7 @@ const Login = () => {
                 {/* Right Side */}
                 <div className="p-10 md:p-14">
 
-                    <h3 className="text-2xl font-bold text-gray-800">
+                    <h3 className="text-2xl font-bold text-base-300">
                         Login to Your Account
                     </h3>
 
@@ -53,7 +53,7 @@ const Login = () => {
 
                         {/* Email */}
                         <div>
-                            <label className="block text-sm font-medium text-gray-600">
+                            <label className="block text-sm font-medium text-base-300">
                                 Email Address
                             </label>
                             <input
@@ -66,7 +66,7 @@ const Login = () => {
                                         message: "Please enter a valid email",
                                     },
                                 })}
-                                className={`mt-2 text-black w-full px-4 py-3 rounded-xl border 
+                                className={`mt-2 text-accent w-full px-4 py-3 rounded-xl border 
                 ${errors.email ? "border-red-500" : "border-gray-300"}
                 focus:border-[#11B2ED] focus:ring-2 focus:ring-[#11B2ED]/30 outline-none transition`}
                             />
@@ -79,7 +79,7 @@ const Login = () => {
 
                         {/* Password */}
                         <div>
-                            <label className="block text-sm font-medium text-gray-600">
+                            <label className="block text-sm font-medium text-base-300">
                                 Password
                             </label>
                             <input
@@ -92,7 +92,7 @@ const Login = () => {
                                         message: "Password must be at least 6 characters",
                                     },
                                 })}
-                                className={`mt-2 text-black w-full px-4 py-3 rounded-xl border 
+                                className={`mt-2 text-accent w-full px-4 py-3 rounded-xl border 
                 ${errors.password ? "border-red-500" : "border-gray-300"}
                 focus:border-[#11B2ED] focus:ring-2 focus:ring-[#11B2ED]/30 outline-none transition`}
                             />
@@ -107,7 +107,7 @@ const Login = () => {
                         <div className="flex items-center justify-between text-sm">
                             <label className="flex items-center gap-2">
                                 <input type="checkbox" className="accent-[#11B2ED]" />
-                                <span className="text-black">Remember me</span>
+                                <span className="text-base-300">Remember me</span>
                             </label>
 
                             <Link
@@ -133,7 +133,7 @@ const Login = () => {
                     </div>
 
                     {/* Signup Link */}
-                    <p className="mt-6 text-center text-sm text-gray-600">
+                    <p className="mt-6 text-center text-sm text-accent">
                         Don’t have an account?{" "}
                         <Link
                             href="/register"

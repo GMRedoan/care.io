@@ -19,7 +19,7 @@ const Register = () => {
     };
 
     return (
-        <div className="min-h-screen relative flex items-center justify-center px-6">
+        <div className="min-h-screen relative flex items-center justify-center px-6 bg-base-200">
 
             {/* Glow Effects */}
             <div className="absolute top-10 left-10 w-72 h-72 bg-white/20 rounded-full blur-3xl"></div>

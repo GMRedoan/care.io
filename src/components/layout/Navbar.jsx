@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Logo from './Logo';
 import NavLink from '../Button/Navlink';
 import AuthButton from '../Button/AuthButton';
+import ThemeToggle from '../Button/ThemeToggle';
 
 const Navbar = () => {
     const [show, setShow] = useState(true);
@@ -63,7 +64,8 @@ const Navbar = () => {
                     {nav}
                 </ul>
             </div>
-            <div className="navbar-end">
+            <div className="navbar-end flex gap-2 md:gap-6">
+                <ThemeToggle></ThemeToggle>
                 <AuthButton></AuthButton>
             </div>
         </div>
