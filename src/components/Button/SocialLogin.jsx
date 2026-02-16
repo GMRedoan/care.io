@@ -8,7 +8,7 @@ const SocialLogin = () => {
     }
     return (
         <div>
-            <button onClick={handleSignIn} className="btn border border-primary bg-white text-primary rounded-xl w-full flex gap-2 py-5 hover:scale-105 transition-all duration-300">
+            <button onClick={handleSignIn} className="btn border border-primary bg-white text-primary rounded-xl w-full flex gap-2 py-5 hover:text-gray-800">
                 <FcGoogle size={20} />
                 <span className='text-[15px]'>Continue with Google</span>
             </button>

@@ -2,6 +2,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import NextAuthProvider from "@/provider/NextAuthProvider";
 
 const poppins = Poppins(
   {
@@ -16,16 +17,43 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme="light">
-      <body
-        className={`${poppins.className}`}
-      >
-        <header><Navbar></Navbar></header>
-        <main className="mt-15">
-          {children}
-        </main>
-        <footer><Footer></Footer></footer>
-      </body>
-    </html>
+    <NextAuthProvider>
+      <html lang="en" suppressHydrationWarning>
+        <head>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+              (function () {
+                try {
+                  const saved = localStorage.getItem("theme");
+
+                  if (saved) {
+                    document.documentElement.setAttribute("data-theme", saved);
+                  } else {
+                    const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+                    document.documentElement.setAttribute("data-theme", systemDark ? "dark" : "light");
+                  }
+                } catch (e) {}
+              })();
+            `,
+            }}
+          />
+        </head>
+
+        <body className={`${poppins.className}`}>
+          <header>
+            <Navbar />
+          </header>
+
+          <main className="mt-15">
+            {children}
+          </main>
+
+          <footer>
+            <Footer />
+          </footer>
+        </body>
+      </html>
+    </NextAuthProvider>
   );
 }

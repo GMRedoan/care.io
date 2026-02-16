@@ -1,12 +1,18 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import SocialLogin from "@/components/Button/SocialLogin";
+import { postUser } from "@/actions/server/Auth";
+import Swal from "sweetalert2";
+import { signIn } from "next-auth/react";
+
 
 const Register = () => {
     const router = useRouter();
+    const params = useSearchParams();
+    const callback = params.get("callbackUrl") || '/'
 
     const {
         register,
@@ -14,8 +20,21 @@ const Register = () => {
         formState: { errors, isSubmitting },
     } = useForm();
 
-    const onSubmit = (data) => {
-        console.log("Registration Data:", data);
+    const onSubmit = async(data) => {
+        const result = await postUser(data)
+        if(result.acknowledged){
+            const result = await signIn("credentials", {email:data.email, password:data.password, redirect:false, callbackUrl:callback})
+ 
+            if(result.ok){
+                Swal.fire({
+                    title: "Welcome",
+                    text: "You Successfully create your account",
+                    icon: "success",
+                    confirmButtonColor: "#11B2ED"
+                });
+                router.push(callback)
+            }
+        }
     };
 
     return (
@@ -75,6 +94,7 @@ const Register = () => {
                     {/* Email */}
                     <div>
                         <input
+                        name="email"
                             type="email"
                             placeholder="Email Address"
                             {...register("email", {
@@ -96,7 +116,7 @@ const Register = () => {
                     {/* Contact */}
                     <div>
                         <input
-                            type="tel"
+                            type="number"
                             placeholder="Contact Number"
                             {...register("contact", {
                                 required: "Contact number is required",
@@ -113,6 +133,7 @@ const Register = () => {
                     {/* Password */}
                     <div className="md:col-span-2">
                         <input
+                        name="password"
                             type="password"
                             placeholder="Create Password"
                             {...register("password", {
@@ -144,9 +165,9 @@ const Register = () => {
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="w-full py-2 rounded-xl bg-white text-[#11B2ED] font-semibold hover:bg-gray-200 hover:text-black transition-all duration-300 shadow-lg hover:scale-105"
+                            className="w-full py-2 rounded-xl bg-white text-[#11B2ED] font-semibold hover:bg-gray-200 hover:text-black transition-all duration-300 shadow-lg cursor-pointer"
                         >
-                            {isSubmitting ? "Creating Account..." : "Register Now"}
+                            {isSubmitting ? "Please wait..." : "Register Now"}
                         </button>
                     </div>
                 </form>
