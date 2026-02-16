@@ -7,6 +7,7 @@ import SocialLogin from "@/components/Button/SocialLogin";
 import { postUser } from "@/actions/server/Auth";
 import Swal from "sweetalert2";
 import { signIn } from "next-auth/react";
+import Button2 from "@/components/styles/Button2";
 
 
 const Register = () => {
@@ -45,13 +46,13 @@ const Register = () => {
             <div className="absolute bottom-10 right-10 w-80 h-80 bg-cyan-300/50 rounded-full blur-3xl"></div>
 
             {/* Glass Card */}
-            <div className="relative w-full max-w-4xl backdrop-blur-xl bg-linear-to-br from-blue-700 via-[#11B2ED] to-cyan-400 border border-white/30 rounded-3xl shadow-2xl p-8 md:p-12 z-30">
+            <div className="relative w-full max-w-4xl backdrop-blur-xl bg-base-100 border border-white/30 rounded-3xl shadow-2xl p-8 md:p-12 z-30">
 
                 <div className="text-center mb-8">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white">
+                    <h2 className="text-3xl md:text-4xl font-bold text-primary">
                         Create Your Care.io Account
                     </h2>
-                    <p className="text-white/80 mt-2">
+                    <p className="text-accent mt-2">
                         Safe. Secure. Trusted Care Platform.
                     </p>
                 </div>
@@ -67,7 +68,7 @@ const Register = () => {
                             type="text"
                             placeholder="NID Number"
                             {...register("nid", { required: "NID is required" })}
-                            className="w-full px-4 py-3 rounded-xl bg-white/80 text-black focus:ring-2 focus:ring-white outline-none"
+                            className="w-full px-4 py-3 rounded-xl bg-base-200 text-base-300 focus:ring-2 focus:ring-white outline-none"
                         />
                         {errors.nid && (
                             <p className="text-red-200 text-sm mt-1">
@@ -82,7 +83,7 @@ const Register = () => {
                             type="text"
                             placeholder="Full Name"
                             {...register("name", { required: "Name is required" })}
-                            className="w-full px-4 py-3 rounded-xl bg-white/80 text-black focus:ring-2 focus:ring-white outline-none"
+                            className="w-full px-4 py-3 rounded-xl bg-base-200 text-base-300 focus:ring-2 focus:ring-white outline-none"
                         />
                         {errors.name && (
                             <p className="text-red-200 text-sm mt-1">
@@ -104,7 +105,7 @@ const Register = () => {
                                     message: "Invalid email address",
                                 },
                             })}
-                            className="w-full px-4 py-3 rounded-xl bg-white/80 text-black focus:ring-2 focus:ring-white outline-none"
+                            className="w-full px-4 py-3 rounded-xl bg-base-200 text-base-300 focus:ring-2 focus:ring-white outline-none"
                         />
                         {errors.email && (
                             <p className="text-red-200 text-sm mt-1">
@@ -121,7 +122,7 @@ const Register = () => {
                             {...register("contact", {
                                 required: "Contact number is required",
                             })}
-                            className="w-full px-4 py-3 rounded-xl bg-white/80 text-black focus:ring-2 focus:ring-white outline-none"
+                            className="w-full px-4 py-3 rounded-xl bg-base-200 text-base-300 focus:ring-2 focus:ring-white outline-none"
                         />
                         {errors.contact && (
                             <p className="text-red-200 text-sm mt-1">
@@ -151,7 +152,7 @@ const Register = () => {
                                         "At least one lowercase letter required",
                                 },
                             })}
-                            className="w-full px-4 py-3 rounded-xl bg-white/80 text-black focus:ring-2 focus:ring-white outline-none"
+                            className="w-full px-4 py-3 rounded-xl bg-base-200 text-base-300 focus:ring-2 focus:ring-white outline-none"
                         />
                         {errors.password && (
                             <p className="text-red-200 text-sm mt-1">
@@ -162,23 +163,23 @@ const Register = () => {
 
                     {/* Button */}
                     <div className="md:col-span-2">
-                        <button
+                        <Button2
                             type="submit"
                             disabled={isSubmitting}
-                            className="w-full py-2 rounded-xl bg-white text-[#11B2ED] font-semibold hover:bg-gray-200 hover:text-black transition-all duration-300 shadow-lg cursor-pointer"
+                            className="w-full py-2.5 font-semibold transition-all duration-300 shadow-sm bg-base-200 cursor-pointer"
                         >
                             {isSubmitting ? "Please wait..." : "Register Now"}
-                        </button>
+                        </Button2>
                     </div>
                 </form>
-                <div className="mt-2">
+                <div className="mt-3">
                     <SocialLogin></SocialLogin>
                 </div>
 
                 {/* Login Link */}
-                <p className="text-center text-white/80 mt-6">
+                <p className="text-center text-accent mt-6">
                     Already have an account?{" "}
-                    <Link href="/login" className="font-semibold hover:underline hover:text-white transition-all duration-300">
+                    <Link href="/login" className="font-semibold text-base-300 hover:underline hover:text-primary transition-all duration-300">
                         Login here
                     </Link>
                 </p>

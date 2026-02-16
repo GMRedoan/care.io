@@ -7,6 +7,7 @@ import { FiLogIn } from "react-icons/fi";
 import { TbLogout2 } from "react-icons/tb";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
+import Button1 from "../styles/Button1";
 
 const AuthButton = () => {
     const { status } = useSession();
@@ -41,20 +42,20 @@ const AuthButton = () => {
     return (
         <div>
             {status === "authenticated" ? (
-                <button
+                <Button1
                     onClick={handleLogout}
-                    className="btn btn-sm bg-red-600 hover:bg-red-700 border-none rounded-xl text-white"
+                    className="btn btn-sm md:btn-md"
                 >
                     Log out <TbLogout2 />
-                </button>
+                </Button1>
             ) : (
                 <Link
                     href="/login"
-                    className="btn btn-sm btn-primary rounded-xl"
+                        className="btn btn-sm md:btn-md bg-linear-to-bl from-blue-500 to-cyan-300 rounded-xl border-none shadow-xl hover:text-black text-white"
                 >
-                    Login <FiLogIn />
+                        Login <FiLogIn />
                 </Link>
-            )}
+             )}
         </div>
     );
 };

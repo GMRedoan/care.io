@@ -1,24 +1,44 @@
 "use client";
 
 import SocialLogin from "@/components/Button/SocialLogin";
+import Button2 from "@/components/styles/Button2";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const Login = () => {
+    const router = useRouter();
+    const params = useSearchParams();
+    const callback = params.get("callbackUrl") || "/";
+    const [authError, setAuthError] = useState();
     const {
         register,
         handleSubmit,
         formState: { errors, isSubmitting },
     } = useForm();
 
-    const onSubmit = (data) => {
-        console.log("Login Data:", data);
+    const onSubmit = async (data) => {
+        setAuthError(null)
+        const result = await signIn("credentials", { email: data.email, password: data.password, redirect: false, callbackUrl: callback })
+        if (result.ok) {
+            Swal.fire({
+                title: "Welcome Back",
+                text: "You Successfully Logged in your account",
+                icon: "success",
+                confirmButtonColor: "#11B2ED"
+            });
+            router.push(callback)
+        }else{
+            setAuthError("Invalid email or password");
+        }
 
-        // 👉 here you will call backend / firebase login
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center px-6 bg-base-200">
+        <div className="min-h-screen flex items-center justify-center px-6 bg-base-200 py-20">
 
 
             {/* Glow Effects */}
@@ -66,7 +86,7 @@ const Login = () => {
                                         message: "Please enter a valid email",
                                     },
                                 })}
-                                className={`mt-2 text-accent w-full px-4 py-3 rounded-xl border 
+                                className={`mt-2 w-full px-4 py-3 rounded-xl border bg-base-200 text-base-300
                 ${errors.email ? "border-red-500" : "border-gray-300"}
                 focus:border-[#11B2ED] focus:ring-2 focus:ring-[#11B2ED]/30 outline-none transition`}
                             />
@@ -87,13 +107,8 @@ const Login = () => {
                                 placeholder="••••••••"
                                 {...register("password", {
                                     required: "Password is required",
-                                    minLength: {
-                                        value: 6,
-                                        message: "Password must be at least 6 characters",
-                                    },
                                 })}
-                                className={`mt-2 text-accent w-full px-4 py-3 rounded-xl border 
-                ${errors.password ? "border-red-500" : "border-gray-300"}
+                                className={`mt-2 text-base-300 w-full px-4 py-3 rounded-xl border border-gray-300 bg-base-200
                 focus:border-[#11B2ED] focus:ring-2 focus:ring-[#11B2ED]/30 outline-none transition`}
                             />
                             {errors.password && (
@@ -101,31 +116,22 @@ const Login = () => {
                                     {errors.password.message}
                                 </p>
                             )}
-                        </div>
 
-                        {/* Remember + Forgot */}
-                        <div className="flex items-center justify-between text-sm">
-                            <label className="flex items-center gap-2">
-                                <input type="checkbox" className="accent-[#11B2ED]" />
-                                <span className="text-base-300">Remember me</span>
-                            </label>
-
-                            <Link
-                                href="#"
-                                className="text-[#11B2ED] hover:underline font-medium"
-                            >
-                                Forgot password?
-                            </Link>
+                             {authError && (
+                                <p className="text-red-500 text-sm mt-2">
+                                    {authError}
+                                </p>
+                            )}
                         </div>
 
                         {/* Submit Button */}
-                        <button
+                        <Button2
                             type="submit"
                             disabled={isSubmitting}
-                            className="btn border-none w-full py-5 rounded-xl bg-linear-to-bl from-blue-700 to-cyan-300 text-white font-semibold transition duration-300 shadow-lg disabled:opacity-70"
+                            className="btn w-full disabled:opacity-70 mt-4"
                         >
                             {isSubmitting ? "Logging in..." : "Login"}
-                        </button>
+                        </Button2>
                     </form>
 
                     <div className="mt-4">
@@ -137,7 +143,7 @@ const Login = () => {
                         Don’t have an account?{" "}
                         <Link
                             href="/register"
-                            className="text-[#11B2ED] font-semibold hover:underline"
+                            className="text-base-300 font-semibold hover:underline hover:text-primary"
                         >
                             Create one
                         </Link>
