@@ -8,10 +8,18 @@ import { TbLogout2 } from "react-icons/tb";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import Button1 from "../styles/Button1";
-
+   
 const AuthButton = () => {
     const { status } = useSession();
     const router = useRouter();
+
+    if(status == "loading"){
+        return (
+            <div className="btn btn-sm md:btn-md btn-primary opacity-50 rounded-xl">
+                Loading...
+            </div>
+        );
+    }
 
     const handleLogout = async () => {
         const result = await Swal.fire({
@@ -58,6 +66,6 @@ const AuthButton = () => {
              )}
         </div>
     );
-};
+}; 
 
 export default AuthButton;
