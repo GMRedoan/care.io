@@ -12,9 +12,17 @@ import img1 from '../../../public/un1.jpg'
 import img2 from '../../../public/un2.jpg'
 import img3 from '../../../public/un3.jpg'
 import Button1 from '../styles/Button1';
-import Link from 'next/link';
 
 const Banner = () => {
+    const handleClick2 = (e) => {
+        e.preventDefault();
+        document.getElementById("aboutUs")
+            ?.scrollIntoView({ behavior: "smooth" });
+    }
+    const handleClick1 = (e) => {
+        e.preventDefault()
+        document.getElementById("service")?.scrollIntoView({behavior:"smooth"})
+    }
     return (
         <div className='bg-base-200'>
             {/* Swiper */}
@@ -100,12 +108,11 @@ const Banner = () => {
                             {/* CTA Buttons */}
                             <div className="mt-8 sm:mt-10 md:mt-12 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center animate-fadeIn">
 
-                                <Button1 className="px-8 py-4 font-semibold shadow-2xl hover:scale-110 hover:shadow-cyan-500/40 transition duration-300">
-                                    <Link href={'/product'}>
-                                        Get Started</Link>
+                                <Button1 onClick={handleClick1} className="px-8 py-4 font-semibold shadow-2xl hover:scale-110 hover:shadow-cyan-500/40 transition duration-300">
+                                        Get Started 
                                 </Button1>
 
-                                <button className="px-7 md:px-8 py-3 w-fit ml-20 md:ml-0 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 text-white font-semibold hover:bg-white/20 hover:scale-105 transition duration-300">
+                                <button onClick={handleClick2} className="px-7 md:px-8 py-3 w-fit ml-20 md:ml-0 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 text-white font-semibold hover:bg-white/20 hover:scale-105 transition duration-300 cursor-pointer">
                                     Learn More
                                 </button>
 

@@ -11,10 +11,7 @@ const Navbar = () => {
 
     const nav = <>
         <li>
-            <NavLink href={'/home'}>Home</NavLink>
-        </li>
-        <li>
-            <NavLink href={'/products'}>Products</NavLink>
+            <NavLink href={'/services'}>Services</NavLink>
         </li>
         <li>
             <NavLink href={'/blog'}>Blog</NavLink>
