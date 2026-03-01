@@ -14,7 +14,7 @@ const error = () => {
             <div className="relative text-center backdrop-blur-xl rounded-3xl shadow-2xl p-10 md:p-16 max-w-xl w-full">
 
                 {/* 404 Number */}
-                <h1 className="text-7xl md:text-8xl font-extrabold text-white tracking-widest drop-shadow-lg">
+                <h1 className="text-7xl md:text-8xl font-extrabold text-base-300 tracking-widest drop-shadow-lg">
                     404
                 </h1>
 
@@ -24,7 +24,7 @@ const error = () => {
                 </h2>
 
                 {/* Description */}
-                <p className="text-white/80 mt-4 leading-relaxed">
+                <p className="text-accent mt-4 leading-relaxed">
                     The page you are looking for might have been removed,
                     had its name changed, or is temporarily unavailable.
                     Let’s take you back home safely.

@@ -52,7 +52,8 @@ const Register = () => {
                     <h2 className="text-3xl md:text-4xl font-bold text-primary">
                         Create Your Care.io Account
                     </h2>
-                    <p className="text-accent mt-2">
+                    <p className="text-accent
+                     mt-2">
                         Safe. Secure. Trusted Care Platform.
                     </p>
                 </div>

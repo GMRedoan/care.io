@@ -9,9 +9,9 @@ const Logo = () => {
             <Image
             src={'/logo 7.35.41 PM.png'}
                 alt='logo'
-                width={90}
-                height={30}
-                className='w-16 md:w-23 -my-10'
+                width={100}
+                height={80}
+                className='w-16 md:w-23 '
                 >
             </Image>
             <p className='md:text-xl font-bold -ml-3'>Care <span className='text-primary'>.IO</span></p>

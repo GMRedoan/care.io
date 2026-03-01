@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 
 
 const SocialLogin = () => {
-    const router = useRouter
+    const router = useRouter();
     const params = useSearchParams();
     const callback = params.get("callbackUrl") || "/"
     const handleSignIn = async () => {
