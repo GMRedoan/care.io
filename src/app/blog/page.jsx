@@ -241,11 +241,11 @@ export default function Blog() {
                             placeholder="Enter your email"
                             className="px-6 py-3 rounded-xl border border-primary text-base-300 w-full sm:w-80"
                         />
-                        <button type="submit">
+                        <span type="submit">
                             <Button1 className="px-8 py-4 font-semibold transition">
                                 Subscribe
                             </Button1>
-                        </button>
+                        </span>
                     </div>
                 </form>
             </section>

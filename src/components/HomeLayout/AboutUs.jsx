@@ -122,7 +122,7 @@ const AboutSection = () => {
                 {/* Bottom Highlight Panel (Glass Style) */}
                 <div className="mt-24">
 
-                    <div className="bg-white/10 backdrop-blur-lg border border-base-100 
+                    <div className="bg-foreground backdrop-blur-lg border border-base-100 
             rounded-3xl py-12 px-8 text-center shadow-2xl">
 
                         <h3 className="text-2xl sm:text-3xl font-bold mb-4">

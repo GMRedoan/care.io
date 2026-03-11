@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import NextAuthProvider from "@/provider/NextAuthProvider";
+import SmoothScroll from "@/components/styles/SmoothScroll";
 
 const poppins = Poppins(
   {
@@ -44,17 +45,20 @@ export default function RootLayout({ children }) {
         </head>
 
         <body className={`${poppins.className}`}>
-          <header>
-            <Navbar />
-          </header>
+          <SmoothScroll>
+            <header>
+              <Navbar />
+            </header>
 
-          <main>
-            {children}
-          </main>
+            <main>
+              {children}
+            </main>
 
-          <footer>
-            <Footer />
-          </footer>
+            <footer>
+              <Footer />
+            </footer>
+
+          </SmoothScroll>
         </body>
       </html>
     </NextAuthProvider>

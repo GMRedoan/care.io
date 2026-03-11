@@ -1,11 +1,20 @@
 "use client";
 
 import React from "react";
+import CountUp from "react-countup";
 import { FaQuoteLeft } from "react-icons/fa";
+import { useInView } from "react-intersection-observer";
 
+ 
 const Testimonials = () => {
+
+    const { ref, inView } = useInView({
+        triggerOnce: false,
+        threshold: 0.3,
+    });
+
     return (
-        <section className="relative bg-base-200 py-28 px-6 md:px-16 overflow-hidden">
+        <section ref={ref} className="relative bg-base-200 py-28 px-6 md:px-16 overflow-hidden">
 
             {/* Background Glow Effects */}
             <div className="absolute -top-32 left-10 w-96 h-96 bg-cyan-500/20 blur-3xl rounded-full opacity-40"></div>
@@ -33,7 +42,7 @@ const Testimonials = () => {
 
                         <div>
                             <h3 className="text-6xl font-extrabold text-cyan-500">
-                                25K+
+                                 {inView && <CountUp end={25} duration={5} separator="," />}K+
                             </h3>
                             <p className="text-gray-500 text-lg">
                                 Families Served
@@ -42,7 +51,7 @@ const Testimonials = () => {
 
                         <div>
                             <h3 className="text-6xl font-extrabold text-blue-500">
-                                5K+
+                                {inView && <CountUp end={5000} duration={3} separator="," />}+
                             </h3>
                             <p className="text-gray-500 text-lg">
                                 Verified Caregivers
@@ -51,7 +60,7 @@ const Testimonials = () => {
 
                         <div>
                             <h3 className="text-6xl font-extrabold text-cyan-500">
-                                98%
+                                {inView && <CountUp end={98} duration={5} separator="," />}%
                             </h3>
                             <p className="text-gray-500 text-lg">
                                 Satisfaction Rate
@@ -60,7 +69,7 @@ const Testimonials = () => {
 
                         <div>
                             <h3 className="text-6xl font-extrabold text-blue-500">
-                                24/7
+                                {inView && <CountUp end={24} duration={5} separator="," />}/7
                             </h3>
                             <p className="text-gray-500 text-lg">
                                 Support Availability

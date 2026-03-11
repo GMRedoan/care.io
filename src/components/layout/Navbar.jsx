@@ -9,6 +9,11 @@ const Navbar = () => {
     const [show, setShow] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
 
+    const handleClick = (e) => {
+        e.preventDefault()
+        document.getElementById("BannerSection").scrollIntoView({behavior:"smooth"})
+    }
+
     const nav = <>
         <li>
             <NavLink href={'/services'}>Services</NavLink>
@@ -52,7 +57,7 @@ const Navbar = () => {
                             {nav}
                      </ul>
                 </div>
-                <div className='-ml-6 md:ml-2'>
+                <div onClick={handleClick} className='-ml-6 md:ml-2'>
                     <Logo></Logo>
                 </div>
              </div>

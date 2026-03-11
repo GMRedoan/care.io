@@ -10,6 +10,7 @@
   --color-base-300: #0A0100;
   --color-accent: #706f6f;
   --color-primary: #11B2ED;
+  --color-foreground: #e5e7eb;
 }
 
 /* Dark Theme */
@@ -22,6 +23,7 @@
   --color-base-300: #FFFFFF;
   --color-accent: #B0ABAB;
   --color-primary: #11B2ED;
+  --color-foreground: #030712;
  }
 
 /* body {

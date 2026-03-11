@@ -12,6 +12,8 @@ import img1 from '../../../public/un1.jpg'
 import img2 from '../../../public/un2.jpg'
 import img3 from '../../../public/un3.jpg'
 import Button1 from '../styles/Button1';
+import { MdOutlineWebhook } from 'react-icons/md';
+import { CgMoreVertical } from 'react-icons/cg';
 
 const Banner = () => {
     const handleClick2 = (e) => {
@@ -24,9 +26,9 @@ const Banner = () => {
         document.getElementById("service")?.scrollIntoView({behavior:"smooth"})
     }
     return (
-        <div className='bg-base-200'>
+        <div id='BannerSection' className='bg-base-200'>
             {/* Swiper */}
-            <div className="">
+            <div>
                 <Swiper
                     modules={[Autoplay, EffectFade]}
                     loop={true}
@@ -108,12 +110,12 @@ const Banner = () => {
                             {/* CTA Buttons */}
                             <div className="mt-8 sm:mt-10 md:mt-12 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center animate-fadeIn">
 
-                                <Button1 onClick={handleClick1} className="px-8 py-4 font-semibold shadow-2xl hover:scale-110 hover:shadow-cyan-500/40 transition duration-300">
-                                        Get Started 
+                                <Button1 onClick={handleClick1} className="px-8 py-4 font-semibold shadow-2xl hover:scale-110 hover:shadow-cyan-500/40 transition duration-300 flex items-center gap-2">
+                                    Get Started <MdOutlineWebhook className='animate-spin text-xl' />
                                 </Button1>
 
-                                <button onClick={handleClick2} className="px-7 md:px-8 py-3 w-fit ml-20 md:ml-0 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 text-white font-semibold hover:bg-white/20 hover:scale-105 transition duration-300 cursor-pointer">
-                                    Learn More
+                                <button onClick={handleClick2} className="px-7 md:px-8 py-3 w-fit ml-20 md:ml-0 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 text-white font-semibold hover:bg-white/20 hover:scale-105 transition duration-300 cursor-pointer flex items-center gap-2">
+                                    Learn More <CgMoreVertical className='text-primary'/>
                                 </button>
 
                             </div>
