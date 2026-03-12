@@ -110,7 +110,7 @@ const Banner = () => {
                             {/* CTA Buttons */}
                             <div className="mt-8 sm:mt-10 md:mt-12 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center animate-fadeIn">
 
-                                <Button1 onClick={handleClick1} className="px-8 py-4 font-semibold shadow-2xl hover:scale-110 hover:shadow-cyan-500/40 transition duration-300 flex items-center gap-2">
+                                <Button1 onClick={handleClick1} className="ml-20 md:ml-0 px-8 py-4 font-semibold shadow-2xl hover:scale-110 hover:shadow-cyan-500/40 transition duration-300 flex items-center gap-2">
                                     Get Started <MdOutlineWebhook className='animate-spin text-xl' />
                                 </Button1>
 

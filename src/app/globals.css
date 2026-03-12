@@ -46,3 +46,19 @@
 .animate-fadeIn {
   animation: fadeIn 1s ease forwards;
 }
+
+@keyframes bounce-custom {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.bounce-custom {
+  animation: bounce-custom 3s ease-in-out infinite;
+}

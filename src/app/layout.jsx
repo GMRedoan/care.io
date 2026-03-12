@@ -4,6 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import NextAuthProvider from "@/provider/NextAuthProvider";
 import SmoothScroll from "@/components/styles/SmoothScroll";
+import ScrollToTop from "@/components/styles/ScrollToTop";
 
 const poppins = Poppins(
   {
@@ -52,6 +53,7 @@ export default function RootLayout({ children }) {
 
             <main>
               {children}
+              <ScrollToTop/>
             </main>
 
             <footer>

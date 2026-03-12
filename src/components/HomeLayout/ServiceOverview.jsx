@@ -34,13 +34,13 @@ const services = [
 
 const ServiceOverview = () => {
     return (
-        <section id="service" className="relative bg-base-200 py-10 px-6 md:px-16 overflow-hidden">
+        <section id="service" className="relative bg-base-200 py-10 px-6 md:px-16 pt-20 md:pt-30 overflow-hidden">
  
             <div className="max-w-7xl mx-auto relative z-10">
 
                 {/* Header */}
                 <div className="text-center mb-20">
-                    <h2 className="text-3xl sm:text-4xl md:text-6xl font-extrabold 
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold 
             bg-linear-to-r from-base-300 via-cyan-400 to-base-300 bg-clip-text text-transparent">
                         Our Care Services
                     </h2>

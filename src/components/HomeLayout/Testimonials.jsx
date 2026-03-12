@@ -14,17 +14,14 @@ const Testimonials = () => {
     });
 
     return (
-        <section ref={ref} className="relative bg-base-200 py-28 px-6 md:px-16 overflow-hidden">
+        <section ref={ref} className="relative bg-base-200 py-18 md:py-28 pb-40 px-6 md:px-16 overflow-hidden">
 
-            {/* Background Glow Effects */}
-            <div className="absolute -top-32 left-10 w-96 h-96 bg-cyan-500/20 blur-3xl rounded-full opacity-40"></div>
             <div className="absolute -bottom-32 right-10 w-96 h-96 bg-blue-500/20 blur-3xl rounded-full opacity-40"></div>
 
             <div className="max-w-6xl mx-auto relative z-10">
 
-                {/* Section Header */}
                 <div className="text-center mb-20">
-                    <h2 className="text-3xl sm:text-4xl md:text-6xl font-extrabold 
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold 
             bg-linear-to-r from-base-300 via-cyan-400 to-base-300 bg-clip-text text-transparent">
                         Trusted by Thousands of Families
                     </h2>
@@ -41,7 +38,7 @@ const Testimonials = () => {
                     <div className="space-y-12">
 
                         <div>
-                            <h3 className="text-6xl font-extrabold text-cyan-500">
+                            <h3 className="text-5xl md:text-6xl font-extrabold text-cyan-500">
                                  {inView && <CountUp end={25} duration={5} separator="," />}K+
                             </h3>
                             <p className="text-gray-500 text-lg">
@@ -50,7 +47,7 @@ const Testimonials = () => {
                         </div>
 
                         <div>
-                            <h3 className="text-6xl font-extrabold text-blue-500">
+                            <h3 className="text-5xl md:text-6xl font-extrabold text-blue-500">
                                 {inView && <CountUp end={5000} duration={3} separator="," />}+
                             </h3>
                             <p className="text-gray-500 text-lg">
@@ -59,7 +56,7 @@ const Testimonials = () => {
                         </div>
 
                         <div>
-                            <h3 className="text-6xl font-extrabold text-cyan-500">
+                            <h3 className="text-5xl md:text-6xl font-extrabold text-cyan-500">
                                 {inView && <CountUp end={98} duration={5} separator="," />}%
                             </h3>
                             <p className="text-gray-500 text-lg">
@@ -68,7 +65,7 @@ const Testimonials = () => {
                         </div>
 
                         <div>
-                            <h3 className="text-6xl font-extrabold text-blue-500">
+                            <h3 className="text-5xl md:text-6xl font-extrabold text-blue-500">
                                 {inView && <CountUp end={24} duration={5} separator="," />}/7
                             </h3>
                             <p className="text-gray-500 text-lg">

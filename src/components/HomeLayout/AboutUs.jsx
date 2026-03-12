@@ -145,6 +145,17 @@ const AboutSection = () => {
                 </div>
 
             </div>
+            <div className="text-center mt-30 -mb-10">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold 
+            bg-linear-to-r from-base-300 via-cyan-400 to-base-300 bg-clip-text text-transparent">
+                    Partners Companies
+                </h2>
+                <p className="text-accent mt-2">
+                    Working together with trusted partners to provide better care for every family.
+                </p>
+            </div>
+
+
         </section>
     );
 };
