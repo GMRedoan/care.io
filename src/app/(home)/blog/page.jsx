@@ -1,14 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 
-import img1 from "../../../public/c2.jpg";
-import img2 from "../../../public/c4.jpg";
-import img3 from "../../../public/five.jpg";
-import img4 from "../../../public/c1.jpg";
-import Button1 from "@/components/styles/Button1";
+import Button1 from "@/components/reusable/Button1";
 import { MdArrowOutward } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 import Swal from "sweetalert2";
@@ -17,19 +12,19 @@ const blogs = [
     {
         title: "How to Choose the Right Caregiver for Your Family",
         desc: "A complete guide to selecting trusted and verified caregivers with confidence.",
-        image: img2,
+        image: "https://i.ibb.co.com/gFLHjWJq/c4.jpg",
         category: "Family Care",
     },
     {
         title: "5 Signs Your Elderly Parent Needs Extra Support",
         desc: "Understanding when professional elderly care becomes essential.",
-        image: img3,
+        image: "https://i.ibb.co.com/v6xCNp3P/five.jpg",
         category: "Elderly Care",
     },
     {
         title: "Creating a Safe Home Environment for Children",
         desc: "Simple steps to ensure your child’s safety and comfort at home.",
-        image: img4,
+        image: "https://i.ibb.co.com/7dg2pPcc/c1.jpg",
         category: "Baby Care",
     },
 ];
@@ -38,13 +33,13 @@ export default function Blog() {
     const handleSubmit = (e) => {
         e.preventDefault()
         const form = e.target
-                    Swal.fire({
-                        title: "Thank You",
-                        text: "Successfully Subscribed !",
-                        icon: "success",
-                        confirmButtonColor: "#11B2ED"
-                    });
-                    form.reset()
+        Swal.fire({
+            title: "Thank You",
+            text: "Successfully Subscribed !",
+            icon: "success",
+            confirmButtonColor: "#11B2ED"
+        });
+        form.reset()
     }
     return (
         <div className="bg-base-200">
@@ -72,7 +67,7 @@ export default function Blog() {
 
                     <div className="relative h-100 rounded-3xl overflow-hidden group">
                         <Image
-                            src={img1}
+                            src="https://i.ibb.co.com/gM48zk0r/c2.jpg"
                             alt="Featured Blog"
                             fill
                             className="object-cover transition duration-700 group-hover:scale-105"
@@ -209,7 +204,7 @@ export default function Blog() {
                                     className="mt-3"
                                     onClick={() => document.getElementById('open').showModal()}
                                     href="#">
-                                    <div className="px-3 py-2 flex items-center gap-2 font-semibold text-sm ">
+                                    <div className="px-2 flex items-center gap-2 font-semibold text-sm ">
                                         Read More <FaArrowRight />
                                     </div>
                                 </Button1>

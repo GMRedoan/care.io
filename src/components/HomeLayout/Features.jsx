@@ -1,6 +1,6 @@
 "use client"
 import { features } from "@/components/Data/features";
-import FeatureCard from "@/components/cards/FeaturesCard";
+import FeatureCard from "@/components/reusable/FeaturesCard";
 import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 

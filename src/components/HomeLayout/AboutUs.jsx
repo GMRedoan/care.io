@@ -1,7 +1,7 @@
 import React from "react";
 import { FaHeart, FaUserShield, FaHandsHelping } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
-import Button1 from "../styles/Button1";
+import Button1 from "../reusable/Button1";
 import { RiServiceFill } from "react-icons/ri";
 import Link from "next/link";
 
@@ -134,11 +134,11 @@ const AboutSection = () => {
                             simple, secure, and stress-free.
                         </p>
 
-                        <Button1 className="btn px-8 transition duration-300">
+                        <Button1 className="btn px-8">
                             <Link className="flex justify-center items-center gap-2" href={'/blog'} >
                                 Explore More <RiServiceFill />
                             </Link>
-                         </Button1>
+                        </Button1>
 
                     </div>
 

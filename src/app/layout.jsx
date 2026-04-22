@@ -1,19 +1,19 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import Navbar from "@/components/HomeLayout/components/Navbar";
+import Footer from "@/components/HomeLayout/components/Footer";
 import NextAuthProvider from "@/provider/NextAuthProvider";
-import SmoothScroll from "@/components/styles/SmoothScroll";
-import ScrollToTop from "@/components/styles/ScrollToTop";
+import SmoothScroll from "@/components/reusable/SmoothScroll";
+import ScrollToTop from "@/components/reusable/ScrollToTop";
 
 const poppins = Poppins(
   {
     weight: ["100", "300", "400", "500", "600", "800"]
   }
-) 
+)
 
 export const metadata = {
-  title:{
+  title: {
     default: "Care.io",
     template: "%s" | "Care.io"
   },
@@ -53,7 +53,7 @@ export default function RootLayout({ children }) {
 
             <main>
               {children}
-              <ScrollToTop/>
+              <ScrollToTop />
             </main>
 
             <footer>

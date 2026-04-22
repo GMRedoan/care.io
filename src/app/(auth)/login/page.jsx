@@ -1,7 +1,7 @@
 "use client";
 
-import SocialLogin from "@/components/Button/SocialLogin";
-import Button2 from "@/components/styles/Button2";
+import SocialLogin from "@/components/reusable/SocialLogin";
+import Button2 from "@/components/reusable/Button2";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -31,7 +31,7 @@ const Login = () => {
                 confirmButtonColor: "#11B2ED"
             });
             router.push(callback)
-        }else{
+        } else {
             setAuthError("Invalid email or password");
         }
 
@@ -117,7 +117,7 @@ const Login = () => {
                                 </p>
                             )}
 
-                             {authError && (
+                            {authError && (
                                 <p className="text-red-500 text-sm mt-2">
                                     {authError}
                                 </p>

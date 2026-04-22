@@ -8,10 +8,7 @@ import { FaShieldAlt, FaUserCheck, FaBolt } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
 import { Autoplay, EffectFade } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import img1 from '../../../public/un1.jpg'
-import img2 from '../../../public/un2.jpg'
-import img3 from '../../../public/un3.jpg'
-import Button1 from '../styles/Button1';
+import Button1 from '../reusable/Button1';
 import { MdOutlineWebhook } from 'react-icons/md';
 import { CgMoreVertical } from 'react-icons/cg';
 
@@ -23,7 +20,7 @@ const Banner = () => {
     }
     const handleClick1 = (e) => {
         e.preventDefault()
-        document.getElementById("service")?.scrollIntoView({behavior:"smooth"})
+        document.getElementById("service")?.scrollIntoView({ behavior: "smooth" })
     }
     return (
         <div id='BannerSection' className='bg-base-200'>
@@ -44,7 +41,7 @@ const Banner = () => {
                     <SwiperSlide>
                         <div className="h-full">
                             <Image
-                                src={img1}
+                                src="https://i.ibb.co.com/N2Jk4KdY/un1.jpg"
                                 alt='Service'
                                 sizes='100vw'
                                 fill
@@ -59,7 +56,7 @@ const Banner = () => {
                     <SwiperSlide>
                         <div className="h-full">
                             <Image
-                                src={img2}
+                                src="https://i.ibb.co.com/Wv1Md9rM/un2.jpg"
                                 alt='Service'
                                 sizes='100vw'
                                 fill
@@ -73,7 +70,7 @@ const Banner = () => {
                     <SwiperSlide>
                         <div className="h-full">
                             <Image
-                                src={img3}
+                                src="https://i.ibb.co.com/S4MM9W8c/un3.jpg"
                                 alt='Service'
                                 sizes='100vw'
                                 fill
@@ -110,12 +107,12 @@ const Banner = () => {
                             {/* CTA Buttons */}
                             <div className="mt-8 sm:mt-10 md:mt-12 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center animate-fadeIn">
 
-                                <Button1 onClick={handleClick1} className="ml-20 md:ml-0 px-8 py-4 font-semibold shadow-2xl hover:scale-110 hover:shadow-cyan-500/40 transition duration-300 flex items-center gap-2">
+                                <Button1 onClick={handleClick1} className="ml-20 md:ml-0 px-8 py-4 font-semibold flex items-center gap-2">
                                     Get Started <MdOutlineWebhook className='animate-spin text-xl' />
                                 </Button1>
 
                                 <button onClick={handleClick2} className="px-7 md:px-8 py-3 w-fit ml-20 md:ml-0 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 text-white font-semibold hover:bg-white/20 hover:scale-105 transition duration-300 cursor-pointer flex items-center gap-2">
-                                    Learn More <CgMoreVertical className='text-primary'/>
+                                    Learn More <CgMoreVertical className='text-primary' />
                                 </button>
 
                             </div>

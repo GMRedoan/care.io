@@ -1,18 +1,13 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import Logo from './Logo';
-import NavLink from '../Button/Navlink';
-import AuthButton from '../Button/AuthButton';
-import ThemeToggle from '../Button/ThemeToggle';
+import NavLink from '../../reusable/Navlink';
+import ThemeToggle from '../../reusable/ThemeToggle';
+import AuthButton from '@/components/reusable/AuthButton';
 
 const Navbar = () => {
     const [show, setShow] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
-
-    // const handleClick = (e) => {
-    //     e.preventDefault()
-    //     document.getElementById("BannerSection").scrollIntoView({behavior:"smooth"})
-    // }
 
     const nav = <>
         <li>
@@ -54,23 +49,23 @@ const Navbar = () => {
                     <ul
                         tabIndex="-1"
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                            {nav}
-                     </ul>
+                        {nav}
+                    </ul>
                 </div>
-                <div 
-                // onClick={handleClick}
-                 className='-ml-6 md:ml-2'>
-                    <Logo></Logo>
+                <div
+                    // onClick={handleClick}
+                    className='-ml-6 md:ml-2'>
+                    <Logo/>
                 </div>
-             </div>
+            </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 space-x-3">
                     {nav}
                 </ul>
             </div>
             <div className="navbar-end flex gap-2 md:gap-6">
-                <ThemeToggle></ThemeToggle>
-                <AuthButton></AuthButton>
+                <ThemeToggle/>
+                <AuthButton/>
             </div>
         </div>
     );

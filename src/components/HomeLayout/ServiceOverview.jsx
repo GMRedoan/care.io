@@ -2,9 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import babyImg from "../../../public/s1.jpg";  
-import elderlyImg from "../../../public/s2.jpg";
-import sickImg from "../../../public/s3.jpg";
 import Link from "next/link";
 import { FaArrowTrendUp } from "react-icons/fa6";
 
@@ -13,22 +10,22 @@ const services = [
         title: "Baby Care",
         description:
             "Professional and compassionate caregivers ensuring your child’s safety, comfort, and joyful growth.",
-        image: babyImg,
-        link: "/services",
+        image: "https://i.ibb.co.com/q3wN6h6z/khoa-pham-9n-C7j1g-AS84-unsplash.jpg",
+        link: "/services/babyCare",
     },
     {
         title: "Elderly Service",
         description:
             "Dedicated support for seniors with daily assistance, companionship, and respectful care.",
-        image: elderlyImg,
-        link: "/services",
+        image: "https://i.ibb.co.com/jkJJdJZ7/raychan-yk7-F8bd-D0e-U-unsplash.jpg",
+        link: "/services/elderCare",
     },
     {
         title: "Sick People Service",
         description:
             "Reliable home care for recovering or ill family members with attention and medical awareness.",
-        image: sickImg,
-        link: "/services",
+        image: "https://i.ibb.co.com/Y4Zz8zjd/national-cancer-institute-DK-4-VWK1tw-unsplash.jpg",
+        link: "/services/sickCare",
     },
 ];
 

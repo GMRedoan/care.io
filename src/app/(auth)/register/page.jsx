@@ -3,11 +3,11 @@
 import { useForm } from "react-hook-form";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import SocialLogin from "@/components/Button/SocialLogin";
+import SocialLogin from "@/components/reusable/SocialLogin";
 import { postUser } from "@/actions/server/Auth";
 import Swal from "sweetalert2";
 import { signIn } from "next-auth/react";
-import Button2 from "@/components/styles/Button2";
+import Button2 from "@/components/reusable/Button2";
 
 
 const Register = () => {
@@ -21,12 +21,12 @@ const Register = () => {
         formState: { errors, isSubmitting },
     } = useForm();
 
-    const onSubmit = async(data) => {
+    const onSubmit = async (data) => {
         const result = await postUser(data)
-        if(result.acknowledged){
-            const result = await signIn("credentials", {email:data.email, password:data.password, redirect:false, callbackUrl:callback})
- 
-            if(result.ok){
+        if (result.acknowledged) {
+            const result = await signIn("credentials", { email: data.email, password: data.password, redirect: false, callbackUrl: callback })
+
+            if (result.ok) {
                 Swal.fire({
                     title: "Welcome",
                     text: "You Successfully create your account",
@@ -96,7 +96,7 @@ const Register = () => {
                     {/* Email */}
                     <div>
                         <input
-                        name="email"
+                            name="email"
                             type="email"
                             placeholder="Email Address"
                             {...register("email", {
@@ -135,7 +135,7 @@ const Register = () => {
                     {/* Password */}
                     <div className="md:col-span-2">
                         <input
-                        name="password"
+                            name="password"
                             type="password"
                             placeholder="Create Password"
                             {...register("password", {

@@ -5,20 +5,20 @@ import Swal from "sweetalert2"
 import bcryptjs from 'bcryptjs'
 
 
-export const postUser = async (payload) =>{
+export const postUser = async (payload) => {
     const { name, email, password, nid, contact } = payload
-    if(!email || !password){
-                        Swal.fire({
-                            title: "Error",
-                            text: "User already exist",
-                            icon:  "error",
-                            confirmButtonColor: "#11B2ED"
-                        });
+    if (!email || !password) {
+        Swal.fire({
+            title: "Error",
+            text: "User already exist",
+            icon: "error",
+            confirmButtonColor: "#11B2ED"
+        });
         return null
     }
 
     const isExist = await dbConnect(collections.USER).findOne({ email })
-    if(isExist){
+    if (isExist) {
         Swal.fire({
             title: "Error",
             text: "User already exist",
@@ -36,8 +36,8 @@ export const postUser = async (payload) =>{
     }
 
     const result = await dbConnect(collections.USER).insertOne(newUser)
-    if(result.acknowledged){
-        return{
+    if (result.acknowledged) {
+        return {
             ...result,
             insertedId: result.insertedId.toString()
         }
