@@ -1,4 +1,8 @@
 "use client"
+
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/effect-coverflow";
 import { features } from "@/components/Data/features";
 import FeatureCard from "@/components/reusable/FeaturesCard";
 import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
@@ -20,7 +24,7 @@ export default function Features() {
                     </p>
                 </div>
 
-                <div className="md:mx-37 py-20">
+                <div className="py-20">
                     <Swiper
                         loop={true}
                         effect={'coverflow'}
@@ -30,10 +34,9 @@ export default function Features() {
                         coverflowEffect={{
                             rotate: 30,
                             stretch: 1,
-                            depth: 50,
                             scale: 0.75,
                             modifier: 1,
-                            slideShadows: true,
+                            slideShadows: false,
                         }}
                         autoplay={{
                             delay: 2000,
@@ -41,7 +44,7 @@ export default function Features() {
                         }}
                         pagination={true}
                         modules={[EffectCoverflow, Pagination, Autoplay]}
-                        className="mySwiper"
+                        className="mySwiper custom-swiper"
                     >
                         {
                             features.map(feature => <SwiperSlide

@@ -9,7 +9,7 @@ const NavLink = ({ href, children }) => {
     return (
         <Link
             href={href}
-            className={`relative px-4 py-2 rounded-full font-medium transition-all duration-300 ease-in-out
+            className={`relative px-4 py-2 rounded-full font-semibold transition-all duration-300 ease-in-out
     ${path.startsWith(href)
                     ? "bg-primary text-white shadow-lg scale-105"
                     : "text-base-content hover:text-primary hover:scale-105"

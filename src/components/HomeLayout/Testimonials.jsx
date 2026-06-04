@@ -1,28 +1,67 @@
 "use client";
 
-import React from "react";
+import { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import { FaQuoteLeft } from "react-icons/fa";
 import { useInView } from "react-intersection-observer";
 
- 
-const Testimonials = () => {
+const reviews = [
+    {
+        text: "Finding reliable care for my elderly father was stressful, but this platform made it simple and secure. We finally have peace of mind.",
+        name: "Sarah M.",
+    },
+    {
+        text: "The caregivers are professional and compassionate. Booking was incredibly easy and fast.",
+        name: "David R.",
+    },
+    {
+        text: "Amazing service! I was able to find trusted care for my mother within minutes.",
+        name: "Emily R.",
+    },
+];
 
+const Testimonials = () => {
     const { ref, inView } = useInView({
         triggerOnce: false,
         threshold: 0.3,
     });
 
+    const [index, setIndex] = useState(0);
+    const [animating, setAnimating] = useState(false);
+
+    const next = () => {
+        if (animating) return;
+        setAnimating(true);
+
+        setTimeout(() => {
+            setIndex((prev) => (prev + 1) % reviews.length);
+            setAnimating(false);
+        }, 400);
+    };
+
+    const current = reviews[index];
+    const nextItem = reviews[(index + 1) % reviews.length];
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            next();
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, [index]);
+
     return (
-        <section ref={ref} className="relative bg-base-200 py-18 md:py-28 pb-40 px-6 md:px-16 overflow-hidden">
+        <section
+            ref={ref}
+            className="relative bg-base-200 py-18 md:py-28 pb-40 px-6 md:px-16 overflow-hidden"
+        >
+            {/* Background glow */}
+            <div className="absolute -bottom-32 right-10 w-96 h-96 bg-blue-500/20 blur-3xl rounded-full opacity-40" />
 
-            <div className="absolute -bottom-32 right-10 w-96 h-96 bg-blue-500/20 blur-3xl rounded-full opacity-40"></div>
-
-            <div className="max-w-6xl mx-auto relative z-10">
-
+            <div className="max-w-7xl mx-auto relative z-10">
+                {/* TITLE */}
                 <div className="text-center mb-20">
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold 
-            bg-linear-to-r from-base-300 via-cyan-400 to-base-300 bg-clip-text text-transparent">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-linear-to-r from-base-300 via-cyan-400 to-base-300 bg-clip-text text-transparent">
                         Trusted by Thousands of Families
                     </h2>
 
@@ -31,90 +70,71 @@ const Testimonials = () => {
                     </p>
                 </div>
 
-                {/* Main Layout */}
-                <div className="grid lg:grid-cols-2 gap-10 items-center ">
-
-                    {/* LEFT SIDE */}
-                    <div className="space-y-12">
-
+                {/* MAIN GRID */}
+                <div className="grid lg:grid-cols-2 gap-10 items-center">
+                    {/* LEFT - STATS */}
+                    <div className="grid grid-cols-2 gap-10">
                         <div>
-                            <h3 className="text-5xl md:text-6xl font-extrabold text-cyan-500">
-                                 {inView && <CountUp end={25} duration={5} separator="," />}K+
+                            <h3 className="text-4xl md:text-5xl font-extrabold text-cyan-500">
+                                {inView && <CountUp end={25} duration={4} />}K+
                             </h3>
-                            <p className="text-gray-500 text-lg">
-                                Families Served
-                            </p>
+                            <p className="text-gray-500">Families Served</p>
                         </div>
 
                         <div>
-                            <h3 className="text-5xl md:text-6xl font-extrabold text-blue-500">
-                                {inView && <CountUp end={5000} duration={3} separator="," />}+
+                            <h3 className="text-4xl md:text-5xl font-extrabold text-blue-500">
+                                {inView && <CountUp end={5000} duration={3} />}+
                             </h3>
-                            <p className="text-gray-500 text-lg">
-                                Verified Caregivers
-                            </p>
+                            <p className="text-gray-500">Verified Caregivers</p>
                         </div>
 
                         <div>
-                            <h3 className="text-5xl md:text-6xl font-extrabold text-cyan-500">
-                                {inView && <CountUp end={98} duration={5} separator="," />}%
+                            <h3 className="text-4xl md:text-5xl font-extrabold text-cyan-500">
+                                {inView && <CountUp end={98} duration={3} />}%
                             </h3>
-                            <p className="text-gray-500 text-lg">
-                                Satisfaction Rate
-                            </p>
+                            <p className="text-gray-500">Satisfaction Rate</p>
                         </div>
 
                         <div>
-                            <h3 className="text-5xl md:text-6xl font-extrabold text-blue-500">
-                                {inView && <CountUp end={24} duration={5} separator="," />}/7
+                            <h3 className="text-4xl md:text-5xl font-extrabold text-blue-500">
+                                {inView && <CountUp end={24} duration={3} />}/7
                             </h3>
-                            <p className="text-gray-500 text-lg">
-                                Support Availability
-                            </p>
+                            <p className="text-gray-500">Support Available</p>
                         </div>
-
                     </div>
 
-                    {/* RIGHT SIDE */}
-                    <div className="relative">
+                    {/* RIGHT - SLIDER TESTIMONIAL */}
+                    <div className="relative w-full max-w-md mx-auto">
 
-                        {/* Testimonial 1 */}
-                        <div className="bg-white shadow-2xl p-8 rounded-3xl 
-              relative z-20 -rotate-2 hover:rotate-0 transition duration-500">
-
-                            <FaQuoteLeft className="text-primary text-3xl mb-4" />
-
-                            <p className="text-gray-600 leading-relaxed">
-                                “Finding reliable care for my elderly father was stressful,
-                                but this platform made it simple and secure. We finally
-                                have peace of mind.”
+                        {/* NEXT CARD (background preview) */}
+                        <div className="absolute top-3 left-4 w-full h-full border border-base-300 rounded-3xl p-8 scale-95 opacity-60 bg-white/10 backdrop-blur-md -rotate-10">
+                            <FaQuoteLeft className="text-cyan-500 text-2xl mb-3" />
+                            <p className="text-gray-500 text-sm min-h-20">
+                                “{nextItem.text}”
                             </p>
-
-                            <div className="mt-6 font-semibold text-gray-800">
-                                — Sarah M.
+                            <div className="mt-6 font-semibold text-gray-400">
+                                — {nextItem.name}
                             </div>
                         </div>
 
-                        {/* Testimonial 2 */}
-                        <div className="bg-base-100 shadow-xl p-8 rounded-3xl 
-              absolute top-32 left-10 md:left-20 
-              rotate-3 
-              hover:rotate-0 transition duration-500">
+                        {/* CURRENT CARD */}
+                        <div
+                            onClick={next}
+                            className={`relative cursor-pointer bg-white/10 backdrop-blur-sm shadow-2xl border border-accent p-8 rounded-3xl transition-all duration-500
+              ${animating ? "-translate-x-6 -translate-y-4 opacity-0" : "translate-x-0 opacity-100"}
+              hover:scale-[1.02] rotate-10`}
+                        >
+                            <FaQuoteLeft className="text-cyan-500 text-3xl mb-4" />
 
-                            <FaQuoteLeft className="text-blue-500 text-3xl mb-4" />
-
-                            <p className="text-accent leading-relaxed">
-                                “The caregivers are professional and compassionate.
-                                Booking was incredibly easy and fast.”
+                            <p className="text-base-300 leading-relaxed min-h-20">
+                                “{current.text}”
                             </p>
 
-                            <div className="mt-6 font-semibold text-base-300">
-                                — David R.
+                            <div className="mt-6 font-semibold text-accent">
+                                — {current.name}
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </section>
