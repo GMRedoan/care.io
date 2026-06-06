@@ -1,44 +1,52 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { useRouter, useSearchParams } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
 import SocialLogin from "@/components/reusable/SocialLogin";
-import { postUser } from "@/actions/server/Auth";
+import { postUser } from "../../../server/auth.service";
 import Swal from "sweetalert2";
 import { signIn } from "next-auth/react";
 import Button2 from "@/components/reusable/Button2";
+import { createUserSchema } from "@/validation/auth.schema";
 
 
 const Register = () => {
-    const router = useRouter();
-    const params = useSearchParams();
-    const callback = params.get("callbackUrl") || '/'
-
+  
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors, isSubmitting },
-    } = useForm();
+    } = useForm(
+        {resolver: zodResolver(createUserSchema)}
+    );
 
-    const onSubmit = async (data) => {
-        const result = await postUser(data)
-        if (result.acknowledged) {
-            const result = await signIn("credentials", { email: data.email, password: data.password, redirect: false, callbackUrl: callback })
+    const onSubmit = async (payload) => {
+        const result = await postUser(payload)
+        if (result?.success) {
+            const result = await signIn("credentials", { email: payload.email, password: payload.password, redirect: false })
 
             if (result.ok) {
+                reset();
                 Swal.fire({
                     title: "Welcome",
                     text: "You Successfully create your account",
                     icon: "success",
                     confirmButtonColor: "#11B2ED"
                 });
-                router.push(callback)
             }
+        }else {
+            Swal.fire({
+                title: "Error",
+                text: result.message,
+                icon: "error",
+                confirmButtonColor: "#11B2ED",
+            });
         }
     };
 
     return (
-              <div >
+        <div >
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="mt-8 space-y-7"
@@ -193,11 +201,11 @@ const Register = () => {
                 <div className="flex-1 h-px bg-accent" />
             </div>
 
-                 <div className="mt-2">
-                    <SocialLogin></SocialLogin>
-                </div>
+            <div className="mt-2">
+                <SocialLogin></SocialLogin>
+            </div>
 
-             </div>
+        </div>
     );
 };
 

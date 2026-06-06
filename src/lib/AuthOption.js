@@ -1,4 +1,4 @@
-import { loginUser } from "@/actions/server/Auth";
+import { loginUser } from "../server/auth.service";
 import CredentialsProvider from "next-auth/providers/credentials"
 import GoogleProvider from "next-auth/providers/google";
 import { collections, dbConnect } from "./dbConnect";
@@ -25,8 +25,8 @@ export const authOptions = {
     ],
     callbacks: {
         async signIn({ user, account, profile, email, credentials }) {
-            const isExist = await dbConnect(collections.USER).findOne({email:user.email, provider:account?.provider})
-            if(isExist){
+            const isExist = await dbConnect(collections.USER).findOne({ email: user.email, provider: account?.provider })
+            if (isExist) {
                 return true
             }
             const newUser = {
@@ -41,7 +41,7 @@ export const authOptions = {
             return result.acknowledged
         },
         async session({ session, user, token }) {
-            if(token){
+            if (token) {
                 session.email = token?.email
             }
             return session
