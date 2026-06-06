@@ -151,7 +151,7 @@ const Banner = () => {
                             >
                                 <Button1
                                     onClick={handleClick1}
-                                    className="px-8 py-4 font-semibold flex items-center gap-2"
+                                    className="px-6 font-semibold w-fit flex items-center gap-2"
                                 >
                                     Get Started
                                     <MdOutlineWebhook className="animate-spin text-xl" />
@@ -159,7 +159,7 @@ const Banner = () => {
 
                                 <button
                                     onClick={handleClick2}
-                                    className="px-8 py-4 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 hover:bg-white/20 transition-all duration-300 flex items-center gap-2 justify-center hover:scale-[1.03] cursor-pointer"
+                                    className="px-6 py-2.5 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 hover:bg-white/20 transition-all duration-300 flex items-center gap-2 justify-center hover:scale-[1.03] cursor-pointer w-fit"
                                 >
                                     Learn More
                                     <CgMoreVertical className="text-cyan-400" />
@@ -176,20 +176,19 @@ const Banner = () => {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 1 }}
                                 
-                                className="absolute top-0 right-20 w-80 p-8 rounded-3xl
+                                className="absolute top-0 right-20 w-70 p-8 rounded-3xl
         bg-white/10 backdrop-blur-xl
         border border-white/20
         shadow-[0_20px_60px_rgba(0,0,0,0.4)] hover:-translate-y-3 duration-500"
                             >
-                                <FaUserCheck className="text-5xl text-cyan-400 mb-5" />
+                                <FaUserCheck className="text-[44px] text-cyan-400 mb-5" />
 
                                 <h3 className="text-xl font-bold mb-3">
                                     Verified Caregivers
                                 </h3>
 
                                 <p className="text-gray-300">
-                                    Every caregiver is background-checked and reviewed for
-                                    safety and trust.
+                                    Every caregiver is background-checked for safety and trust.
                                 </p>
                             </motion.div>
 
@@ -199,12 +198,12 @@ const Banner = () => {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 1.2 }}
                                  
-                                className="absolute top-36 right-0 w-80 p-8 rounded-3xl
+                                className="absolute top-36 right-0 w-70 p-8 rounded-3xl
         bg-white/10 backdrop-blur-xl
         border border-white/20
         shadow-[0_20px_60px_rgba(0,0,0,0.4)] hover:-translate-y-3 duration-500"
                             >
-                                <FaBolt className="text-5xl text-cyan-400 mb-5" />
+                                <FaBolt className="text-[44px] text-cyan-400 mb-5" />
 
                                 <h3 className="text-xl font-bold mb-3">
                                     Instant Booking
@@ -221,20 +220,19 @@ const Banner = () => {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 1.4 }}
                                  
-                                className="absolute top-72 right-24 w-80 p-8 rounded-3xl
+                                className="absolute top-72 right-24 w-70 p-8 rounded-3xl
         bg-white/10 backdrop-blur-xl
         border border-white/20
         shadow-[0_20px_60px_rgba(0,0,0,0.4)] hover:-translate-y-3 duration-500"
                             >
-                                <FaShieldAlt className="text-5xl text-cyan-400 mb-5" />
+                                <FaShieldAlt className="text-[44px] text-cyan-400 mb-5" />
 
                                 <h3 className="text-xl font-bold mb-3">
                                     Secure Platform
                                 </h3>
 
                                 <p className="text-gray-300">
-                                    Protected payments and encrypted communication for peace
-                                    of mind.
+                                    Protected payments and encrypted for peace of mind.
                                 </p>
                             </motion.div>
                         </div>
@@ -244,7 +242,7 @@ const Banner = () => {
 
             </motion.div>
 
-            {/* BEAUTIFUL WAVE */}
+            {/* WAVE */}
 
             <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
 

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Logo from './Logo';
 import NavLink from '../../reusable/Navlink';
 import ThemeToggle from '../../reusable/ThemeToggle';
-import AuthButton from '@/components/reusable/AuthButton';
+import AuthDrawer from '@/components/auth/AuthDrawer';
 
 const Navbar = () => {
     const [show, setShow] = useState(true);
@@ -22,26 +22,26 @@ const Navbar = () => {
         </li>
     </>
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const currentScrollY = window.scrollY;
+    // useEffect(() => {
+    //     const handleScroll = () => {
+    //         const currentScrollY = window.scrollY;
 
-            if (currentScrollY > lastScrollY && currentScrollY > 80) {
-                setShow(false);
-            } else {
-                setShow(true);
-            }
+    //         if (currentScrollY > lastScrollY && currentScrollY > 80) {
+    //             setShow(false);
+    //         } else {
+    //             setShow(true);
+    //         }
 
-            setLastScrollY(currentScrollY);
-        };
+    //         setLastScrollY(currentScrollY);
+    //     };
 
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, [lastScrollY]);
+    //     window.addEventListener("scroll", handleScroll, { passive: true });
+    //     return () => window.removeEventListener("scroll", handleScroll);
+    // }, [lastScrollY]);
 
 
     return (
-        <div className={`navbar backdrop-blur-md fixed top-0 z-50 border-b border-primary px-6 h-0 ${show ? "translate-y-0" : "-translate-y-full"}`}>
+        <div className={`navbar backdrop-blur-md fixed top-0 z-50 border-b border-primary px-6 pr-14 h-0 ${show ? "translate-y-0" : "-translate-y-full"}`}>
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -54,21 +54,21 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div
-                    // onClick={handleClick}
                     className='-ml-6 md:ml-2'>
                     <Logo/>
                 </div>
             </div>
-            <div className="navbar-center hidden lg:flex">
+            <div className="navbar-end hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 space-x-3">
                     {nav}
                 </ul>
             </div>
-            <div className="navbar-end flex gap-2 md:gap-6">
+            <div className="flex gap-2 md:gap-6">
                 <ThemeToggle/>
-                <AuthButton/>
+                <AuthDrawer />
             </div>
         </div>
+        
     );
 };
 

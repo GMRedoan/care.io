@@ -2,7 +2,7 @@
 
 import styled from "styled-components";
 
-const Button2 = ({
+const   Button2 = ({
     children,
     onClick,
     bgColor = "#11B2ED",

@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowTrendUp } from "react-icons/fa6";
+import { GrAppsRounded } from "react-icons/gr";
 
 const services = [
     {
@@ -32,7 +33,7 @@ const services = [
 const ServiceOverview = () => {
     return (
         <section id="service" className="relative bg-base-200 py-10 px-6 md:px-16 pt-20 md:pt-30 overflow-hidden">
- 
+
             <div className="max-w-7xl mx-auto relative z-10">
 
                 {/* Header */}
@@ -89,13 +90,14 @@ const ServiceOverview = () => {
                   translate-y-6 group-hover:translate-y-0 
                   transition duration-500 delay-200">
 
-                                         <Link href={service.link} className="btn w-fit px-5 py-5 rounded-xl 
-                      bg-white/20 backdrop-blur-lg 
-                      border border-white/30 text-white 
-                      font-semibold hover:bg-cyan-500 
-                      transition duration-300 flex items-center gap-2 cursor-pointer">
-                                            Explore Now <FaArrowTrendUp />
-                                     </Link>
+                                    <Link href={service.link} className="btn w-fit px-5 py-5 rounded-xl
+                      border border-white/30   
+                      font-semibold not-only-of-type:
+                      transition duration-300 flex items-center gap-2 cursor-pointer bg-linear-to-bl from-blue-500 to-cyan-300
+        hover:from-blue-600 hover:to-cyan-400
+        text-white">
+                                        Explore Now <GrAppsRounded className="animate-spin" />
+                                    </Link>
 
                                 </div>
 
