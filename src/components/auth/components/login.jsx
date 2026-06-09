@@ -7,22 +7,35 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginSchema } from "@/validation/auth.schema";
+import VerifyEmailModal from "./verifyEmailModal";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
     const router = useRouter();
     const params = useSearchParams();
+    const [showPass, setShowPass] = useState(false);
     const callback = params.get("callbackUrl") || "/";
     const [authError, setAuthError] = useState();
+    const [showVerifyModal, setShowVerifyModal] = useState(false);
+    const [verifyEmailAddress, setVerifyEmailAddress] = useState("");
+
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors, isSubmitting },
-    } = useForm();
+    } = useForm({
+        resolver: zodResolver(loginSchema)
+    });
 
     const onSubmit = async (data) => {
         setAuthError(null)
-        const result = await signIn("credentials", { email: data.email, password: data.password, redirect: false, callbackUrl: callback })
-        if (result.ok) {
+        const result = await signIn("credentials", { email: data.email, password: data.password, isVerified:data.isVerified, redirect: false, callbackUrl: callback })
+
+        if (result?.ok) {
+            reset();
             Swal.fire({
                 title: "Welcome Back",
                 text: "You Successfully Logged in your account",
@@ -31,7 +44,12 @@ const Login = () => {
             });
             router.push(callback)
         } else {
-            setAuthError("Invalid email or password");
+            setAuthError(result?.error || "Login failed");
+            
+            if (result?.error === "Please verify your email before logging in") {
+                setVerifyEmailAddress(data.email);
+                setShowVerifyModal(true);
+            }
         }
 
     };
@@ -72,7 +90,7 @@ const Login = () => {
                         Password
                     </label>
                     <input
-                        type="password"
+                        type={showPass ? "text" : "password"}
                         placeholder="••••••••"
                         {...register("password", {
                             required: "Password is required",
@@ -80,17 +98,36 @@ const Login = () => {
                         className={`mt-2 text-base-300 w-full px-4 py-2 rounded-xl border border-gray-300 bg-base-200 placeholder:text-xs placeholder:text-gray-500
                 focus:border-[#11B2ED] focus:ring-2 focus:ring-[#11B2ED]/30 outline-none transition`}
                     />
-                    {errors.password && (
-                        <p className="text-red-500 text-sm mt-1">
-                            {errors.password.message}
-                        </p>
-                    )}
+                    <span
+                        onClick={() => setShowPass(!showPass)}
+                        className="absolute right-4 top-4.5 cursor-pointer"
+                    >
+                        {showPass ? <FaEyeSlash /> : <FaEye />}
+                    </span>
+                    
+                    <div className="flex flex-row-reverse items-center justify-between">
+                        <div>
+                            <p className="text-sm text-primary hover:underline cursor-pointer mt-2 text-right">
+                                Forgot Password?
+                            </p>
+                        </div>
 
-                    {authError && (
-                        <p className="text-red-500 text-sm mt-2">
-                            {authError}
-                        </p>
-                    )}
+                        <div>
+                            {errors.password && (
+                                <p className="text-red-500 text-sm mt-1">
+                                    {errors.password.message}
+                                </p>
+                            )}
+
+                            {authError && (
+                                <p className="text-red-500 text-sm mt-2">
+                                    {authError}
+                                </p>
+                            )}
+
+                        </div>
+
+                    </div>
                 </div>
 
                 {/* Submit Button */}
@@ -112,6 +149,12 @@ const Login = () => {
             <div className="mt-4">
                 <SocialLogin />
             </div>
+
+            <VerifyEmailModal
+                email={verifyEmailAddress}
+                isOpen={showVerifyModal}
+                onClose={() => setShowVerifyModal(false)}
+            />
         </div>
     );
 };

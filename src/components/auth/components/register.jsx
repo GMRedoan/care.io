@@ -5,12 +5,17 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import SocialLogin from "@/components/reusable/SocialLogin";
 import { postUser } from "../../../server/auth.service";
 import Swal from "sweetalert2";
-import { signIn } from "next-auth/react";
 import Button2 from "@/components/reusable/Button2";
 import { createUserSchema } from "@/validation/auth.schema";
-
+import { useState } from "react";
+import VerifyEmailModal from "./verifyEmailModal";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
+    const [showVerifyModal, setShowVerifyModal] = useState(false);
+    const [registeredEmail, setRegisteredEmail] = useState("");
+    const [showPass, setShowPass] = useState(false);
+
   
     const {
         register,
@@ -24,18 +29,11 @@ const Register = () => {
     const onSubmit = async (payload) => {
         const result = await postUser(payload)
         if (result?.success) {
-            const result = await signIn("credentials", { email: payload.email, password: payload.password, redirect: false })
-
-            if (result.ok) {
                 reset();
-                Swal.fire({
-                    title: "Welcome",
-                    text: "You Successfully create your account",
-                    icon: "success",
-                    confirmButtonColor: "#11B2ED"
-                });
-            }
-        }else {
+                showToast("info", "You Successfully create your account, Please verify your email to continue");
+                setRegisteredEmail(payload.email);
+                setShowVerifyModal(true);
+        } else {
             Swal.fire({
                 title: "Error",
                 text: result.message,
@@ -157,7 +155,7 @@ const Register = () => {
                     </label>
 
                     <input
-                        type="password"
+                        type={showPass ? "text" : "password"}
                         placeholder="Create Password"
                         {...register("password", {
                             required: "Password is required",
@@ -178,6 +176,13 @@ const Register = () => {
             ${errors.password ? "border-red-500" : "border-gray-300"}
             focus:border-[#11B2ED] focus:ring-2 focus:ring-[#11B2ED]/30 outline-none transition`}
                     />
+                                        <span
+                                            onClick={() => setShowPass(!showPass)}
+                                            className="absolute right-4 top-4.5 cursor-pointer"
+                                        >
+                                            {showPass ? <FaEyeSlash /> : <FaEye />}
+                                        </span>
+                    
 
                     {errors.password && (
                         <p className="text-red-500 text-sm mt-1">
@@ -204,7 +209,11 @@ const Register = () => {
             <div className="mt-2">
                 <SocialLogin></SocialLogin>
             </div>
-
+            <VerifyEmailModal
+                email={registeredEmail}
+                isOpen={showVerifyModal}
+                onClose={() => setShowVerifyModal(false)}
+            />
         </div>
     );
 };

@@ -20,7 +20,8 @@ export const createUserSchema = z.object({
         .string()
         .min(1, "Contact number is required")
         .regex(/^\d+$/, "Contact must contain only numbers")
-        .min(11, "Use a valid contact number with at least 11 digits"),
+        .min(11, "Use a valid contact number with at least 11 digits")
+        .max(11, "Use a valid contact number with at most 11 digits"),
  
     password: z
         .string()
@@ -28,4 +29,15 @@ export const createUserSchema = z.object({
         .min(6, "Minimum 6 characters required")
         .regex(/[A-Z]/, "At least one uppercase letter required")
         .regex(/[a-z]/, "At least one lowercase letter required"),
+});
+
+
+export const loginSchema = z.object({
+    email: z
+        .email("Please enter a valid email address")
+        .min(1, "Email is required"),
+
+    password: z
+        .string()
+        .min(1, "Password is required"),
 });
