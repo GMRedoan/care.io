@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import Swal from "sweetalert2";
-import { verifyEmail } from "@/server/auth.service";
+import { useEffect, useState } from "react";
+import { resendVerificationCode, verifyEmail } from "@/server/auth.service";
 import { IoCloseSharp } from "react-icons/io5";
 import Button1 from "@/components/reusable/Button1";
 import { motion, AnimatePresence } from "framer-motion";
@@ -17,6 +16,8 @@ export default function VerifyEmailModal({
     const [otp, setOtp] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+    const [resending, setResending] = useState(false);
+    const [countdown, setCountdown] = useState(0);
 
     const handleVerify = async (e) => {
         e.preventDefault();
@@ -38,6 +39,44 @@ export default function VerifyEmailModal({
         onSuccess?.();
         onClose();
     };
+
+    const handleResendOtp = async () => {
+        try {
+            setResending(true);
+
+            const result =
+                await resendVerificationCode(email);
+
+            if (!result.success) {
+                setError(result.message);
+                return;
+            }
+
+            setCountdown(90);
+
+            showToast(
+                "success",
+                "A new OTP has been sent to your email"
+            );
+        } catch (error) {
+            setError(
+                error.message ||
+                "Failed to resend OTP"
+            );
+        } finally {
+            setResending(false);
+        }
+    };
+
+    useEffect(() => {
+        if (countdown <= 0) return;
+
+        const timer = setInterval(() => {
+            setCountdown((prev) => prev - 1);
+        }, 1000);
+
+        return () => clearInterval(timer);
+    }, [countdown]);
 
     return (
         <AnimatePresence>
@@ -77,7 +116,7 @@ export default function VerifyEmailModal({
                                 value={otp}
                                 onChange={(e) => setOtp(e.target.value)}
                                 placeholder="Enter OTP"
-                                className="mt-2 w-full px-4 py-2 rounded-xl border bg-base-200 text-base-300 placeholder:text-xs placeholder:text-gray-500 focus:border-[#11B2ED] focus:ring-2 focus:ring-[#11B2ED]/30 outline-none transition"
+                                className="mt-2 w-full px-4 py-2 rounded-xl border bg-base-200 text-base-300 text-center tracking-widest placeholder:text-gray-500 focus:border-[#11B2ED] focus:ring-2 focus:ring-[#11B2ED]/30 outline-none transition"
                             />
 
                             {error && (
@@ -90,6 +129,23 @@ export default function VerifyEmailModal({
                                 {loading ? "Verifying..." : "Verify Email"}
                             </Button1>
                         </form>
+                        <div>
+                            <p className="text-sm text-center mt-4">
+                                Did not receive the code?{" "}
+                                <button
+                                    onClick={handleResendOtp}
+                                    disabled={countdown > 0 || resending}
+                                    className="text-primary font-medium hover:underline cursor-pointer
+                                    disabled:opacity-50
+                                    disabled:cursor-not-allowed
+                                    disabled:hover:no-underline"
+                                >
+                                    {countdown > 0
+                                        ? `Resend in ${countdown}s`
+                                        : "Resend OTP"}
+                                </button>
+                            </p>
+                        </div>
                     </motion.div>
                 </dialog>
             )}

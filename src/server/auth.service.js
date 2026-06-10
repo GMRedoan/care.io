@@ -3,7 +3,7 @@
 import { collections, dbConnect } from "@/lib/dbConnect"
 import bcryptjs from 'bcryptjs'
 import { createUserSchema, loginSchema } from "@/validation/auth.schema";
-import { sendVerificationEmail } from "@/lib/generateOtp";
+import { sendResetPasswordEmail, sendVerificationEmail } from "@/lib/generateOtp";
 
 
 export const postUser = async (payload) => {
@@ -97,6 +97,49 @@ export const verifyEmail = async ({
     };
 };
 
+export const resendVerificationCode = async (email) => {
+    const user = await dbConnect(collections.USER).findOne({
+        email,
+    });
+
+    if (!user) {
+        return {
+            success: false,
+            message: "User not found",
+        };
+    }
+
+    if (user.isVerified) {
+        return {
+            success: false,
+            message: "Email already verified",
+        };
+    }
+
+    const verificationCode = Math.floor(
+        100000 + Math.random() * 900000
+    );
+
+    await dbConnect(collections.USER).updateOne(
+        { email },
+        {
+            $set: {
+                verificationCode
+            },
+        }
+    );
+
+    await sendVerificationEmail(
+        email,
+        verificationCode
+    );
+
+    return {
+        success: true,
+        message: "OTP sent successfully",
+    };
+};
+
 export const loginUser = async (payload) => {
     const parsed = loginSchema.safeParse(payload);
 
@@ -127,3 +170,166 @@ export const loginUser = async (payload) => {
         };
     }
 }
+
+export const forgotPassword = async (email) => {
+    const user = await dbConnect(
+        collections.USER
+    ).findOne({ email });
+
+    if (!user) {
+        return {
+            success: false,
+            message: "User not found",
+        };
+    }
+
+    const code = Math.floor(
+        100000 + Math.random() * 900000
+    ).toString();
+
+    const expires =
+        Date.now() + 10 * 60 * 1000;
+
+    await dbConnect(collections.USER).updateOne(
+        { email },
+        {
+            $set: {
+                resetPasswordCode: code,
+                resetPasswordCodeExpires: expires,
+            },
+        }
+    );
+
+    await sendResetPasswordEmail(
+        email,
+        code
+    );
+
+    return {
+        success: true,
+    };
+};
+
+export const verifyResetCode = async ({
+    email,
+    code,
+}) => {
+    const user = await dbConnect(
+        collections.USER
+    ).findOne({ email });
+
+    if (!user) {
+        return {
+            success: false,
+            message: "User not found",
+        };
+    }
+
+    if (
+        String(user.resetPasswordCode) !==
+        String(code)
+    ) {
+        return {
+            success: false,
+            message: "Invalid code",
+        };
+    }
+
+    if (
+        Date.now() >
+        user.resetPasswordCodeExpires
+    ) {
+        return {
+            success: false,
+            message: "Code expired",
+        };
+    }
+
+    return {
+        success: true,
+    };
+};
+
+export const resendPassVerificationCode = async (email) => {
+    const user = await dbConnect(collections.USER).findOne({
+        email,
+    });
+
+    if (!user) {
+        return {
+            success: false,
+            message: "User not found",
+        };
+    }
+
+    if (!user.isVerified) {
+        return {
+            success: false,
+            message:
+                "Please verify your email first",
+        };
+    }
+
+    const code = Math.floor(
+        100000 + Math.random() * 900000
+    ).toString();
+
+    const expires = Date.now() + 10 * 60 * 1000; // 10 minutes
+
+    await dbConnect(collections.USER).updateOne(
+        { email },
+        {
+            $set: {
+                resetPasswordCode: code,
+                resetPasswordCodeExpires: expires,
+            },
+        }
+    );
+
+    await sendResetPasswordEmail(email, code);
+
+    return {
+        success: true,
+        message: "Reset code sent successfully",
+    };
+};
+
+export const resetPassword = async ({
+    email,
+    password,
+}) => {
+    const isValidPassword = (password) => {
+        return (
+            password.length >= 6 &&
+            /[A-Z]/.test(password) &&
+            /[a-z]/.test(password) &&
+            /[0-9]/.test(password)
+        );
+    };
+
+    if (!isValidPassword(password)) {
+        return {
+            success: false,
+            message:
+                "Password must be at least 6 characters and include uppercase, lowercase, and a number",
+        };
+    }
+    const hashedPassword = await bcryptjs.hash(password, 10);
+
+    await dbConnect(collections.USER).updateOne(
+        { email },
+        {
+            $set: {
+                password: hashedPassword,
+            },
+            $unset: {
+                resetPasswordCode: "",
+                resetPasswordCodeExpires: "",
+            },
+        }
+    );
+
+    return {
+        success: true
+    };
+};

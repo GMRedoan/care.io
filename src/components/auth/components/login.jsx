@@ -11,6 +11,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "@/validation/auth.schema";
 import VerifyEmailModal from "./verifyEmailModal";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { showToast } from "@/components/reusable/toastAlert";
+import ForgotPasswordModal from "./forgotPasswordModal";
 
 const Login = () => {
     const router = useRouter();
@@ -19,6 +21,7 @@ const Login = () => {
     const callback = params.get("callbackUrl") || "/";
     const [authError, setAuthError] = useState();
     const [showVerifyModal, setShowVerifyModal] = useState(false);
+    const [showForgotModal, setShowForgotModal] = useState(false);
     const [verifyEmailAddress, setVerifyEmailAddress] = useState("");
 
     const {
@@ -32,7 +35,7 @@ const Login = () => {
 
     const onSubmit = async (data) => {
         setAuthError(null)
-        const result = await signIn("credentials", { email: data.email, password: data.password, isVerified:data.isVerified, redirect: false, callbackUrl: callback })
+        const result = await signIn("credentials", { email: data.email, password: data.password, isVerified: data.isVerified, redirect: false, callbackUrl: callback })
 
         if (result?.ok) {
             reset();
@@ -45,7 +48,8 @@ const Login = () => {
             router.push(callback)
         } else {
             setAuthError(result?.error || "Login failed");
-            
+            showToast("error", result?.error || "Login failed");
+
             if (result?.error === "Please verify your email before logging in") {
                 setVerifyEmailAddress(data.email);
                 setShowVerifyModal(true);
@@ -104,10 +108,14 @@ const Login = () => {
                     >
                         {showPass ? <FaEyeSlash /> : <FaEye />}
                     </span>
-                    
+
                     <div className="flex flex-row-reverse items-center justify-between">
                         <div>
-                            <p className="text-sm text-primary hover:underline cursor-pointer mt-2 text-right">
+                            <p
+                                onClick={() =>
+                                    setShowForgotModal(true)
+                                }
+                                className="text-sm text-primary hover:underline cursor-pointer mt-2 text-right w-35">
                                 Forgot Password?
                             </p>
                         </div>
@@ -154,6 +162,10 @@ const Login = () => {
                 email={verifyEmailAddress}
                 isOpen={showVerifyModal}
                 onClose={() => setShowVerifyModal(false)}
+            />
+            <ForgotPasswordModal
+                isOpen={showForgotModal}
+                onClose={() => setShowForgotModal(false)}
             />
         </div>
     );

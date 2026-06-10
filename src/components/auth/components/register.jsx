@@ -10,6 +10,7 @@ import { createUserSchema } from "@/validation/auth.schema";
 import { useState } from "react";
 import VerifyEmailModal from "./verifyEmailModal";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { showToast } from "@/components/reusable/toastAlert";
 
 const Register = () => {
     const [showVerifyModal, setShowVerifyModal] = useState(false);
