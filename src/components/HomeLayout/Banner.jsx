@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 import { FaShieldAlt, FaUserCheck, FaBolt } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
@@ -11,6 +11,7 @@ import { CgMoreVertical } from "react-icons/cg";
 
 import Button1 from "../reusable/Button1";
 import { Playfair_Display } from "next/font/google";
+import Animate from "../reusable/Animate";
 
 const play = Playfair_Display({
     subsets: ["latin"],
@@ -86,13 +87,9 @@ const Banner = () => {
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-150 h-75 bg-cyan-500/20 blur-[180px] rounded-full" />
 
             {/* Main Content */}
-            <motion.div
+            <Animate type="fadeUp" delay={0.4}
                 className="relative z-10 flex items-center h-full"
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1 }}
-
-            >
+             >
 
                 ```
                 <div className="max-w-7xl mx-auto w-full">
@@ -104,10 +101,7 @@ const Banner = () => {
                         {/* LEFT CONTENT */}
                         <div className="text-center lg:text-left">
 
-                            <motion.div
-                                initial={{ opacity: 0, y: -15 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.2 }}
+                            <Animate type="fadeDown" delay={0.2}
                                 className="inline-flex items-center gap-2 mb-8 px-6 py-3 rounded-full border border-white/20 bg-white/10 backdrop-blur-md"
                             >
                                 <HiSparkles className="text-cyan-400 animate-pulse" />
@@ -115,21 +109,19 @@ const Banner = () => {
                                 <span className="text-sm font-medium tracking-wide">
                                     Trusted by 25,000+ Families
                                 </span>
-                            </motion.div>
+                            </Animate>
 
                             {/* Heading */}
-                            <motion.h1
+                            <Animate
+                            type="fadeUp" delay={0.4}
                                 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight bg-linear-to-r from-white via-cyan-400 to-white bg-clip-text text-transparent"
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.4 }}
                             >
                                 <p className={`${play.className}`}>
                                     Care That Truly
                                     <br />
                                     Feels Like Family
                                 </p>
-                            </motion.h1>
+                            </Animate>
 
                             {/* Description */}
                             <motion.p
@@ -143,11 +135,8 @@ const Banner = () => {
                             </motion.p>
 
                             {/* Buttons */}
-                            <motion.div
+                            <Animate type="fadeLeft" delay={0.6}
                                 className="mt-10 flex flex-col sm:flex-row gap-5 justify-center lg:justify-start"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 0.8 }}
                             >
                                 <Button1
                                     onClick={handleClick1}
@@ -164,17 +153,14 @@ const Banner = () => {
                                     Learn More
                                     <CgMoreVertical className="text-cyan-400" />
                                 </button>
-                            </motion.div>
+                            </Animate>
                         </div>
 
                         {/* RIGHT CARDS */}
                         <div className="relative hidden lg:block h-125">
 
                             {/* Card 1 */}
-                            <motion.div
-                                initial={{ opacity: 0, x: 60 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 1 }}
+                            <Animate type="fadeRight" delay={1}
                                 
                                 className="absolute top-0 right-20 w-70 p-8 rounded-3xl
         bg-white/10 backdrop-blur-xl
@@ -190,13 +176,10 @@ const Banner = () => {
                                 <p className="text-gray-300">
                                     Every caregiver is background-checked for safety and trust.
                                 </p>
-                            </motion.div>
+                            </Animate>
 
                             {/* Card 2 */}
-                            <motion.div
-                                initial={{ opacity: 0, x: 60 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 1.2 }}
+                            <Animate type="fadeRight" delay={0.8}
                                  
                                 className="absolute top-36 right-0 w-70 p-8 rounded-3xl
         bg-white/10 backdrop-blur-xl
@@ -212,13 +195,10 @@ const Banner = () => {
                                 <p className="text-gray-300">
                                     Book trusted caregivers instantly with a few simple clicks.
                                 </p>
-                            </motion.div>
+                            </Animate>
 
                             {/* Card 3 */}
-                            <motion.div
-                                initial={{ opacity: 0, x: 60 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 1.4 }}
+                            <Animate type="fadeRight" delay={0.6}
                                  
                                 className="absolute top-72 right-24 w-70 p-8 rounded-3xl
         bg-white/10 backdrop-blur-xl
@@ -234,13 +214,13 @@ const Banner = () => {
                                 <p className="text-gray-300">
                                     Protected payments and encrypted for peace of mind.
                                 </p>
-                            </motion.div>
+                            </Animate>
                         </div>
                     </div>
                 </div>
                 ```
 
-            </motion.div>
+            </Animate>
 
             {/* WAVE */}
 

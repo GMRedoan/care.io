@@ -5,69 +5,25 @@ import { HiSparkles } from "react-icons/hi";
 import Button1 from "../reusable/Button1";
 import { RiServiceFill } from "react-icons/ri";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import Animate from "../reusable/Animate";
 
-const fadeUp = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.8,
-            ease: "easeOut",
-        },
-    },
-};
-
-const staggerContainer = {
-    hidden: {},
-    visible: {
-        transition: {
-            staggerChildren: 0.2,
-        },
-    },
-};
-
+ 
 export default function AboutSection() {
     return (
-        <motion.section
+        <section
             id="aboutUs"
             className="relative bg-base-200 py-24 px-6 md:px-16 overflow-hidden"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            variants={staggerContainer}
         >
             {/* Background Gradient Glow */}
-            <motion.div
-                className="absolute top-30 -left-12 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl opacity-40"
-                animate={{
-                    y: [0, -20, 0],
-                    scale: [1, 1.05, 1],
-                }}
-                transition={{
-                    duration: 8,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                }}
-            />
+            <div
+                className="absolute top-30 -left-12 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl opacity-40"/>
 
-            <motion.div
-                className="absolute -bottom-32 -right-32 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl opacity-40"
-                animate={{
-                    y: [0, 20, 0],
-                    scale: [1, 1.08, 1],
-                }}
-                transition={{
-                    duration: 10,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                }}
-            />
+            <div
+                className="absolute -bottom-32 -right-32 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl opacity-40"/>
 
             <div className="max-w-7xl mx-auto relative z-10">
                 {/* Section Title */}
-                <motion.div className="text-center mb-20" variants={fadeUp}>
+                <Animate type="zoom" className="text-center mb-20">
                     <div className="inline-flex items-center gap-2 px-5 py-2 bg-cyan-500/10 text-cyan-500 rounded-full font-semibold text-md border border-cyan-500/20 mb-6">
                         <HiSparkles />
                         Who We Are
@@ -76,12 +32,12 @@ export default function AboutSection() {
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-linear-to-r from-base-300 via-cyan-400 to-base-300 bg-clip-text text-transparent leading-tight">
                         Making Caregiving Simple, Secure & Accessible
                     </h2>
-                </motion.div>
+                </Animate>
 
                 {/* Main Layout */}
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
                     {/* Left Side */}
-                    <motion.div variants={fadeUp}>
+                    <Animate type="fadeLeft">
                         <h3 className="text-2xl md:text-3xl font-bold leading-relaxed">
                             We provide reliable and trusted care services for
                             <span className="text-cyan-500"> children</span>,
@@ -99,15 +55,18 @@ export default function AboutSection() {
                             That’s why our mission is clear: to make caregiving easy, secure,
                             and accessible for everyone.
                         </p>
-                    </motion.div>
+                    </Animate>
 
                     {/* Right Side */}
-                    <motion.div className="relative" variants={fadeUp}>
-                        <div className="absolute left-5 top-0 bottom-0 w-0.5 bg-linear-to-b from-cyan-500 to-blue-500"></div>
+                    <div className="relative">
+                        <Animate type="zoom" delay={0.5} className="absolute left-5 top-0 bottom-0 w-0.5 bg-linear-to-b from-cyan-500 to-blue-500"/>
 
                         <div className="space-y-14">
                             {/* Step 1 */}
-                            <motion.div className="flex items-start gap-6" variants={fadeUp}>
+                            <Animate
+                            type="fadeRight"
+                            delay={0.3}
+                             className="flex items-start gap-6">
                                 <div className="w-14 h-6 md:h-10 flex items-center justify-center rounded-full bg-cyan-500 text-white relative z-10">
                                     <FaHandsHelping />
                                 </div>
@@ -120,10 +79,13 @@ export default function AboutSection() {
                                         dependable caregivers for daily support.
                                     </p>
                                 </div>
-                            </motion.div>
+                            </Animate>
 
                             {/* Step 2 */}
-                            <motion.div className="flex items-start gap-6" variants={fadeUp}>
+                            <Animate
+                                type="fadeRight"
+                                delay={0.4}
+                             className="flex items-start gap-6">
                                 <div className="w-14 h-6 md:h-10 flex items-center justify-center rounded-full bg-cyan-500 text-white relative z-10">
                                     <FaUserShield />
                                 </div>
@@ -134,10 +96,12 @@ export default function AboutSection() {
                                         trustworthy experience.
                                     </p>
                                 </div>
-                            </motion.div>
-
+                            </Animate>
                             {/* Step 3 */}
-                            <motion.div className="flex items-start gap-6" variants={fadeUp}>
+                            <Animate
+                                type="fadeRight"
+                                delay={0.5}
+                             className="flex items-start gap-6">
                                 <div className="w-14 h-6 md:h-10 flex items-center justify-center rounded-full bg-cyan-500 text-white relative z-10">
                                     <FaHeart />
                                 </div>
@@ -150,13 +114,14 @@ export default function AboutSection() {
                                         care for every family member.
                                     </p>
                                 </div>
-                            </motion.div>
+                            </Animate>
                         </div>
-                    </motion.div>
+
+                    </div>
                 </div>
 
                 {/* Bottom Panel */}
-                <motion.div className="mt-24" variants={fadeUp}>
+                <Animate className="mt-24" type="zoom">
                     <div className="bg-foreground backdrop-blur-lg border border-base-100 rounded-3xl py-12 px-8 text-center shadow-2xl">
                         <h3 className="text-2xl sm:text-3xl font-bold mb-4">
                             Trusted by Families Who Value Peace of Mind
@@ -176,10 +141,10 @@ export default function AboutSection() {
                             </Link>
                         </Button1>
                     </div>
-                </motion.div>
+                </Animate>
 
                 {/* Partners Section */}
-                <motion.div className="text-center mt-30 -mb-10" variants={fadeUp}>
+                <Animate className="text-center mt-30 -mb-10" type="fadeUp">
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-linear-to-r from-base-300 via-cyan-400 to-base-300 bg-clip-text text-transparent">
                         Partners Companies
                     </h2>
@@ -187,8 +152,8 @@ export default function AboutSection() {
                         Working together with trusted partners to provide better care for
                         every family.
                     </p>
-                </motion.div>
+                </Animate>
             </div>
-        </motion.section>
+        </section>
     );
 }

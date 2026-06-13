@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import { resendVerificationCode, verifyEmail } from "@/server/auth.service";
 import { IoCloseSharp } from "react-icons/io5";
 import Button1 from "@/components/reusable/Button1";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { showToast } from "@/components/reusable/toastAlert";
+import Animate from "@/components/reusable/Animate";
 
 export default function VerifyEmailModal({
     email,
@@ -82,12 +83,10 @@ export default function VerifyEmailModal({
         <AnimatePresence>
             {isOpen && (
                 <dialog className="modal modal-open">
-                    <motion.div
-                        initial={{ opacity: 0, x: 40 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -40 }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
-                        className="w-full h-full bg-base-200 rounded-2xl p-8 flex flex-col justify-center relative"
+                    <Animate
+                    type="fadeRight"
+                    delay={0.2}
+                    className="w-full h-full bg-base-200 rounded-2xl p-8 flex flex-col justify-center relative"
                     >
                         <div className="absolute top-6 right-6">
                             <button onClick={onClose}>
@@ -146,7 +145,7 @@ export default function VerifyEmailModal({
                                 </button>
                             </p>
                         </div>
-                    </motion.div>
+                    </Animate>
                 </dialog>
             )}
         </AnimatePresence>

@@ -12,6 +12,7 @@ import Login from "./components/login";
 import Register from "./components/register";
 import { IoCloseSharp } from "react-icons/io5";
 import { AnimatePresence, motion } from "framer-motion";
+import Animate from "../reusable/Animate";
 
 
 
@@ -160,23 +161,18 @@ export default function AuthDrawer() {
                     <div className="mt-12">
                         <AnimatePresence mode="wait">
                             {isLogin ? (
-                                <motion.div
+                                <Animate type="fadeLeft"
                                     key="login"
-                                    initial={{ opacity: 0, x: -40 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    exit={{ opacity: 0, x: 40 }}
                                 >
                                     <Login />
-                                </motion.div>
+                                </Animate>
                             ) : (
-                                <motion.div
+                                <Animate
+                                type="fadeRight"
                                     key="register"
-                                    initial={{ opacity: 0, x: 40 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    exit={{ opacity: 0, x: -40 }}
                                 >
                                     <Register />
-                                </motion.div>
+                                </Animate>
                             )}
                         </AnimatePresence>
                     </div>

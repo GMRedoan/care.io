@@ -7,6 +7,7 @@ import { features } from "@/components/Data/features";
 import FeatureCard from "@/components/reusable/FeaturesCard";
 import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Animate from "../reusable/Animate";
 
 export default function Features() {
     return (
@@ -14,7 +15,7 @@ export default function Features() {
 
             <div className="max-w-7xl mx-auto px-6">
 
-                <div className="text-center mb-12">
+                <Animate className="text-center mb-12">
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold 
             bg-linear-to-r from-base-300 via-cyan-400 to-base-300 bg-clip-text text-transparent">
                         Care Features
@@ -22,7 +23,7 @@ export default function Features() {
                     <p className="text-accent mt-2">
                         Trusted care solutions for children, elders, and patients.
                     </p>
-                </div>
+                </Animate>
 
                 <div className="py-20">
                     <Swiper

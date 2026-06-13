@@ -1,11 +1,13 @@
 "use client"
 import { forgotPassword, resendPassVerificationCode, resetPassword, verifyResetCode } from '@/server/auth.service';
 import React, { useEffect, useState } from 'react';
-import { AnimatePresence, motion } from "framer-motion";
-import { IoCloseSharp, IoReturnDownBack } from "react-icons/io5";
+import { AnimatePresence } from "framer-motion";
+import { IoCloseSharp } from "react-icons/io5";
 import Button1 from '@/components/reusable/Button1';
 import { showToast } from '@/components/reusable/toastAlert';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import Animate from '@/components/reusable/Animate';
+import { MdOutlineArrowBackIosNew } from 'react-icons/md';
 
 const ForgotPasswordModal = ({
     isOpen,
@@ -115,12 +117,9 @@ const ForgotPasswordModal = ({
         <AnimatePresence>
             {isOpen && (
                 <dialog className="modal modal-open">
-                    <motion.div
-                        initial={{ opacity: 0, x: 40 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -40 }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
-                        className="w-full h-full bg-base-200 p-8 flex flex-col justify-center relative"
+                    <Animate
+                        type='pageSwitch'
+                         className="w-full h-full bg-base-200 p-8 flex flex-col justify-center relative"
                     >
                         {/* Close Button */}
                         <button
@@ -130,19 +129,20 @@ const ForgotPasswordModal = ({
                             <IoCloseSharp className="text-xl text-red-500 hover:text-red-600 cursor-pointer" />
                         </button>
 
-                        <h2 className="text-3xl font-semibold text-center text-base-300">
-                            Forgot{" "}
-                            <span className="text-primary">
-                                Password
-                            </span>
-                        </h2>
-
-                        <div className="w-34 h-0.5 bg-primary mx-auto mt-3 mb-8" />
+                             <h2 className="text-3xl font-semibold text-center text-base-300">
+                                Forgot{" "}
+                                <span className="text-primary">
+                                    Password
+                                </span>
+                            </h2>
+                            <div className="w-34 h-0.5 bg-primary mx-auto mt-3 mb-8" />
+ 
 
 
                         {/* STEP 1 */}
                         {step === 1 && (
-                            <div className="space-y-4">
+                            < Animate
+                            type='pageSwitch' className="space-y-4">
                                 <p className="text-accent text-sm">
                                     Enter your email address.
                                     We will send a reset OTP.
@@ -166,12 +166,23 @@ const ForgotPasswordModal = ({
                                 >
                                     Send OTP
                                 </Button1>
-                            </div>
+                            </Animate>
                         )}
 
                         {/* STEP 2 */}
                         {step === 2 && (
-                            <div className="space-y-4">
+                            
+                            <Animate
+                            type='pageSwitch'
+                             className="space-y-4 relative -mt-4">
+                                <div
+                                    onClick={goP}>
+                                    <p className='flex cursor-pointer  text-primary w-fit mx-auto font-semibold absolute -top-63'>
+                                        <MdOutlineArrowBackIosNew />
+                                        <MdOutlineArrowBackIosNew className='-ml-2'/>
+                                    </p>
+                                </div>
+
                                 <p className="text-accent">
                                     Enter the OTP sent to:
                                 </p>
@@ -220,18 +231,15 @@ const ForgotPasswordModal = ({
                                     </p>
                                 </div>
 
-                                <div
-                                    onClick={goP}>
-                                    <p className='flex items-center justify-center gap-2 cursor-pointer hover:text-primary w-fit mx-auto font-semibold'>Go Back <IoReturnDownBack />
-                                    </p>
-                                </div>
 
-                            </div>
+                            </Animate>
                         )}
 
                         {/* STEP 3 */}
                         {step === 3 && (
-                            <div className="space-y-4 relative">
+                            <Animate
+                                type='pageSwitch'
+                                 className="space-y-4 relative">
                                 <p className="text-accent">
                                     Create your new
                                     password
@@ -267,9 +275,9 @@ const ForgotPasswordModal = ({
                                 >
                                     Update Password
                                 </Button1>
-                            </div>
+                            </Animate>
                         )}
-                    </motion.div>
+                    </Animate>
                 </dialog>
             )}
         </AnimatePresence>);

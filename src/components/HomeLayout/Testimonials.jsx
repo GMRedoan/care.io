@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import { FaQuoteLeft } from "react-icons/fa";
 import { useInView } from "react-intersection-observer";
+import Animate from "../reusable/Animate";
 
 const reviews = [
     {
@@ -60,7 +61,7 @@ const Testimonials = () => {
 
             <div className="max-w-7xl mx-auto relative z-10">
                 {/* TITLE */}
-                <div className="text-center mb-20">
+                <Animate className="text-center mb-20">
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-linear-to-r from-base-300 via-cyan-400 to-base-300 bg-clip-text text-transparent">
                         Trusted by Thousands of Families
                     </h2>
@@ -68,12 +69,12 @@ const Testimonials = () => {
                     <p className="mt-6 text-accent max-w-2xl mx-auto text-lg">
                         Real experiences. Real families. Real impact.
                     </p>
-                </div>
+                </Animate>
 
                 {/* MAIN GRID */}
                 <div className="grid lg:grid-cols-2 gap-10 items-center">
                     {/* LEFT - STATS */}
-                    <div className="grid grid-cols-2 gap-10">
+                    <Animate type="fadeLeft" className="grid grid-cols-2 gap-10">
                         <div>
                             <h3 className="text-4xl md:text-5xl font-extrabold text-cyan-500">
                                 {inView && <CountUp end={25} duration={4} />}K+
@@ -101,10 +102,10 @@ const Testimonials = () => {
                             </h3>
                             <p className="text-gray-500">Support Available</p>
                         </div>
-                    </div>
+                    </Animate>
 
                     {/* RIGHT - SLIDER TESTIMONIAL */}
-                    <div className="relative w-full max-w-md mx-auto">
+                    <Animate type="fadeRight" className="relative w-full max-w-md mx-auto">
 
                         {/* NEXT CARD (background preview) */}
                         <div className="absolute top-3 left-4 w-full h-full border border-base-300 rounded-3xl p-8 scale-95 opacity-60 bg-white/10 backdrop-blur-md -rotate-10">
@@ -134,7 +135,8 @@ const Testimonials = () => {
                                 — {current.name}
                             </div>
                         </div>
-                    </div>
+                    </Animate>
+
                 </div>
             </div>
         </section>
