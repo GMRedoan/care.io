@@ -7,6 +7,7 @@ import Button1 from "@/components/reusable/Button1";
 import { MdArrowOutward } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 import Swal from "sweetalert2";
+import Animate from "@/components/reusable/Animate";
 
 const blogs = [
     {
@@ -45,42 +46,42 @@ export default function Blog() {
         <div className="bg-base-200">
 
             {/* HERO SECTION */}
-            <section className="relative py-28 px-6 md:px-16 text-center overflow-hidden">
+            <Animate className="relative py-28 px-6 md:px-16 text-center overflow-hidden">
                 <div className="absolute -top-20 left-10 w-72 h-72 bg-cyan-500/20 blur-3xl rounded-full"></div>
 
-                <h1 className="text-4xl md:text-6xl font-extrabold 
+                <h1 className="text-3xl md:text-5xl font-extrabold 
           bg-linear-to-r from-base-300 via-cyan-400 to-base-300 
           bg-clip-text text-transparent">
                     Care Insights & Family Stories
                 </h1>
 
-                <p className="mt-6 text-accent max-w-2xl mx-auto text-lg">
+                <p className="mt-6 text-accent max-w-2xl mx-auto text-xl">
                     Expert advice, caregiving tips, and real-life experiences
                     to help families make informed decisions.
                 </p>
-            </section>
+            </Animate>
 
 
             {/* FEATURED BLOG */}
             <section className="px-6 md:px-16 pb-24">
                 <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
 
-                    <div className="relative h-100 rounded-3xl overflow-hidden group">
+                    <Animate type="fadeLeft" className="relative h-100 rounded-3xl overflow-hidden group">
                         <Image
                             src="https://i.ibb.co.com/gM48zk0r/c2.jpg"
                             alt="Featured Blog"
                             fill
-                            className="object-cover transition duration-700 group-hover:scale-105"
+                            className="object-cover"
                         />
-                    </div>
+                    </Animate>
 
-                    <div>
+                    <Animate type="fadeRight">
                         <span className="text-primary font-semibold uppercase text-sm ml-4">
                             Featured Article
                         </span>
                         <p className="border-b-2 border-base-300 w-24" />
 
-                        <h2 className="text-3xl md:text-4xl font-bold mt-4 leading-snug">
+                        <h2 className="text-2xl md:text-3xl font-bold mt-4 leading-snug">
                             Why Trusted <span className="text-primary">Care</span> Matters More Than Ever Today
                         </h2>
 
@@ -89,14 +90,15 @@ export default function Blog() {
                             secure caregiving solutions. Learn how modern platforms
                             are transforming family care services.
                         </p>
-
-                        {/* modal */}
-
+ 
                         <Button1
                             className="mt-8 inline-flex items-center gap-2 font-semibold 
                                    px-6 py-3 rounded-xl transition duration-300"
                             onClick={() => document.getElementById('open').showModal()}>Read Full Article < MdArrowOutward size={18} />
                         </Button1>
+
+                        {/* modal */}
+
                         <dialog id="open" className="modal">
                             <div className="modal-box max-w-4xl w-full">
                                 <form method="dialog">
@@ -160,7 +162,7 @@ export default function Blog() {
                         </dialog>
 
                         <div className="absolute -bottom-20 right-10 w-72 h-72 bg-blue-500/20 blur-3xl rounded-full"></div>
-                    </div>
+                    </Animate>
                 </div>
             </section>
 
@@ -169,7 +171,7 @@ export default function Blog() {
             <div className="border-t border-accent pb-20 max-w-5xl mx-auto animate-pulse" />
 
             {/* BLOG GRID (Masonry Style Feel) */}
-            <section className="px-6 md:px-16 pb-28">
+            <Animate className="px-6 md:px-16 pb-28">
                 <div className="max-w-7xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
 
                     {blogs.map((blog, index) => (
@@ -213,7 +215,7 @@ export default function Blog() {
                     ))}
 
                 </div>
-            </section>
+            </Animate>
 
 
             {/* NEWSLETTER CTA */}

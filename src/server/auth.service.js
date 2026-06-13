@@ -5,6 +5,19 @@ import bcryptjs from 'bcryptjs'
 import { createUserSchema, loginSchema } from "@/validation/auth.schema";
 import { sendResetPasswordEmail, sendVerificationEmail } from "@/lib/generateOtp";
 
+export const getCurrentUser = async () => {
+    const session = await auth();
+
+    if (!session?.user?.email) {
+        return null;
+    }
+
+    const user = await dbConnect(collections.USER).findOne({
+        email: session.user.email,
+    });
+
+    return user;
+};
 
 export const postUser = async (payload) => {
     const validation = createUserSchema.safeParse(payload);
@@ -37,8 +50,10 @@ export const postUser = async (payload) => {
         nid,
         name,
         email,
+        image: "https://i.ibb.co.com/C5Z4kC0r/profile.png",
         contact,
         password: await bcryptjs.hash(password, 10),
+        role: "user",
         isVerified: false,
 
         verificationCode,

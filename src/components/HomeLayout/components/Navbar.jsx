@@ -1,15 +1,12 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Logo from './Logo';
 import NavLink from '../../reusable/Navlink';
 import ThemeToggle from '../../reusable/ThemeToggle';
 import AuthDrawer from '@/components/auth/AuthDrawer';
 
 const Navbar = () => {
-    const [show, setShow] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
-
     const nav = <>
         <li>
             <NavLink href={'/services'}>Services</NavLink>
@@ -22,26 +19,8 @@ const Navbar = () => {
         </li>
     </>
 
-    // useEffect(() => {
-    //     const handleScroll = () => {
-    //         const currentScrollY = window.scrollY;
-
-    //         if (currentScrollY > lastScrollY && currentScrollY > 80) {
-    //             setShow(false);
-    //         } else {
-    //             setShow(true);
-    //         }
-
-    //         setLastScrollY(currentScrollY);
-    //     };
-
-    //     window.addEventListener("scroll", handleScroll, { passive: true });
-    //     return () => window.removeEventListener("scroll", handleScroll);
-    // }, [lastScrollY]);
-
-
     return (
-        <div className={`navbar backdrop-blur-md fixed top-0 z-50 border-b border-primary px-6 pr-14 h-0 ${show ? "translate-y-0" : "-translate-y-full"}`}>
+        <div className='navbar backdrop-blur-md fixed top-0 z-50 border-b border-primary px-6 pr-14 h-0'>
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

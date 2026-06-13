@@ -6,13 +6,13 @@ import { FiLogIn } from "react-icons/fi";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
-import Button2 from "../reusable/Button2";
-import { TbLogout2 } from "react-icons/tb";
 import Login from "./components/login";
 import Register from "./components/register";
 import { IoCloseSharp } from "react-icons/io5";
 import { AnimatePresence, motion } from "framer-motion";
 import Animate from "../reusable/Animate";
+import { openDrawer } from "../reusable/drawer-controller";
+import Image from "next/image";
 
 
 
@@ -20,7 +20,8 @@ export default function AuthDrawer() {
     const [isLogin, setIsLogin] = useState(true);
     const { status } = useSession();
     const router = useRouter();
-
+    const {data: session}  = useSession();
+ 
     if (status == "loading") {
         return (
             <div className="btn btn-sm md:btn-md btn-primary opacity-50 rounded-xl">
@@ -55,29 +56,38 @@ export default function AuthDrawer() {
         }
     };
 
+    const handleDrawer = () => {
+        openDrawer();
+    };
+
     return (
         <div className="drawer drawer-end">
             <input id="auth-drawer" type="checkbox" className="drawer-toggle" />
 
             {
                 status === "authenticated" ? (
-                    <Button2
-                        onClick={handleLogout}
-                        className="btn btn-sm md:btn-md w-28"
-                    >
-                        Log out <TbLogout2 className="text-xl" />
-                    </Button2>
-
-                ) : (
-                    <div className="drawer-content">
-                        <Button1 className="btn btn-sm md:btn-md border-none">
-                            <label
-                                htmlFor="auth-drawer"
-                                className="flex items-center justify-center gap-2"
-                            >
+                    <div className="dropdown">
+                        <div tabIndex={0} role="button" className="cursor-pointer">
+                            <Image
+                            src={session?.user?.image}
+                            alt="Profile"
+                            width={55}
+                            height={55}
+                            className="rounded-full border-2 border-primary/50 hover:border-primary duration-300"
+                            />
+                        </div>
+                        <ul tabIndex="-1" className="dropdown-content menu bg-white/15 backdrop-blur-lg rounded-box z-1 w-52 p-2 shadow-sm">
+                            <li><a>Profile</a></li>
+                            <li><a onClick={handleLogout}>Logout</a></li>
+                        </ul>
+                    </div>
+                 ) : (
+                        <div
+                        onClick={handleDrawer}
+                         className="drawer-content">
+                            <Button1 className="btn btn-sm md:btn-md border-none flex items-center justify-center gap-2">
                                 Login <FiLogIn />
-                            </label>
-
+ 
                         </Button1>
                     </div>
 

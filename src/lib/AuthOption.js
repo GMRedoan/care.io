@@ -34,7 +34,7 @@ export const authOptions = {
     ],
 
     callbacks: {
-        async signIn({ user, account, profile, email, credentials }) {
+        async signIn({ user, account }) {
             const isExist = await dbConnect(collections.USER).findOne({
                 email: user.email
             });
@@ -47,28 +47,49 @@ export const authOptions = {
                 name: user.name,
                 email: user.email,
                 contact: "",
+                image: user.image,
+                role: "user",
                 isVerified: true,
                 createdAt: new Date().toISOString()
             }
+
             const result = await dbConnect(collections.USER).insertOne(newUser)
             return result.acknowledged
         },
-        async session({ session, user, token }) {
-            if (token) {
-                session.email = token?.email
-            }
-            return session
+        async session({ session, token }) {
+
+            session.user = {
+                id: token.id,
+                name: token.name,
+                email: token.email,
+                image: token.image,
+                role: token.role,
+                contact: token.contact,
+                nid: token.nid,
+            };
+
+            return session;
         },
-        async jwt({ token, user, account, profile, isNewUser }) {
+
+
+        async jwt({ token, user }) {
+
             if (user) {
-                if (account.provider == "google") {
-                    const dbUser = await dbConnect(collections.USER).findOne({ email: user.email })
-                    token.email = dbUser?.email
-                } else {
-                    token.email = user?.email
-                }
+
+                const dbUser = await dbConnect(collections.USER).findOne({
+                    email: user.email
+                });
+
+                token.id = dbUser?._id?.toString();
+                token.name = dbUser?.name;
+                token.email = dbUser?.email;
+                token.image = dbUser?.image || null;
+                token.role = dbUser?.role;
+                token.contact = dbUser?.contact;
+                token.nid = dbUser?.nid;
             }
-            return token
+
+            return token;
         }
     }
 }

@@ -18,7 +18,7 @@ export default function VerifyEmailModal({
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const [resending, setResending] = useState(false);
-    const [countdown, setCountdown] = useState(0);
+    const [countdown, setCountdown] = useState(90);
 
     const handleVerify = async (e) => {
         e.preventDefault();
@@ -130,7 +130,7 @@ export default function VerifyEmailModal({
                         </form>
                         <div>
                             <p className="text-sm text-center mt-4">
-                                Did not receive the code?{" "}
+                                Did not receive the code? {" "}
                                 <button
                                     onClick={handleResendOtp}
                                     disabled={countdown > 0 || resending}
