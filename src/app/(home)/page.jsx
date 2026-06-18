@@ -5,16 +5,16 @@ import Partners from '@/components/HomeLayout/Partners';
 import ServiceOverview from '@/components/HomeLayout/ServiceOverview';
 import Testimonials from '@/components/HomeLayout/Testimonials';
 
- 
+
 export default function Home() {
-  return (
-    <div>
-      <Banner />
-      <AboutSection />
-      <Partners />
-      <ServiceOverview />
-      <Features />
-      <Testimonials />
-    </div>
-   );
+    return (
+        <div>
+            <Banner />
+            <AboutSection />
+            <Partners />
+            <ServiceOverview />
+            <Features />
+            <Testimonials />
+        </div>
+    );
 }

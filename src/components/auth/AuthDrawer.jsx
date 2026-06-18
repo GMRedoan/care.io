@@ -13,6 +13,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Animate from "../reusable/Animate";
 import { openDrawer } from "../reusable/drawer-controller";
 import Image from "next/image";
+import Link from "next/link";
 
 
 
@@ -67,7 +68,7 @@ export default function AuthDrawer() {
             {
                 status === "authenticated" ? (
                     <div className="dropdown">
-                        <div tabIndex={0} role="button" className="cursor-pointer">
+                        <div tabIndex={0} role="button">
                             <Image
                             src={session?.user?.image}
                             alt="Profile"
@@ -76,9 +77,9 @@ export default function AuthDrawer() {
                             className="rounded-full border-2 border-primary/50 hover:border-primary duration-300"
                             />
                         </div>
-                        <ul tabIndex="-1" className="dropdown-content menu bg-white/15 backdrop-blur-lg rounded-box z-1 w-52 p-2 shadow-sm">
-                            <li><a>Profile</a></li>
-                            <li><a onClick={handleLogout}>Logout</a></li>
+                        <ul tabIndex="-1" className="dropdown-content menu bg-white/15 backdrop-blur-lg rounded-box z-1 w-28 border border-accent mt-2 -ml-5 p-3 cursor-pointer font-semibold">
+                            <Link href={'dashboard'} className="hover:text-primary">Dashboard</Link>
+                            <li className="hover:text-red-400" onClick={handleLogout}>Logout</li>
                         </ul>
                     </div>
                  ) : (
