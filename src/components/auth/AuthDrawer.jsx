@@ -72,8 +72,8 @@ export default function AuthDrawer() {
                             <Image
                             src={session?.user?.image}
                             alt="Profile"
-                            width={55}
-                            height={55}
+                            width={45}
+                            height={45}
                             className="rounded-full border-2 border-primary/50 hover:border-primary duration-300"
                             />
                         </div>
