@@ -8,10 +8,8 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 
 
-export default function DashboardNavbar () {
-    const { data: session } = useSession();
+export default function DashboardNavbar({ currentUser }) {
     const router = useRouter();
-
         const handleLogout = async () => {
             const result = await Swal.fire({
                 title: "Are you sure?",
@@ -62,7 +60,7 @@ export default function DashboardNavbar () {
                         <div className=" ">
                         <div tabIndex={0} role="">
                             <Image
-                            src={session?.user?.image}
+                            src={currentUser?.image}
                             alt="Profile"
                             width={35}
                             height={35}
@@ -73,10 +71,10 @@ export default function DashboardNavbar () {
 
                         <div className="hidden md:block text-left cursor-pointer">
                             <p className="font-medium text-sm">
-                                {session?.user?.name}
+                                {currentUser?.name}
                             </p>
                             <p className="text-xs opacity-70 capitalize">
-                                {session?.user?.role}
+                                {currentUser?.role}
                             </p>
                         </div>
                     </div>

@@ -1,4 +1,5 @@
- import React from 'react';
+ import { getCurrentUser } from '@/server/auth.service';
+import React from 'react';
  
  const Services = () => {
     return (

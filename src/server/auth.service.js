@@ -4,9 +4,11 @@ import { collections, dbConnect } from "@/lib/dbConnect"
 import bcryptjs from 'bcryptjs'
 import { createUserSchema, loginSchema } from "@/validation/auth.schema";
 import { sendResetPasswordEmail, sendVerificationEmail } from "@/lib/generateOtp";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/AuthOption";
 
 export const getCurrentUser = async () => {
-    const session = await auth();
+    const session = await getServerSession(authOptions);
 
     if (!session?.user?.email) {
         return null;
@@ -16,7 +18,15 @@ export const getCurrentUser = async () => {
         email: session.user.email,
     });
 
-    return user;
+    return {
+        id: user._id.toString(),
+        name: user.name,
+        email: user.email,
+        image: user.image,
+        role: user.role,
+        contact: user.contact,
+        nid: user.nid,
+    };
 };
 
 export const postUser = async (payload) => {

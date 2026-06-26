@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSession } from "next-auth/react";
 import { useState } from "react";
 
 import {
@@ -14,24 +13,25 @@ import {
     FiChevronLeft,
     FiShield,
 } from "react-icons/fi";
+import Logo from "../HomeLayout/components/Logo";
+import Animate from "../reusable/Animate";
+import { MdAdminPanelSettings } from "react-icons/md";
 
-export default function DashboardSidebar() {
+export default function DashboardSidebar({ currentUser }) {
     const pathname = usePathname();
-    const { data: session } = useSession();
-
+    const role = currentUser?.role || "user";
     const [collapsed, setCollapsed] = useState(false);
 
-    const role = session?.user?.role;
 
     const adminLinks = [
         {
             name: "Dashboard",
-            href: "/dashboard",
+            href: "/dashboard/admin",
             icon: FiHome,
         },
         {
             name: "Patients",
-            href: "/dashboard/patients",
+            href: "/dashboard/admin/patients",
             icon: FiUsers,
         },
         {
@@ -41,7 +41,7 @@ export default function DashboardSidebar() {
         },
         {
             name: "Admin Panel",
-            href: "/dashboard/admin",
+            href: "/dashboard/adminPanel",
             icon: FiShield,
         },
         {
@@ -54,7 +54,7 @@ export default function DashboardSidebar() {
     const userLinks = [
         {
             name: "Dashboard",
-            href: "/dashboard",
+            href: "/dashboard/user",
             icon: FiHome,
         },
         {
@@ -68,42 +68,57 @@ export default function DashboardSidebar() {
             icon: FiSettings,
         },
     ];
-
     const links = role === "admin" ? adminLinks : userLinks;
 
     return (
         <aside
             className={`
-                bg-base-100
+                bg-base-200
                 border-r
-                border-base-300
+                border-accent
                 min-h-screen
                 transition-all
                 duration-300
-                ${collapsed ? "w-20" : "w-64"}
+                ${collapsed ? "w-20" : "w-60"}
             `}
         >
             {/* Header */}
-            <div className="flex items-center justify-between p-4">
+            <div className="flex items-center justify-between p-2">
                 {!collapsed && (
-                    <h2 className="text-2xl font-bold">
-                        Care.io
-                    </h2>
+                    <Animate type="fadeLeft" delay={0.3}>
+                        <Logo />
+                    </Animate>
                 )}
 
                 <button
                     onClick={() =>
                         setCollapsed(!collapsed)
                     }
-                    className="btn btn-sm btn-ghost"
+                    className="hover:text-primary cursor-pointer pl-5"
                 >
                     {collapsed ? (
-                        <FiMenu size={20} />
+                        <FiMenu className="mt-4" size={25} />
                     ) : (
-                        <FiChevronLeft size={20} />
+                        <FiChevronLeft size={25} />
                     )}
                 </button>
             </div>
+
+            {!collapsed ? (
+                <div>
+                    <Animate type="fadeLeft" delay={0.5}>
+                        <div className="capitalize text-primary/90 font-bold text-lg px-4 pb-12">
+                            <span>{role}</span> Dashboard
+                        </div>
+                    </Animate>
+                </div>
+
+            ):
+                <div className="text-primary flex justify-center pb-14 pt-6">
+                    <MdAdminPanelSettings size={27} />
+                </div>
+        }
+
 
             {/* Menu */}
             <ul className="menu w-full gap-2 px-2">
@@ -120,30 +135,31 @@ export default function DashboardSidebar() {
                             <Link
                                 href={link.href}
                                 className={`
-                                    flex items-center
+                                    flex items-center 
                                     ${collapsed
                                         ? "justify-center"
                                         : "gap-3"
                                     }
                                     ${isActive
-                                        ? "active font-semibold"
-                                        : ""
+                                    ? "bg-primary text-primary-content"
+                                    : "hover:bg-primary/60"
                                     }
                                 `}
                             >
                                 <Icon size={20} />
 
                                 {!collapsed && (
-                                    <span>
-                                        {link.name}
-                                    </span>
+                                    <Animate type="fadeLeft" delay={0.5}>
+                                        <span>{link.name}</span>
+                                    </Animate>
                                 )}
                             </Link>
 
                             {/* Tooltip */}
                             {collapsed && (
-                                <div
-                                    className="
+                                <Animate type="fadeLeft" delay={0.5}>
+                                    <div
+                                        className="
                                         absolute
                                         left-full
                                         top-1/2
@@ -151,7 +167,7 @@ export default function DashboardSidebar() {
                                         ml-3
                                         whitespace-nowrap
                                         rounded-md
-                                        bg-neutral
+                                        bg-primary/70
                                         px-3
                                         py-1
                                         text-neutral-content
@@ -161,11 +177,12 @@ export default function DashboardSidebar() {
                                         group-hover:opacity-100
                                         group-hover:visible
                                         transition
-                                        z-50
+                                        z-50 
                                     "
-                                >
-                                    {link.name}
-                                </div>
+                                    >
+                                        {link.name}
+                                    </div>
+                                </Animate>
                             )}
                         </li>
                     );

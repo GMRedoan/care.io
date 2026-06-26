@@ -1,11 +1,16 @@
-import React from 'react';
+import { redirect } from "next/navigation";
+import { getCurrentUser } from "@/server/auth.service";
 
-const AdminDashboard = () => {
-    return (
-        <div>
-            this is admin dashboard
-        </div>
-    );
-};
+export default async function AdminDashboard() {
+    const user = await getCurrentUser();
 
-export default AdminDashboard;
+    if (!user) {
+        redirect("/");
+    }
+
+    if (user.role !== "admin") {
+        redirect("/dashboard/user");
+    }
+
+    return <div>Admin Dashboard</div>;
+}

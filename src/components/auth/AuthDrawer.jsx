@@ -78,7 +78,7 @@ export default function AuthDrawer() {
                             />
                         </div>
                         <ul tabIndex="-1" className="dropdown-content menu bg-white/15 backdrop-blur-lg rounded-box z-1 w-28 border border-accent mt-2 -ml-5 p-3 cursor-pointer font-semibold">
-                            <Link href={'dashboard'} className="hover:text-primary">Dashboard</Link>
+                            <Link href={'/dashboard'} className="hover:text-primary">Dashboard</Link>
                             <li className="hover:text-red-400" onClick={handleLogout}>Logout</li>
                         </ul>
                     </div>

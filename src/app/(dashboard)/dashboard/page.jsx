@@ -1,21 +1,16 @@
-"use client"
+import { redirect } from "next/navigation";
+import { getCurrentUser } from "@/server/auth.service";
 
-import { useSession } from "next-auth/react";
-import AdminDashboard from "./admin/page";
-import UserDashboard from "./user/page";
- 
-export default function DashboardPage() {
-    const { data: session } = useSession();
+export default async function Dashboard() {
+    const currentUser = await getCurrentUser();
 
-    const role = session?.user?.role;
-
-    return (
-        <div className="p-10 bg-base-200 min-h-screen">
-            {role === "admin" ? (
-                <AdminDashboard />
-            ) : (
-                <UserDashboard />
-            )}
-        </div>
-    );
+    if (!currentUser) {
+        redirect("/");
+    }
+    
+    if (currentUser.role === "admin") {
+        redirect("/dashboard/admin");
+    }else{
+        redirect("/dashboard/user");
+    }
 }
