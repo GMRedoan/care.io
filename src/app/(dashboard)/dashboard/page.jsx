@@ -3,14 +3,10 @@ import { getCurrentUser } from "@/server/auth.service";
 
 export default async function Dashboard() {
     const currentUser = await getCurrentUser();
-
-    if (!currentUser) {
-        redirect("/");
-    }
-    
+     
     if (currentUser.role === "admin") {
         redirect("/dashboard/admin");
-    }else{
+    }else {
         redirect("/dashboard/user");
     }
 }

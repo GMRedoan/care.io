@@ -12,6 +12,9 @@ import { CgMoreVertical } from "react-icons/cg";
 import Button1 from "../reusable/Button1";
 import { Playfair_Display } from "next/font/google";
 import Animate from "../reusable/Animate";
+import { useSearchParams } from "next/navigation";
+import { openDrawer } from "../hooks/drawer-controller";
+import { showToast } from "../reusable/toastAlert";
 
 const play = Playfair_Display({
     subsets: ["latin"],
@@ -26,6 +29,7 @@ const images = [
 
 const Banner = () => {
     const [current, setCurrent] = useState(0);
+    const searchParams = useSearchParams();
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -48,6 +52,13 @@ const Banner = () => {
             .getElementById("aboutUs")
             ?.scrollIntoView({ behavior: "smooth" });
     };
+
+    useEffect(() => {
+        if (searchParams.get("openLogin")) {
+            openDrawer();
+            showToast("info", "Please login to continue");
+        }
+    }, [searchParams]);
 
     return (
         <section

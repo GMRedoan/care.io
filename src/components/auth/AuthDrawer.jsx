@@ -11,7 +11,7 @@ import Register from "./components/register";
 import { IoCloseSharp } from "react-icons/io5";
 import { AnimatePresence, motion } from "framer-motion";
 import Animate from "../reusable/Animate";
-import { openDrawer } from "../reusable/drawer-controller";
+import { openDrawer } from "../hooks/drawer-controller";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -21,8 +21,8 @@ export default function AuthDrawer() {
     const [isLogin, setIsLogin] = useState(true);
     const { status } = useSession();
     const router = useRouter();
-    const {data: session}  = useSession();
- 
+    const { data: session } = useSession();
+
     if (status == "loading") {
         return (
             <div className="btn btn-sm md:btn-md btn-primary opacity-50 rounded-xl">
@@ -70,11 +70,11 @@ export default function AuthDrawer() {
                     <div className="dropdown">
                         <div tabIndex={0} role="button">
                             <Image
-                            src={session?.user?.image}
-                            alt="Profile"
-                            width={45}
-                            height={45}
-                            className="rounded-full border-2 border-primary/50 hover:border-primary duration-300"
+                                src={session?.user?.image}
+                                alt="Profile"
+                                width={45}
+                                height={45}
+                                className="rounded-full border-2 border-primary/50 hover:border-primary duration-300"
                             />
                         </div>
                         <ul tabIndex="-1" className="dropdown-content menu bg-white/15 backdrop-blur-lg rounded-box z-1 w-28 border border-accent mt-2 -ml-5 p-3 cursor-pointer font-semibold">
@@ -82,13 +82,13 @@ export default function AuthDrawer() {
                             <li className="hover:text-red-400" onClick={handleLogout}>Logout</li>
                         </ul>
                     </div>
-                 ) : (
-                        <div
+                ) : (
+                    <div
                         onClick={handleDrawer}
-                         className="drawer-content">
-                            <Button1 className="btn btn-sm md:btn-md border-none flex items-center justify-center gap-2">
-                                Login <FiLogIn />
- 
+                        className="drawer-content">
+                        <Button1 className="btn btn-sm md:btn-md border-none flex items-center justify-center gap-2">
+                            Login <FiLogIn />
+
                         </Button1>
                     </div>
 
@@ -123,7 +123,7 @@ export default function AuthDrawer() {
                                     {isLogin ? (<div>
                                         Welcome <span className="text-primary">Back!</span>
                                     </div>) : (<div>
-                                            <span className="text-primary">Create</span> Account
+                                        <span className="text-primary">Create</span> Account
                                     </div>)}
                                 </h1>
 
@@ -179,7 +179,7 @@ export default function AuthDrawer() {
                                 </Animate>
                             ) : (
                                 <Animate
-                                type="fadeRight"
+                                    type="fadeRight"
                                     key="register"
                                 >
                                     <Register />

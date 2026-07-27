@@ -13,7 +13,7 @@ import VerifyEmailModal from "./verifyEmailModal";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { showToast } from "@/components/reusable/toastAlert";
 import ForgotPasswordModal from "./forgotPasswordModal";
-import { closeDrawer } from "@/components/reusable/drawer-controller";
+import { closeDrawer } from "@/components/hooks/drawer-controller";
 
 const Login = () => {
     const router = useRouter();

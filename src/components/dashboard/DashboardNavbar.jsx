@@ -1,6 +1,6 @@
 "use client";
 
-import { useSession, signOut } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import ThemeToggle from "@/components/reusable/ThemeToggle";
 import { FiBell } from "react-icons/fi";
 import Image from "next/image";
@@ -38,7 +38,7 @@ export default function DashboardNavbar({ currentUser }) {
     
 
     return (
-        <header className="navbar bg-base-100 border-b border-base-300 px-4 sticky top-0 z-40">
+        <header className="navbar bg-base-200 border-b border-accent px-4 sticky top-0 z-40">
             {/* Left */}
             <div className="navbar-start gap-3">
             </div>
