@@ -2,10 +2,9 @@ import AboutSection from "@/components/HomeLayout/AboutUs";
 import Banner from '@/components/HomeLayout/Banner';
 import Features from '@/components/HomeLayout/Features';
 import Partners from '@/components/HomeLayout/Partners';
-import ServiceOverview from '@/components/HomeLayout/ServiceOverview';
+import Services from "@/components/HomeLayout/Services";
 import Testimonials from '@/components/HomeLayout/Testimonials';
 import { Suspense } from "react";
-
 
 export default function Home() {
     return (
@@ -15,7 +14,7 @@ export default function Home() {
             </Suspense>
             <AboutSection />
             <Partners />
-            <ServiceOverview />
+            <Services />
             <Features />
             <Testimonials />
         </div>

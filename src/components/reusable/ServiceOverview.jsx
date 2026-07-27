@@ -1,41 +1,22 @@
 "use client";
-
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { GrAppsRounded } from "react-icons/gr";
 import Animate from "../reusable/Animate";
+import Button1 from "../reusable/Button1";
+import Link from "next/link";
 
-const services = [
-    {
-        title: "Baby Care",
-        description:
-            "Professional and compassionate caregivers ensuring your child’s safety, comfort, and joyful growth.",
-        image: "https://i.ibb.co.com/q3wN6h6z/khoa-pham-9n-C7j1g-AS84-unsplash.jpg",
-        link: "/services/babyCare",
-    },
-    {
-        title: "Elderly Service",
-        description:
-            "Dedicated support for seniors with daily assistance, companionship, and respectful care.",
-        image: "https://i.ibb.co.com/jkJJdJZ7/raychan-yk7-F8bd-D0e-U-unsplash.jpg",
-        link: "/services/elderCare",
-    },
-    {
-        title: "Sick People Service",
-        description:
-            "Reliable home care for recovering or ill family members with attention and medical awareness.",
-        image: "https://i.ibb.co.com/Y4Zz8zjd/national-cancer-institute-DK-4-VWK1tw-unsplash.jpg",
-        link: "/services/sickCare",
-    },
-];
 
-const ServiceOverview = () => {
+const ServiceOverview = ({services}) => {
+    const handleService = (_id) => {
+        
+    }
+
     return (
         <section id="service" className="relative bg-base-200 py-10 px-6 md:px-16 pt-20 md:pt-30 overflow-hidden">
 
             <div className="max-w-7xl mx-auto relative z-10">
- 
+
                 {/* Header */}
                 <Animate className="text-center mb-20">
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold 
@@ -52,9 +33,9 @@ const ServiceOverview = () => {
                 {/* Services Grid */}
                 <Animate type="zoom" className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
 
-                    {services.map((service, index) => (
+                    {services.map((service) => (
                         <div
-                            key={index}
+                            key={service._id}
                             className="group relative h-105 rounded-3xl overflow-hidden 
               shadow-xl transition duration-500 hover:-translate-y-2"
                         >
@@ -90,14 +71,12 @@ const ServiceOverview = () => {
                   translate-y-6 group-hover:translate-y-0 
                   transition duration-500 delay-200">
 
-                                    <Link href={service.link} className="btn w-fit px-5 py-5 rounded-xl
-                      border border-white/30   
-                      font-semibold not-only-of-type:
-                      transition duration-300 flex items-center gap-2 cursor-pointer bg-linear-to-bl from-blue-500 to-cyan-300
-        hover:from-blue-600 hover:to-cyan-400
-        text-white">
+                                <Link href={`/services/${service.slug}`}>
+                                    <Button1
+                                     className="flex items-center gap-2">
                                         Explore Now <GrAppsRounded className="animate-spin" />
-                                    </Link>
+                                    </Button1>
+                                </Link>
 
                                 </div>
 

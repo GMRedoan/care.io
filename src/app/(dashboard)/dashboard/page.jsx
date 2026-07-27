@@ -1,5 +1,5 @@
+import { getCurrentUser } from "@/server/user.service";
 import { redirect } from "next/navigation";
-import { getCurrentUser } from "@/server/auth.service";
 
 export default async function Dashboard() {
     const currentUser = await getCurrentUser();

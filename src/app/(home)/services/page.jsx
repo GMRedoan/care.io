@@ -1,12 +1,14 @@
- import { getCurrentUser } from '@/server/auth.service';
+import ServiceOverview from '@/components/reusable/ServiceOverview';
+import { getServices } from '@/server/service.service';
 import React from 'react';
- 
- const Services = () => {
+
+const Service = async () => {
+    const services = await getServices();
     return (
-        <div className='mt-50'>
-            this is service
+        <div>
+            <ServiceOverview services={services} />
         </div>
     );
- };
- 
- export default Services;
+};
+
+export default Service;
