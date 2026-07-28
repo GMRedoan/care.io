@@ -2,7 +2,8 @@ import { getToken } from 'next-auth/jwt'
 import { NextResponse } from 'next/server'
 
 const protectedRoutes = [
-    "/dashboard",   
+    "/dashboard",
+    "/booking",  
 ]
 
 export async function middleware(request) {

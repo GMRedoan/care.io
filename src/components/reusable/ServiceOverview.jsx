@@ -77,9 +77,7 @@ const ServiceOverview = ({services}) => {
                                         Explore Now <GrAppsRounded className="animate-spin" />
                                     </Button1>
                                 </Link>
-
                                 </div>
-
                             </div>
 
                             {/* Bottom line */}

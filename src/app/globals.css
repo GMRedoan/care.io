@@ -11,6 +11,7 @@
   --color-accent: #706f6f;
   --color-primary: #11B2ED;
   --color-foreground: #e5e7eb;
+  --color-success: #16A34A;
 }
 
 /* Dark Theme */
@@ -24,6 +25,7 @@
   --color-accent: #B0ABAB;
   --color-primary: #11B2ED;
   --color-foreground: #030712;
+  --color-success: #16A34A;
  }
 
 @keyframes fadeIn {
