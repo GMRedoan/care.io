@@ -347,7 +347,7 @@ const BookingForm = ({ service }) => {
                                 </div>
 
                                 {/* Total */}
-                                <div className="border border-primary/60 rounded-2xl p-4 text-white">
+                                <div className="border border-primary/60 rounded-2xl p-4">
                                     <div className="flex justify-between items-center">
                                         <span className="text-lg">Total Cost</span>
                                         <span className="text-xl text-success font-semibold flex items-center gap-2">

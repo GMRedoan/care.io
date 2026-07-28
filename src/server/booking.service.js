@@ -13,6 +13,8 @@ export const createBooking = async (payload) => {
             userId: currentUser.id,
             userName: currentUser.name,
             userEmail: currentUser.email,
+            userPhone: currentUser.contact,
+            userNid: currentUser.nid,
             status: "pending",
             createdAt: new Date().toISOString()
         });

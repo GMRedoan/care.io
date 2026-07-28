@@ -6,11 +6,14 @@ const protectedRoutes = [
     "/booking",  
 ]
 
-export async function middleware(request) {
+export async function proxy(request) {
     const { pathname, searchParams } = request.nextUrl;
-    const sessionToken = request.cookies.get('next-auth.session-token')?.value
 
-    const decodedToken = sessionToken ? await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET }) : null
+    const decodedToken = await getToken({ 
+        req: request, 
+        secret: process.env.NEXTAUTH_SECRET,
+        secureCookie: process.env.NODE_ENV === "production"
+     })
     const userRole = decodedToken?.role;
 
     const isProtected = protectedRoutes.some((route) =>
