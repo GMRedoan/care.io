@@ -1,0 +1,23 @@
+import { getBookings } from "@/server/booking.service";
+import MyBookingsTable from "./_components/myBookingsTable";
+
+const page = async () => {
+    const result = await getBookings();
+    const bookings = JSON.parse(JSON.stringify(result.data));
+    return (
+        <div>
+            <div className="mb-8">
+                <h1 className="text-3xl md:text-4xl font-semibold text-base-content">
+                    My <span className="text-primary">Bookings</span>
+                </h1>
+                <p className="mt-2 text-accent">
+                    View and payment all your service bookings in one place.
+                </p>
+            </div>
+
+            <MyBookingsTable bookings={bookings} />
+        </div>
+    );
+};
+
+export default page;

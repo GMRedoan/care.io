@@ -70,7 +70,6 @@ const ServiceDetails = async ({ params }) => {
 
             </section>
 
-            {/* <div className="h-screen" aria-hidden="true" /> */}
 
             <div className="relative z-10 bg-base-200">
 

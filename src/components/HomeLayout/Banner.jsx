@@ -23,8 +23,8 @@ const play = Playfair_Display({
 
 const images = [
     "https://i.ibb.co.com/N2Jk4KdY/un1.jpg",
-    "https://i.ibb.co.com/Wv1Md9rM/un2.jpg",
-    "https://i.ibb.co.com/S4MM9W8c/un3.jpg",
+    "https://i.ibb.co.com/zTWB2QmL/rohit-dey-slpgu-KH5-Mgs-unsplash.jpg",
+    "https://i.ibb.co.com/wr0q0HZh/vitaly-gariev-BUNNEclz-y-Q-unsplash.jpg",
 ];
 
 const Banner = () => {

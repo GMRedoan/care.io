@@ -19,13 +19,13 @@ const blogs = [
     {
         title: "5 Signs Your Elderly Parent Needs Extra Support",
         desc: "Understanding when professional elderly care becomes essential.",
-        image: "https://i.ibb.co.com/v6xCNp3P/five.jpg",
+        image: "https://i.ibb.co.com/bj4FJsB6/zan-lazarevic-f-YTf-Oza-RVWw-unsplash.jpg",
         category: "Elderly Care",
     },
     {
         title: "Creating a Safe Home Environment for Children",
         desc: "Simple steps to ensure your child’s safety and comfort at home.",
-        image: "https://i.ibb.co.com/7dg2pPcc/c1.jpg",
+        image: "https://i.ibb.co.com/0jWgVfdp/jametlene-reskp-6ht4-XYJ6shk-unsplash.jpg",
         category: "Baby Care",
     },
 ];

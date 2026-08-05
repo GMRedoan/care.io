@@ -33,3 +33,20 @@ export const createBooking = async (payload) => {
     }
 
 };
+
+export const getBookings = async () => {
+    try {
+        const bookingCollection = dbConnect(collections.BOOKING);
+        const result = await bookingCollection.find().toArray();
+        return {
+            success: true,
+            data: result,
+        };
+    } catch (error) {
+        console.log(error);
+        return {
+            success: false,
+            message: error.message,
+        };
+    }
+};

@@ -8,14 +8,13 @@ const protectedRoutes = [
 
 export async function proxy(request) {
     const { pathname, searchParams } = request.nextUrl;
-
-    const decodedToken = await getToken({ 
-        req: request, 
+ 
+    const decodedToken = await getToken({
+        req: request,
         secret: process.env.NEXTAUTH_SECRET,
-        secureCookie: process.env.NODE_ENV === "production"
-     })
+        secureCookie: process.env.NODE_ENV === "development",
+    })
     const userRole = decodedToken?.role;
-
     const isProtected = protectedRoutes.some((route) =>
         pathname.startsWith(route)
     );

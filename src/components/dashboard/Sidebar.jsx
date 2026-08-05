@@ -15,7 +15,7 @@ import {
 } from "react-icons/fi";
 import Logo from "../HomeLayout/components/Logo";
 import Animate from "../reusable/Animate";
-import { MdAdminPanelSettings } from "react-icons/md";
+import { MdAdminPanelSettings, MdPayment, MdReviews } from "react-icons/md";
 
 export default function DashboardSidebar({ currentUser }) {
     const pathname = usePathname();
@@ -58,13 +58,23 @@ export default function DashboardSidebar({ currentUser }) {
             icon: FiHome,
         },
         {
-            name: "My Appointments",
-            href: "/dashboard/appointments",
+            name: "My Bookings",
+            href: "/dashboard/user/myBookings",
             icon: FiCalendar,
         },
         {
+            name: "Payment History",
+            href: "/dashboard/user/paymentHistory",
+            icon:  MdPayment,
+        },
+        {
+            name: "Reviews",
+            href: "/dashboard/user/reviews",
+            icon: MdReviews,
+        },
+        {
             name: "Settings",
-            href: "/dashboard/settings",
+            href: "/dashboard/user/profile",
             icon: FiSettings,
         },
     ];

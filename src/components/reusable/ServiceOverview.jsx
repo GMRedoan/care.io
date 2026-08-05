@@ -8,10 +8,6 @@ import Link from "next/link";
 
 
 const ServiceOverview = ({services}) => {
-    const handleService = (_id) => {
-        
-    }
-
     return (
         <section id="service" className="relative bg-base-200 py-10 px-6 md:px-16 pt-20 md:pt-30 overflow-hidden">
 
