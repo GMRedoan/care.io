@@ -36,7 +36,7 @@ export const postUser = async (payload) => {
         nid,
         name,
         email,
-        image: "https://i.ibb.co.com/C5Z4kC0r/profile.png",
+        image: "https://i.ibb.co.com/B2Qcfsgh/user-circles-set-78370-4704-Photoroom.png",
         contact,
         password: await bcryptjs.hash(password, 10),
         role: "user",

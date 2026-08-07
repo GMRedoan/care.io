@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Button1 from "../reusable/Button1";
-import { FiLogIn } from "react-icons/fi";
+import { FiLayout, FiLogIn, FiLogOut, FiUser } from "react-icons/fi";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
@@ -67,20 +67,78 @@ export default function AuthDrawer() {
 
             {
                 status === "authenticated" ? (
-                    <div className="dropdown">
-                        <div tabIndex={0} role="button">
+                    <div className="dropdown dropdown-end">
+                        <div tabIndex={0} role="button" className="cursor-pointer">
                             <Image
                                 src={session?.user?.image}
                                 alt="Profile"
                                 width={45}
                                 height={45}
-                                className="rounded-full border-2 border-primary/50 hover:border-primary duration-300"
+                                className="rounded-full border-2 border-primary/40 hover:border-primary transition-all duration-300"
                             />
                         </div>
-                        <ul tabIndex="-1" className="dropdown-content menu bg-white/15 backdrop-blur-lg rounded-box z-1 w-28 border border-accent mt-2 -ml-5 p-3 cursor-pointer font-semibold">
-                            <Link href={'/dashboard'} className="hover:text-primary">Dashboard</Link>
-                            <li className="hover:text-red-400" onClick={handleLogout}>Logout</li>
-                        </ul>
+
+                        <div
+                            tabIndex={0}
+                            className="dropdown-content mt-3 w-72 rounded-2xl border border-accent bg-base-200 shadow-2xl p-2 z-999"
+                        >
+                            {/* User Info */}
+                            <div className="flex items-center gap-3 p-3">
+                                <Image
+                                    src={session?.user?.image}
+                                    alt="Profile"
+                                    width={50}
+                                    height={50}
+                                    className="rounded-full"
+                                />
+
+                                <div>
+                                    <h3 className="font-semibold text-base">
+                                        {session?.user?.name}
+                                    </h3>
+                                    <p className="text-sm text-gray-500 truncate">
+                                        {session?.user?.email}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="divider my-1"></div>
+
+                            {/* Menu */}
+                            <ul className="menu p-0">
+                                <li>
+                                    <Link
+                                        href="/dashboard"
+                                        className="flex items-center gap-3 rounded-lg"
+                                    >
+                                        <FiLayout className="text-lg text-primary" />
+                                        Dashboard
+                                    </Link>
+                                </li>
+
+                                <li>
+                                    <Link
+                                        href={`/dashboard/${session?.user?.role}/profile`}
+                                        className="flex items-center gap-3 rounded-lg"
+                                    >
+                                        <FiUser className="text-lg text-info" />
+                                        Profile
+                                    </Link>
+                                </li>
+
+                                <div className="divider my-1"></div>
+
+                                <li>
+                                    <button
+                                        onClick={handleLogout}
+                                        className="flex items-center gap-3 text-error hover:bg-error hover:text-white rounded-lg"
+                                    >
+                                        <FiLogOut className="text-lg" />
+                                        Logout
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 ) : (
                     <div

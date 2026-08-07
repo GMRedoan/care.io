@@ -29,3 +29,37 @@ export const getCurrentUser = async () => {
         nid: user.nid,
     };
 };
+
+export const updateUser = async (payload) => {
+    try {
+        const user = await getCurrentUser();
+        if (!user) {
+            return {
+                success: false,
+                message: "User not found",
+            };
+        }
+
+        const result = await dbConnect(collections.USER).updateOne(
+            { email: user.email },
+            { $set: payload }
+        );
+        if (!result.modifiedCount && !result.matchedCount) {
+            return {
+                success: false,
+                message: "Failed to update profile.",
+            };
+        }
+
+        return {
+            success: true,
+            message: "User updated successfully",
+        };
+
+    } catch (error) {
+        return {
+            success: false,
+            message: error.message,
+        };
+    }
+}

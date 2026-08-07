@@ -2,10 +2,18 @@
 
 import { signOut } from "next-auth/react";
 import ThemeToggle from "@/components/reusable/ThemeToggle";
-import { FiBell } from "react-icons/fi";
+import { FiBell, FiHome } from "react-icons/fi";
 import Image from "next/image";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
+import {
+    FiUser,
+    FiSettings,
+    FiLogOut,
+    FiChevronDown,
+} from "react-icons/fi";
+import Link from "next/link";
+import { RiServiceFill } from "react-icons/ri";
 
 
 export default function DashboardNavbar({ currentUser }) {
@@ -55,51 +63,85 @@ export default function DashboardNavbar({ currentUser }) {
                     <div
                         tabIndex={0}
                         role="button"
-                        className="flex items-center gap-3"
+                        className="flex items-center gap-3 cursor-pointer rounded-xl px-2 py-1 hover:bg-base-200 transition-all duration-200"
                     >
-                        <div className=" ">
-                        <div tabIndex={0} role="">
-                            <Image
+                        <Image
                             src={currentUser?.image}
                             alt="Profile"
-                            width={35}
-                            height={35}
-                            className="rounded-full border-2 border-primary/50 hover:border-primary duration-300"
-                            />
-                        </div>
-                        </div>
+                            width={40}
+                            height={40}
+                            className="rounded-full border-2 border-primary/40"
+                        />
 
-                        <div className="hidden md:block text-left cursor-pointer">
-                            <p className="font-medium text-sm">
+                        <div className="hidden md:block">
+                            <h4 className="text-sm font-semibold leading-none">
                                 {currentUser?.name}
-                            </p>
-                            <p className="text-xs opacity-70 capitalize">
+                            </h4>
+
+                            <p className="text-xs text-base-content/60 capitalize mt-1">
                                 {currentUser?.role}
                             </p>
                         </div>
+
+                        <FiChevronDown className="hidden md:block text-base-content/50" />
                     </div>
 
-                    <ul
+                    <div
                         tabIndex={0}
-                        className="menu dropdown-content bg-base-100 rounded-box z-50 w-56 p-2 shadow border border-base-300"
+                        className="dropdown-content mt-3 w-72 rounded-2xl border border-accent bg-base-200 shadow-2xl p-2 z-999"
                     >
-                        <li>
-                            <a>Profile</a>
-                        </li>
+                        {/* User Header */}
+                        <div className="flex items-center gap-3 p-3">
+                            <Image
+                                src={currentUser?.image}
+                                alt="Profile"
+                                width={45}
+                                height={45}
+                                className="rounded-full"
+                            />
 
-                        <li>
-                            <a>Settings</a>
-                        </li>
+                            <div className="min-w-0">
+                                <h3 className="font-semibold text-base truncate">
+                                    {currentUser?.name}
+                                </h3>
 
-                        <li>
-                            <button
-                                onClick={handleLogout}
-                                className="text-error"
-                            >
-                                Logout
-                            </button>
-                        </li>
-                    </ul>
+                                <p className="text-sm text-base-content/60 truncate">
+                                    {currentUser?.email}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="divider my-1"></div>
+
+                        {/* Menu */}
+                        <ul className="menu p-0">
+                            <li>
+                                <Link href="/" className="rounded-lg">
+                                    <FiHome className="text-primary" />
+                                    Home
+                                </Link>
+                            </li>
+
+                            <li>
+                                <Link href="/services" className="rounded-lg">
+                                    <RiServiceFill className="text-info" />
+                                    Services
+                                </Link>
+                            </li>
+
+                            <div className="divider my-1"></div>
+
+                            <li>
+                                <button
+                                    onClick={handleLogout}
+                                    className="rounded-lg text-error hover:bg-error hover:text-white"
+                                >
+                                    <FiLogOut />
+                                    Logout
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </header>

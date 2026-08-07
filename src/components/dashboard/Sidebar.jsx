@@ -73,7 +73,7 @@ export default function DashboardSidebar({ currentUser }) {
             icon: MdReviews,
         },
         {
-            name: "Settings",
+            name: "Profile",
             href: "/dashboard/user/profile",
             icon: FiSettings,
         },
@@ -117,7 +117,7 @@ export default function DashboardSidebar({ currentUser }) {
             {!collapsed ? (
                 <div>
                     <Animate type="fadeLeft" delay={0.5}>
-                        <div className="capitalize text-primary/90 font-bold text-lg px-4 pb-12">
+                        <div className="capitalize text-primary/90 font-semibold text-lg pb-12 pl-10">
                             <span>{role}</span> Dashboard
                         </div>
                     </Animate>
@@ -125,7 +125,9 @@ export default function DashboardSidebar({ currentUser }) {
 
             ):
                 <div className="text-primary flex justify-center pb-14 pt-6">
-                    <MdAdminPanelSettings size={27} />
+                    <Link href={'/'}>
+                        <MdAdminPanelSettings size={27} />
+                    </Link>
                 </div>
         }
 
