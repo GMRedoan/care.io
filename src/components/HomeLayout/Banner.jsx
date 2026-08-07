@@ -113,7 +113,7 @@ const Banner = () => {
                         <div className="text-center lg:text-left">
 
                             <Animate type="fadeDown" delay={0.2}
-                                className="inline-flex items-center gap-2 mb-8 px-6 py-3 rounded-full border border-white/20 bg-white/10 backdrop-blur-md"
+                                className="inline-flex items-center gap-2 mb-8 px-6 py-3 rounded-full border border-white/20 bg-base-200/30 backdrop-blur-md"
                             >
                                 <HiSparkles className="text-cyan-400 animate-pulse" />
 
@@ -159,7 +159,7 @@ const Banner = () => {
 
                                 <button
                                     onClick={handleClick2}
-                                    className="px-6 py-2.5 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 hover:bg-white/20 transition-all duration-300 flex items-center gap-2 justify-center hover:scale-[1.03] cursor-pointer w-fit"
+                                    className="px-6 py-2.5 rounded-2xl backdrop-blur-lg border border-accent bg-base-200/30 transition-all duration-300 flex items-center gap-2 justify-center hover:scale-[1.03] cursor-pointer w-fit"
                                 >
                                     Learn More
                                     <CgMoreVertical className="text-cyan-400" />
@@ -174,7 +174,7 @@ const Banner = () => {
                             <Animate type="fadeRight" delay={1}
                                 
                                 className="absolute top-0 right-20 w-70 p-8 rounded-3xl
-        bg-white/10 backdrop-blur-xl
+        bg-base-200/30 backdrop-blur-sm
         border border-white/20
         shadow-[0_20px_60px_rgba(0,0,0,0.4)] hover:-translate-y-3 duration-500"
                             >
@@ -193,7 +193,7 @@ const Banner = () => {
                             <Animate type="fadeRight" delay={0.8}
                                  
                                 className="absolute top-36 right-0 w-70 p-8 rounded-3xl
-        bg-white/10 backdrop-blur-xl
+        bg-base-200/30 backdrop-blur-sm
         border border-white/20
         shadow-[0_20px_60px_rgba(0,0,0,0.4)] hover:-translate-y-3 duration-500"
                             >
@@ -212,7 +212,7 @@ const Banner = () => {
                             <Animate type="fadeRight" delay={0.6}
                                  
                                 className="absolute top-72 right-24 w-70 p-8 rounded-3xl
-        bg-white/10 backdrop-blur-xl
+        bg-base-200/30 backdrop-blur-sm
         border border-white/20
         shadow-[0_20px_60px_rgba(0,0,0,0.4)] hover:-translate-y-3 duration-500"
                             >

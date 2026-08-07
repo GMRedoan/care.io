@@ -16,14 +16,14 @@ export const authOptions = {
                     throw new Error("Invalid email or password");
                 }
 
-                if(user.success === false) { 
+                if (user.success === false) {
                     throw new Error(user.message);
                 }
- 
+
                 if (!user.isVerified) {
                     throw new Error("Please verify your email before logging in");
                 }
-                
+
                 return user;
             }
         }),
@@ -49,6 +49,7 @@ export const authOptions = {
                 contact: "",
                 image: user.image,
                 role: "user",
+                status: "active",
                 isVerified: true,
                 createdAt: new Date().toISOString()
             }
@@ -66,29 +67,29 @@ export const authOptions = {
                 role: token.role,
                 contact: token.contact,
                 nid: token.nid,
+                status: token.status
             };
 
             return session;
         },
 
-
         async jwt({ token, user }) {
-
             if (user) {
-
-                const dbUser = await dbConnect(collections.USER).findOne({
-                    email: user.email
-                });
-
+                token.email = user.email;
+            }
+            const dbUser = await dbConnect(collections.USER).findOne({
+                email: token.email
+            });
+            if (dbUser) {
                 token.id = dbUser?._id?.toString();
                 token.name = dbUser?.name;
                 token.email = dbUser?.email;
                 token.image = dbUser?.image || null;
                 token.role = dbUser?.role;
+                token.status = dbUser.status;
                 token.contact = dbUser?.contact;
                 token.nid = dbUser?.nid;
             }
-
             return token;
         }
     }

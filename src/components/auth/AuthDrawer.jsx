@@ -22,7 +22,7 @@ export default function AuthDrawer() {
     const { status } = useSession();
     const router = useRouter();
     const { data: session } = useSession();
-
+ 
     if (status == "loading") {
         return (
             <div className="btn btn-sm md:btn-md btn-primary opacity-50 rounded-xl">
@@ -80,7 +80,7 @@ export default function AuthDrawer() {
 
                         <div
                             tabIndex={0}
-                            className="dropdown-content mt-3 w-72 rounded-2xl border border-accent bg-base-200 shadow-2xl p-2 z-999"
+                            className="dropdown-content mt-3 w-72 rounded-2xl border-x border-accent bg-base-200/50 backdrop-blur-lg shadow-2xl p-2 z-999"
                         >
                             {/* User Info */}
                             <div className="flex items-center gap-3 p-3">
@@ -96,7 +96,7 @@ export default function AuthDrawer() {
                                     <h3 className="font-semibold text-base">
                                         {session?.user?.name}
                                     </h3>
-                                    <p className="text-sm text-gray-500 truncate">
+                                    <p className="text-sm text-base-content/60 truncate">
                                         {session?.user?.email}
                                     </p>
                                 </div>

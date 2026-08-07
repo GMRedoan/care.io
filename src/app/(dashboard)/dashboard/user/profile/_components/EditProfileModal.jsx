@@ -8,8 +8,10 @@ import { uploadImage } from "@/lib/uploadImage";
 import { showToast } from "@/components/reusable/toastAlert";
 import { FiCamera } from "react-icons/fi";
 import Button2 from "@/components/reusable/Button2";
+import { useSession } from "next-auth/react";
 
 const EditProfileModal = ({ user, dialogRef }) => {
+    const {update} = useSession();
     const router = useRouter();
     const [loading, setLoading] = useState(false);
     const [preview, setPreview] = useState(user.image);
@@ -46,6 +48,7 @@ const EditProfileModal = ({ user, dialogRef }) => {
                 closeModal();
 
                 // refresh page
+                await update();
                 router.refresh();
             } else {
                 showToast("error", result.message);

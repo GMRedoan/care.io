@@ -1,5 +1,5 @@
-import BookingForm from "@/components/bookings/BookingForm";
 import { getSingleService } from "@/server/service.service";
+import BookingForm from "./_components/BookingForm";
 
 const BookingPage = async ({ searchParams }) => {
     const { slug } = await searchParams;

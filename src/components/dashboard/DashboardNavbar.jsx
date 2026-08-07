@@ -88,7 +88,7 @@ export default function DashboardNavbar({ currentUser }) {
 
                     <div
                         tabIndex={0}
-                        className="dropdown-content mt-3 w-72 rounded-2xl border border-accent bg-base-200 shadow-2xl p-2 z-999"
+                        className="dropdown-content mt-3 w-72 rounded-2xl border-x border-accent bg-base-200/50 backdrop-blur-lg shadow-2xl p-2 z-999"
                     >
                         {/* User Header */}
                         <div className="flex items-center gap-3 p-3">
@@ -116,14 +116,14 @@ export default function DashboardNavbar({ currentUser }) {
                         {/* Menu */}
                         <ul className="menu p-0">
                             <li>
-                                <Link href="/" className="rounded-lg">
+                                <Link href="/" className="rounded-lg hover:bg-base-200">
                                     <FiHome className="text-primary" />
                                     Home
                                 </Link>
                             </li>
 
                             <li>
-                                <Link href="/services" className="rounded-lg">
+                                <Link href="/services" className="rounded-lg hover:bg-base-200">
                                     <RiServiceFill className="text-info" />
                                     Services
                                 </Link>

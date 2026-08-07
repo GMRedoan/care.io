@@ -4,16 +4,16 @@ import { useMemo, useEffect, useState } from "react";
 import Image from "next/image";
 import { useForm, Controller } from "react-hook-form";
 import { FaCheckCircle } from "react-icons/fa";
-import Button1 from "../reusable/Button1";
 import Select from "react-select";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { createBooking } from "@/server/booking.service";
-import { showToast } from "../reusable/toastAlert";
 import { useRouter } from "next/navigation";
 import { TbCurrencyTaka } from "react-icons/tb";
-import { SelectStyles } from "../reusable/SelectStyles";
 import { IoBookmarksSharp } from "react-icons/io5";
+import Button1 from "@/components/reusable/Button1";
+import { showToast } from "@/components/reusable/toastAlert";
+import { SelectStyles } from "@/components/reusable/SelectStyles";
 
 const BookingForm = ({ service }) => {
     const router = useRouter();
@@ -159,11 +159,11 @@ const BookingForm = ({ service }) => {
 
         const response = await createBooking(payload);
         if (response.success) {
+            router.push("/services");
             await showToast(
                 "success",
                 "Booking request submitted successfully"
             );
-            router.push("/services");
 
         } else {
             showToast("error", response.message);

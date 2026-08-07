@@ -1,0 +1,21 @@
+import { getCurrentUser } from '@/server/user.service';
+import React from 'react';
+import ProfileCard from '../../user/profile/_components/profileCard';
+
+const page = async () => {
+    const user = await getCurrentUser();
+    return (
+        <div>
+            <div className="mb-12">
+                <h2 className="text-2xl font-semibold">My <span className="text-primary">Profile</span></h2>
+                <p className="text-sm text-accent mt-1">
+                    View and manage your personal information.
+                </p>
+
+            </div>
+            <ProfileCard user={user} />
+        </div>
+    );
+};
+
+export default page;

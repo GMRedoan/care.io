@@ -2,6 +2,7 @@
 
 import { authOptions } from "@/lib/AuthOption";
 import { collections, dbConnect } from "@/lib/dbConnect";
+import { ObjectId } from "mongodb";
 import { getServerSession } from "next-auth";
 
 export const getCurrentUser = async () => {
@@ -57,6 +58,46 @@ export const updateUser = async (payload) => {
         };
 
     } catch (error) {
+        return {
+            success: false,
+            message: error.message,
+        };
+    }
+}
+
+export const getAllUsers = async () => {
+    try {
+        const users = await dbConnect(collections.USER).find({}).toArray();
+        users.sort((a, b) => {
+            if (a.role === b.role) return 0;
+            return a.role === "admin" ? -1 : 1;
+        });
+        return {
+            success: true,
+            data: users,
+        };
+    } catch (error) {
+        console.log(error);
+        return {
+            success: false,
+            message: error.message,
+        };
+    }
+}
+
+export const updateUserStatus = async (id, status) => {
+    try {
+        const result = await dbConnect(collections.USER).updateOne(
+            { _id: new ObjectId(id) },
+            { $set: { status } }
+        );
+        return {
+            success: true,
+            message: "User status updated successfully",
+            data: result,
+        };
+    } catch (error) {
+        console.log(error);
         return {
             success: false,
             message: error.message,

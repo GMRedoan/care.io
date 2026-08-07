@@ -1,5 +1,6 @@
 "use client";
 
+import Animate from "@/components/reusable/Animate";
 import Link from "next/link";
 import {
     FaClock,
@@ -11,14 +12,17 @@ import {
 const MyBookingsTable = ({ bookings }) => {
     if (!bookings?.length) {
         return (
-            <div className="text-center py-10">
+            <div className="min-h-100 flex flex-col items-center justify-center">
                 <h2 className="text-xl font-semibold">No bookings found.</h2>
+                <p className="text-sm text-accent mt-2">
+                    You have not made any bookings yet.
+                </p>
             </div>
         );
     }
 
     return (
-        <div className="overflow-x-auto rounded-xl shadow border-x border-accent">
+        <Animate className="overflow-x-auto rounded-xl shadow border-x border-accent">
             <table className="table table-zebra">
                 <thead className="bg-base-100 text-primary">
                     <tr>
@@ -61,14 +65,14 @@ const MyBookingsTable = ({ bookings }) => {
 
                             <td>
                                 {booking.status === "pending" && (
-                                    <span className="badge badge-warning gap-2 text-white font-normal">
+                                    <span className="badge badge-warning gap-2 text-white font-normal py-4">
                                         <FaClock />
                                         Pending
                                     </span>
                                 )}
 
                                 {booking.status === "approved" && (
-                                    <span className="badge badge-success gap-2 text-white font-normal">
+                                    <span className="badge badge-success gap-2 text-white font-normal py-4">
                                         <FaCheckCircle />
                                         Approved
                                     </span>
@@ -113,7 +117,7 @@ const MyBookingsTable = ({ bookings }) => {
                     ))}
                 </tbody>
             </table>
-        </div>
+        </Animate>
     );
 };
 

@@ -25,6 +25,14 @@ export const postUser = async (payload) => {
             message: "This user already exists",
         };
     }
+    const isNidExist = await dbConnect(collections.USER).findOne({ nid });
+
+    if (isNidExist) {
+        return {
+            success: false,
+            message: "This nid already exists",
+        };
+    }
 
     const verificationCode = Math.floor(
         100000 + Math.random() * 900000
@@ -40,6 +48,7 @@ export const postUser = async (payload) => {
         contact,
         password: await bcryptjs.hash(password, 10),
         role: "user",
+        status: "active",
         isVerified: false,
 
         verificationCode,
@@ -143,7 +152,6 @@ export const resendVerificationCode = async (email) => {
 
 export const loginUser = async (payload) => {
     const parsed = loginSchema.safeParse(payload);
-
     if (!parsed.success) {
         return {
             success: false,
@@ -161,9 +169,27 @@ export const loginUser = async (payload) => {
         };
     }
 
+    if (!user.isVerified) {
+        return {
+            success: false,
+            message:
+                "Please verify your email first",
+        };
+    }
+    if(user.status === "blocked"){
+        return {
+            success: false,
+            message:
+                "Your account has been blocked",
+        };
+    }
+
     const isMatched = await bcryptjs.compare(password, user.password)
-    if (isMatched)
-     { return user }
+
+    if (isMatched){
+        return user 
+    }
+     
     else {
         return {
             success: false,

@@ -30,13 +30,13 @@ export default function DashboardSidebar({ currentUser }) {
             icon: FiHome,
         },
         {
-            name: "Patients",
-            href: "/dashboard/admin/patients",
+            name: "Users",
+            href: "/dashboard/admin/users",
             icon: FiUsers,
         },
         {
-            name: "Appointments",
-            href: "/dashboard/appointments",
+            name: "All Bookings",
+            href: "/dashboard/admin/allBookings",
             icon: FiCalendar,
         },
         {
@@ -45,8 +45,8 @@ export default function DashboardSidebar({ currentUser }) {
             icon: FiShield,
         },
         {
-            name: "Settings",
-            href: "/dashboard/settings",
+            name: "Profile",
+            href: "/dashboard/admin/profile",
             icon: FiSettings,
         },
     ];
@@ -153,8 +153,8 @@ export default function DashboardSidebar({ currentUser }) {
                                         : "gap-3"
                                     }
                                     ${isActive
-                                    ? "bg-primary text-primary-content"
-                                    : "hover:bg-primary/60"
+                                    ? "bg-primary text-primary-content rounded-xl"
+                                    : "hover:bg-primary/60 rounded-xl"
                                     }
                                 `}
                             >

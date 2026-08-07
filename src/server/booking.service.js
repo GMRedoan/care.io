@@ -2,6 +2,8 @@
 
 import { collections, dbConnect } from "@/lib/dbConnect";
 import { getCurrentUser } from "./user.service";
+import { ObjectId } from "mongodb";
+import { m } from "framer-motion";
 
 export const createBooking = async (payload) => {
     try {
@@ -33,8 +35,26 @@ export const createBooking = async (payload) => {
     }
 
 };
-
+ 
 export const getBookings = async () => {
+    try {
+        const user = await getCurrentUser();
+        const bookingCollection = dbConnect(collections.BOOKING);
+        const result = await bookingCollection.find({ userId: user.id }).toArray();
+        return {
+            success: true,
+            data: result,
+        };
+    } catch (error) {
+        console.log(error);
+        return {
+            success: false,
+            message: error.message,
+        };
+    }
+};
+
+export const adminAllBookings = async () => {
     try {
         const bookingCollection = dbConnect(collections.BOOKING);
         const result = await bookingCollection.find().toArray();
@@ -50,3 +70,24 @@ export const getBookings = async () => {
         };
     }
 };
+
+export const updateBookingStatus = async (id, status) => {
+    try {
+        const bookingCollection = dbConnect(collections.BOOKING);
+        const result = await bookingCollection.updateOne(
+            { _id: new ObjectId(id) },
+            { $set: { status } }
+        );
+        return {
+            success: true,
+            message: "Booking status updated successfully",
+            data: result,
+        };
+    } catch (error) {
+        console.log(error);
+        return {
+            success: false,
+            message: error.message,
+        };
+    }
+}
