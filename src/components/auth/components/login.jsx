@@ -48,7 +48,7 @@ const Login = () => {
                 icon: "success",
                 confirmButtonColor: "#11B2ED"
             });
-            router.push(callback)
+            // router.push(callback)
         } else {
             setAuthError(result?.error || "Login failed");
             showToast("error", result?.error || "Login failed");

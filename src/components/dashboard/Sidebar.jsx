@@ -68,7 +68,7 @@ export default function DashboardSidebar({ currentUser }) {
             icon:  MdPayment,
         },
         {
-            name: "Reviews",
+            name: "My Reviews",
             href: "/dashboard/user/reviews",
             icon: MdReviews,
         },
