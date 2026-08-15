@@ -28,6 +28,8 @@ export const getCurrentUser = async () => {
         role: user.role,
         contact: user.contact,
         nid: user.nid,
+        status: user.status,
+        isVerified: user.isVerified
     };
 };
 

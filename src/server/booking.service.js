@@ -3,7 +3,6 @@
 import { collections, dbConnect } from "@/lib/dbConnect";
 import { getCurrentUser } from "./user.service";
 import { ObjectId } from "mongodb";
-import { m } from "framer-motion";
 
 export const createBooking = async (payload) => {
     try {
@@ -81,6 +80,24 @@ export const updateBookingStatus = async (id, status) => {
         return {
             success: true,
             message: "Booking status updated successfully",
+            data: result,
+        };
+    } catch (error) {
+        console.log(error);
+        return {
+            success: false,
+            message: error.message,
+        };
+    }
+}
+
+export const deleteBooking = async (id) => {
+    try {
+        const bookingCollection = dbConnect(collections.BOOKING);
+        const result = await bookingCollection.deleteOne({ _id: new ObjectId(id) });
+        return {
+            success: true,
+            message: "Booking deleted successfully",
             data: result,
         };
     } catch (error) {

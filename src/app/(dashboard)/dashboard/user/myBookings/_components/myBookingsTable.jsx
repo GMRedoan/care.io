@@ -1,23 +1,61 @@
 "use client";
 
 import Animate from "@/components/reusable/Animate";
+import Button1 from "@/components/reusable/Button1";
+import { showToast } from "@/components/reusable/toastAlert";
+import { deleteBooking } from "@/server/booking.service";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
     FaClock,
     FaCheckCircle,
     FaTimesCircle,
     FaCreditCard,
 } from "react-icons/fa";
+import Swal from "sweetalert2";
+import { RiFirefoxFill } from "react-icons/ri";
 
 const MyBookingsTable = ({ bookings }) => {
+    const router = useRouter();
+    const handleCancelBooking = async (id) => {
+        const result = await Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#dc2626",
+            cancelButtonColor: "#6b7280",
+            confirmButtonText: "Yes, Cancel",
+        });
+        if (!result.isConfirmed) return;
+        try {
+            const res = await deleteBooking(id);
+            if (res.success) {
+                showToast("success", res.message);
+                router.refresh();
+            } else {
+                showToast("error", res.message);
+            }
+        } catch (error) {
+            showToast("error", error.message);
+        }
+    }
+
     if (!bookings?.length) {
         return (
-            <div className="min-h-100 flex flex-col items-center justify-center">
-                <h2 className="text-xl font-semibold">No bookings found.</h2>
-                <p className="text-sm text-accent mt-2">
-                    You have not made any bookings yet.
-                </p>
-            </div>
+          <div className="min-h-100 flex flex-col items-center justify-center">
+            <h2 className="text-xl font-semibold">No bookings found.</h2>
+            <p className="text-sm text-accent mt-2 mb-5">
+              You have not made any bookings yet.
+            </p>
+            <Button1>
+              <Link
+              className="flex items-center gap-2"
+               href="/services">
+                Browse Services <RiFirefoxFill />
+              </Link>
+            </Button1>
+          </div>
         );
     }
 
@@ -26,7 +64,6 @@ const MyBookingsTable = ({ bookings }) => {
             <table className="table table-zebra">
                 <thead className="bg-base-100 text-primary">
                     <tr>
-                        <th>No</th>
                         <th>Service</th>
                         <th>Duration</th>
                         <th>Location</th>
@@ -34,6 +71,7 @@ const MyBookingsTable = ({ bookings }) => {
                         <th>Total Cost</th>
                         <th>Status</th>
                         <th>Booked On</th>
+                        <th>Payment</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -41,8 +79,6 @@ const MyBookingsTable = ({ bookings }) => {
                 <tbody>
                     {bookings.map((booking, index) => (
                         <tr key={booking._id}>
-                            <td>{index + 1}</td>
-
                             <td className="font-semibold">{booking.serviceName}</td>
 
                             <td>
@@ -109,9 +145,16 @@ const MyBookingsTable = ({ bookings }) => {
                                         disabled
                                     >
                                         <FaCreditCard />
-                                        Awaiting Approval
+                                        Pay Now
                                     </button>
                                 )}
+                            </td>
+                            <td>
+                                <button
+                                onClick={() => handleCancelBooking(booking._id)}
+                                 className="btn btn-sm btn-error text-white">
+                                    Cancel
+                                </button>
                             </td>
                         </tr>
                     ))}

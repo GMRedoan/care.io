@@ -8,8 +8,8 @@ const Button1 = ({ children, onClick, className = "" }) => {
         bg-linear-to-bl from-blue-500 to-cyan-300
         hover:from-blue-600 hover:to-cyan-400
         text-white
-        px-5 py-2.5
-        rounded-xl
+        px-4 py-2
+        rounded-xl text-sm
         transition-all duration-300 ease-in-out
         transform hover:scale-[1.02]
         hover:shadow-lg cursor-pointer
