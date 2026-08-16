@@ -224,7 +224,7 @@ const AdminDashboard = ({ data }) => {
 
       {/* ================= Footer Cards ================= */}
       <section className="grid grid-cols-1 gap-5 md:grid-cols-3">
-        <div className="rounded-2xl border border-primary/40 hover:border-primary duration-300 bg-base-200 p-6 text-primary-content">
+        <Animate type="zoom" className="rounded-2xl border border-primary/40 hover:border-primary duration-300 bg-base-200 p-6 text-primary-content">
           <h3 className="font-semibold">Booking Success</h3>
 
           <p className="mt-2 text-3xl font-semibold text-primary">
@@ -237,9 +237,9 @@ const AdminDashboard = ({ data }) => {
           <p className="mt-2 text-sm opacity-80">
             Of bookings have been approved.
           </p>
-        </div>
+        </Animate>
 
-        <div className="rounded-2xl border border-accent/40 bg-base-200 p-6">
+        <Animate type="zoom" className="rounded-2xl border border-accent/40 bg-base-200 p-6">
           <p className="text-md">Average Rating</p>
 
           <h3 className="mt-2 text-3xl font-semibold">
@@ -248,15 +248,14 @@ const AdminDashboard = ({ data }) => {
           </h3>
 
           <p className="mt-2 text-sm text-accent">Based on customer reviews</p>
-        </div>
+        </Animate>
 
-        <div className="rounded-2xl border border-accent/40 bg-base-200 p-6">
+        <Animate type="zoom" className="rounded-2xl border border-accent/40 bg-base-200 p-6">
           <p className="text-md">Total Reviews</p>
 
           <h3 className="mt-2 text-3xl font-semibold">{stats.totalReviews || 0}</h3>
-
           <p className="mt-2 text-sm text-accent">Customer feedback received</p>
-        </div>
+        </Animate>
       </section>
     </div>
   );

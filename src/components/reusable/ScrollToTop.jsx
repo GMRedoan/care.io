@@ -32,7 +32,7 @@ export default function ScrollToTop() {
     return (
         <button
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 z-100 bg-linear-to-bl from-blue-500 to-cyan-300 text-white p-4 rounded-full shadow-lg hover:shadow-2xl hover:scale-105 transition duration-300 cursor-pointer hover:from-blue-600 hover:to-cyan-400"
+            className="fixed bottom-8 right-8 z-10 bg-linear-to-bl from-blue-500 to-cyan-300 text-white p-4 rounded-full shadow-lg hover:shadow-2xl hover:scale-105 transition duration-300 cursor-pointer hover:from-blue-600 hover:to-cyan-400"
         >
             <FaArrowUp className="bounce-custom"/>
         </button>

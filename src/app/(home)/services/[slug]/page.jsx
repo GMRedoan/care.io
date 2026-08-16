@@ -7,6 +7,16 @@ import { getSingleService } from "@/server/service.service";
 import Button1 from "@/components/reusable/Button1";
 import GiveReview from "@/components/shared/GiveReview";
 
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const service = await getSingleService(slug);
+
+  return {
+    title: `${service?.title || "Service Details"} | Care Io`,
+    description:"Explore our professional care services at Care Io.",
+  };
+}
+
 const PerforatedDivider = ({ tone = "base-100" }) => (
     <div className={`relative h-8 bg-${tone} overflow-hidden`}>
         <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 border-t-2 border-dashed border-base-300/70" />
@@ -216,7 +226,7 @@ const ServiceDetails = async ({ params }) => {
         {/* Book Button */}
         <Link
           href={`/booking?slug=${service.slug}`}
-          className="fixed bottom-8 right-22 z-50"
+          className="fixed bottom-8 right-22 z-10"
         >
           <div className="relative flex items-center justify-center">
             <Button1 className="flex items-center gap-2 py-3 font-semibold">

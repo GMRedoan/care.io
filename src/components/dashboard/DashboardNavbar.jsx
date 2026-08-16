@@ -46,104 +46,109 @@ export default function DashboardNavbar({ currentUser }) {
     
 
     return (
-        <header className="navbar bg-base-200 border-b border-accent px-4 sticky top-0 z-40">
-            {/* Left */}
-            <div className="navbar-start gap-3">
+      <header className="navbar bg-base-200 border-b border-accent px-4 sticky top-0 z-40">
+        {/* Left */}
+        <div className="navbar-start gap-3"></div>
+
+        {/* Right */}
+        <div className="navbar-end gap-2">
+          <ThemeToggle />
+
+          <button className="btn btn-ghost btn-circle">
+            <FiBell size={18} />
+          </button>
+
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="flex items-center gap-3 px-2 py-1 hover:bg-base-200 transition-all duration-200 cursor-pointer relative h-10 w-10 overflow-hidden rounded-full"
+            >
+              <Image
+                src={currentUser?.image}
+                alt="Profile"
+                fill
+                sizes="40px"
+                className="rounded-full object-cover border-2 border-primary transition-all duration-300"
+              />
+
+              <div className="hidden md:block">
+                <h4 className="text-sm font-semibold leading-none">
+                  {currentUser?.name}
+                </h4>
+
+                <p className="text-xs text-base-content/60 capitalize mt-1">
+                  {currentUser?.role}
+                </p>
+              </div>
+
+              <FiChevronDown className="hidden md:block text-base-content/50" />
             </div>
 
-            {/* Right */}
-            <div className="navbar-end gap-2">
-                <ThemeToggle />
-
-                <button className="btn btn-ghost btn-circle">
-                    <FiBell size={18} />
-                </button>
-
-                <div className="dropdown dropdown-end">
-                    <div
-                        tabIndex={0}
-                        role="button"
-                        className="flex items-center gap-3 cursor-pointer rounded-xl px-2 py-1 hover:bg-base-200 transition-all duration-200"
-                    >
-                        <Image
-                            src={currentUser?.image}
-                            alt="Profile"
-                            width={40}
-                            height={40}
-                            className="rounded-full border-2 border-primary/40"
-                        />
-
-                        <div className="hidden md:block">
-                            <h4 className="text-sm font-semibold leading-none">
-                                {currentUser?.name}
-                            </h4>
-
-                            <p className="text-xs text-base-content/60 capitalize mt-1">
-                                {currentUser?.role}
-                            </p>
-                        </div>
-
-                        <FiChevronDown className="hidden md:block text-base-content/50" />
-                    </div>
-
-                    <div
-                        tabIndex={0}
-                        className="dropdown-content mt-3 w-72 rounded-2xl border-x border-accent bg-base-200/50 backdrop-blur-lg shadow-2xl p-2 z-999"
-                    >
-                        {/* User Header */}
-                        <div className="flex items-center gap-3 p-3">
-                            <Image
-                                src={currentUser?.image}
-                                alt="Profile"
-                                width={45}
-                                height={45}
-                                className="rounded-full"
-                            />
-
-                            <div className="min-w-0">
-                                <h3 className="font-semibold text-base truncate">
-                                    {currentUser?.name}
-                                </h3>
-
-                                <p className="text-sm text-base-content/60 truncate">
-                                    {currentUser?.email}
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="divider my-1"></div>
-
-                        {/* Menu */}
-                        <ul className="menu p-0">
-                            <li>
-                                <Link href="/" className="rounded-lg hover:bg-base-200">
-                                    <FiHome className="text-primary" />
-                                    Home
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link href="/services" className="rounded-lg hover:bg-base-200">
-                                    <RiServiceFill className="text-info" />
-                                    Services
-                                </Link>
-                            </li>
-
-                            <div className="divider my-1"></div>
-
-                            <li>
-                                <button
-                                    onClick={handleLogout}
-                                    className="rounded-lg text-error hover:bg-error hover:text-white"
-                                >
-                                    <FiLogOut />
-                                    Logout
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
+            <div
+              tabIndex={0}
+              className="dropdown-content mt-3 w-72 rounded-2xl border-x border-accent bg-base-200/50 backdrop-blur-lg shadow-2xl p-2 z-999"
+            >
+              {/* User Header */}
+              <div className="flex items-center gap-3 p-3">
+                <div
+                  className="relative h-10 w-10 overflow-hidden rounded-full"
+                >
+                  <Image
+                    src={currentUser?.image}
+                    alt="Profile"
+                    fill
+                    sizes="40px"
+                    className="rounded-full object-cover border-2 border-primary/40 hover:border-primary transition-all duration-300"
+                  />
                 </div>
+                <div className="min-w-0">
+                  <h3 className="font-semibold text-base truncate">
+                    {currentUser?.name}
+                  </h3>
+
+                  <p className="text-sm text-base-content/60 truncate">
+                    {currentUser?.email}
+                  </p>
+                </div>
+              </div>
+
+              <div className="divider my-1"></div>
+
+              {/* Menu */}
+              <ul className="menu p-0">
+                <li>
+                  <Link href="/" className="rounded-lg hover:bg-base-200">
+                    <FiHome className="text-primary" />
+                    Home
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="/services"
+                    className="rounded-lg hover:bg-base-200"
+                  >
+                    <RiServiceFill className="text-info" />
+                    Services
+                  </Link>
+                </li>
+
+                <div className="divider my-1"></div>
+
+                <li>
+                  <button
+                    onClick={handleLogout}
+                    className="rounded-lg text-error hover:bg-error hover:text-white"
+                  >
+                    <FiLogOut />
+                    Logout
+                  </button>
+                </li>
+              </ul>
             </div>
-        </header>
+          </div>
+        </div>
+      </header>
     );
 }

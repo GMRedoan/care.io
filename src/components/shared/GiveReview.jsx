@@ -177,11 +177,11 @@ const GiveReview = ({ serviceId, serviceName }) => {
         </div>
 
         {/* Submit */}
-        <div className="flex justify-end">
+        <div className="flex">
           <Button1
             type="submit"
             disabled={isSubmitting}
-            className="flex items-center gap-2 font-medium"
+            className="flex items-center gap-2 font-medium disabled:cursor-not-allowed disabled:opacity-50"
           >
             {isSubmitting ? (
               <>
