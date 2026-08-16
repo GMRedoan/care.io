@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
-
 import Button1 from "@/components/reusable/Button1";
 import { MdArrowOutward } from "react-icons/md";
 import { IoClose } from "react-icons/io5";

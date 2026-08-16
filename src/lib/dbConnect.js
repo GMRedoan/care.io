@@ -5,7 +5,8 @@ export const collections = {
     USER: "users",
     SERVICE: "services",
     BOOKING: "bookings",
-    REVIEW: "reviews"
+    REVIEW: "reviews",
+    PAYMENT: "payments"
 }
 
 const client = new MongoClient(uri, {
