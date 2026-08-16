@@ -48,7 +48,7 @@ const Login = () => {
                 icon: "success",
                 confirmButtonColor: "#11B2ED"
             });
-            // router.push(callback)
+            router.refresh();
         } else {
             setAuthError(result?.error || "Login failed");
             showToast("error", result?.error || "Login failed");
@@ -107,7 +107,7 @@ const Login = () => {
                     />
                     <span
                         onClick={() => setShowPass(!showPass)}
-                        className="absolute right-4 top-4.5 cursor-pointer"
+                        className="absolute right-4 top-4.5 cursor-pointer text-accent"
                     >
                         {showPass ? <FaEyeSlash /> : <FaEye />}
                     </span>

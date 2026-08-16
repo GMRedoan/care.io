@@ -1,0 +1,26 @@
+import { adminAllReview } from '@/server/review.service';
+import React from 'react';
+import AdminReviewTable from './_components/AdminReviewTable';
+
+const page = async () => {
+    const result = await adminAllReview();
+    const reviews = JSON.parse(JSON.stringify(result.data));
+    return (
+      <div>
+        <div className="mb-8">
+          <h1 className="text-3xl font-semibold">
+            All <span className="text-primary">Reviews</span>
+          </h1>
+
+          <p className="mt-2 text-sm text-accent">
+            Manage all customer reviews and remove inappropriate or unwanted
+            feedback.
+          </p>
+        </div>
+
+        <AdminReviewTable reviews={reviews} />
+      </div>
+    );
+};
+
+export default page;

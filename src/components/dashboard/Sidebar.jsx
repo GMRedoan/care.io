@@ -40,9 +40,9 @@ export default function DashboardSidebar({ currentUser }) {
             icon: FiCalendar,
         },
         {
-            name: "Admin Panel",
-            href: "/dashboard/adminPanel",
-            icon: FiShield,
+            name: "All Reviews",
+            href: "/dashboard/admin/reviews",
+            icon: MdReviews,
         },
         {
             name: "Profile",

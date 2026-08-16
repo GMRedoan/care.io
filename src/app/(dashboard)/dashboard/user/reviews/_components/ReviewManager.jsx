@@ -1,9 +1,51 @@
 "use client"
 
-import React from 'react';
+import React, { useState } from 'react';
 import ReviewCard from './ReviewCard';
+import UpdateReviewModal from './UpdateReviewModal';
+import { deleteReview } from '@/server/review.service';
+import { useRouter } from 'next/navigation';
+import { showToast } from '@/components/reusable/toastAlert';
+import Swal from 'sweetalert2';
 
 const ReviewManager = ({reviews}) => {
+    const router = useRouter();
+    const [selectedReview, setSelectedReview] = useState(null);
+
+      const handleDelete = async (review) => {
+        const result = await Swal.fire({
+          title: "Delete this review?",
+          text: "This action cannot be undone.",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Yes, delete it",
+          cancelButtonText: "Cancel",
+          confirmButtonColor: "#ef4444",
+          cancelButtonColor: "#6b7280",
+          reverseButtons: true,
+        });
+
+        // User clicked Cancel
+        if (!result.isConfirmed) {
+          return;
+        }
+
+        try {
+          const response = await deleteReview(review._id);
+
+          if (!response.success) {
+            showToast("error", response.message || "Failed to delete review.");
+            return;
+          }
+          router.refresh();
+          // Success alert
+        showToast("success", "Review deleted successfully."); 
+        
+        } catch (error) {
+          showToast("error", error.message || "Something went wrong.");
+        }
+      };
+
     return (
       <div>
         <div className="mb-8">
@@ -18,7 +60,8 @@ const ReviewManager = ({reviews}) => {
 
         {reviews.length === 0 ? (
           <h2 className="text-center py-50 font-medium text-sm text-accent">
-            No reviews found. please add your first review <br/> from service details.
+            No reviews found. please add your first review <br /> from service
+            details.
           </h2>
         ) : (
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -26,11 +69,17 @@ const ReviewManager = ({reviews}) => {
               <ReviewCard
                 key={review._id}
                 review={review}
-                onUpdate={(review) => console.log("Update:", review)}
-                onDelete={(review) => console.log("Delete:", review)}
+                onUpdate={(review) => setSelectedReview(review)}
+                onDelete={handleDelete}
               />
             ))}
           </div>
+        )}
+        {selectedReview && (
+          <UpdateReviewModal
+            review={selectedReview}
+            onClose={() => setSelectedReview(null)}
+          />
         )}
       </div>
     );

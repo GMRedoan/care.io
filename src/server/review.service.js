@@ -39,10 +39,26 @@ export const createReview = async (payload) => {
     }
 }
 
+export const adminAllReview = async () => {
+    try {
+        const result = (await dbConnect(collections.REVIEW).find().toArray()).reverse();
+        return {
+            success: true,
+            data: result,
+        };
+    } catch (error) {
+        console.log(error);
+        return {
+            success: false,
+            message: error.message,
+        };
+    }
+}
+
 export const myReviews = async () => {
     try {
     const user = await getCurrentUser();
-    const result = await dbConnect(collections.REVIEW).find({ userId: new ObjectId(user.id) }).toArray();
+    const result = (await dbConnect(collections.REVIEW).find({ userId: new ObjectId(user.id) }).toArray()).reverse();
     return {
         success: true,
         data: result,
@@ -55,3 +71,57 @@ export const myReviews = async () => {
         }; 
     }
 }
+
+export const updateReview = async (id, payload) => {
+    try {
+        const result = await dbConnect(collections.REVIEW).updateOne(
+            { _id: new ObjectId(id) },
+            { $set: payload }
+        );
+        return {
+            success: true,
+            message: "Review updated successfully",
+            data: result,
+        };
+    } catch (error) {
+        console.log(error);
+        return {
+            success: false,
+            message: error.message,
+        };
+    }
+}
+
+export const deleteReview = async (id) => {
+    try {
+        const result = await dbConnect(collections.REVIEW).deleteOne({ _id: new ObjectId(id) });
+        return {
+            success: true,
+            message: "Review deleted successfully",
+            data: result,
+        };
+    } catch (error) {
+        console.log(error);
+        return {
+            success: false,
+            message: error.message,
+        };
+    }
+}
+
+// export const adminDeleteReview = async (id) => {
+//     try {
+//         const result = await dbConnect(collections.REVIEW).deleteOne({ _id: new ObjectId(id) });
+//         return {
+//             success: true,
+//             message: "Review deleted successfully",
+//             data: result,
+//         };
+//     } catch (error) {
+//         console.log(error);
+//         return {
+//             success: false,
+//             message: error.message,
+//         };
+//     }
+// }

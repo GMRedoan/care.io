@@ -44,6 +44,7 @@ export default function AuthDrawer() {
 
         if (result.isConfirmed) {
             await signOut({ redirect: false });
+            router.refresh();
 
             await Swal.fire({
                 icon: "success",
@@ -52,8 +53,6 @@ export default function AuthDrawer() {
                 timer: 1500,
                 showConfirmButton: false,
             });
-
-            router.push("/");
         }
     };
 
