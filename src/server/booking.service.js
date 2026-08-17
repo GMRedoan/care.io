@@ -56,7 +56,7 @@ export const getBookings = async () => {
 export const adminAllBookings = async () => {
     try {
         const bookingCollection = dbConnect(collections.BOOKING);
-        const result = await bookingCollection.find().toArray();
+        const result = (await bookingCollection.find().toArray()).reverse();
         return {
             success: true,
             data: result,

@@ -108,20 +108,3 @@ export const deleteReview = async (id) => {
         };
     }
 }
-
-// export const adminDeleteReview = async (id) => {
-//     try {
-//         const result = await dbConnect(collections.REVIEW).deleteOne({ _id: new ObjectId(id) });
-//         return {
-//             success: true,
-//             message: "Review deleted successfully",
-//             data: result,
-//         };
-//     } catch (error) {
-//         console.log(error);
-//         return {
-//             success: false,
-//             message: error.message,
-//         };
-//     }
-// }

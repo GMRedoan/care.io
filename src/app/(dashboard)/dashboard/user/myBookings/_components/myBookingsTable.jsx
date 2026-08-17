@@ -60,107 +60,120 @@ const MyBookingsTable = ({ bookings }) => {
     }
 
     return (
-        <Animate className="overflow-x-auto rounded-xl shadow border-x border-accent">
-            <table className="table table-zebra">
-                <thead className="bg-base-100 text-primary">
-                    <tr>
-                        <th>Service</th>
-                        <th>Duration</th>
-                        <th>Location</th>
-                        <th></th>
-                        <th>Total Cost</th>
-                        <th>Status</th>
-                        <th>Booked On</th>
-                        <th>Payment</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
+      <Animate className="overflow-x-auto rounded-xl shadow border-x border-accent">
+        <table className="table table-zebra">
+          <thead className="bg-base-100 text-primary">
+            <tr>
+              <th>Service</th>
+              <th>Duration</th>
+              <th>Location</th>
+              <th></th>
+              <th>Total Cost</th>
+              <th>Status</th>
+              <th>Booked On</th>
+              <th>Payment</th>
+              <th>Action</th>
+            </tr>
+          </thead>
 
-                <tbody>
-                    {bookings.map((booking, index) => (
-                        <tr key={booking._id}>
-                            <td className="font-semibold">{booking.serviceName}</td>
+          <tbody>
+            {bookings.map((booking, index) => (
+              <tr key={booking._id}>
+                <td className="font-semibold">{booking.serviceName}</td>
 
-                            <td>
-                                {booking.duration} {booking.durationType}
-                            </td>
+                <td>
+                  {booking.duration} {booking.durationType}
+                </td>
 
-                            <td>
-                                <div>
-                                    <p>{booking.location?.district}</p>
-                                    <span className="text-xs text-accent">
-                                        {booking.location?.city} {" "}{booking.location?.address}                     </span>
-                                </div>
-                            </td>
-                            <td>
-                            </td>
+                <td>
+                  <div>
+                    <p>{booking.location?.district}</p>
+                    <span className="text-xs text-accent w-fit">
+                      {booking.location?.city}
+                      <br />
+                      {booking.location?.address}{" "}
+                    </span>
+                  </div>
+                </td>
+                <td></td>
 
-                            <td className="font-medium text-success">
-                                ৳ {booking.totalCost.toLocaleString()}
-                            </td>
+                <td className="font-medium text-success">
+                  ৳ {booking.totalCost.toLocaleString()}
+                </td>
 
-                            <td>
-                                {booking.status === "pending" && (
-                                    <span className="badge badge-warning gap-2 text-white font-normal py-4">
-                                        <FaClock />
-                                        Pending
-                                    </span>
-                                )}
+                <td>
+                  {booking.status === "pending" && (
+                    <span className="badge badge-warning gap-2 text-white font-normal py-4">
+                      <FaClock />
+                      Pending
+                    </span>
+                  )}
 
-                                {booking.status === "approved" && (
-                                    <span className="badge badge-success gap-2 text-white font-normal py-4">
-                                        <FaCheckCircle />
-                                        Approved
-                                    </span>
-                                )}
+                  {booking.status === "approved" && (
+                    <span className="badge badge-success gap-2 text-white font-normal py-4">
+                      <FaCheckCircle />
+                      Approved
+                    </span>
+                  )}
 
-                                {booking.status === "cancelled" && (
-                                    <span className="badge badge-error gap-2">
-                                        <FaTimesCircle />
-                                        Cancelled
-                                    </span>
-                                )}
-                            </td>
+                  {booking.status === "rejected" && (
+                    <span className="badge badge-error gap-2 text-white font-normal py-4">
+                      <FaTimesCircle />
+                      Rejected
+                    </span>
+                  )}
+                </td>
 
-                            <td>
-                                {new Date(booking.createdAt).toLocaleDateString("en-BD", {
-                                    day: "2-digit",
-                                    month: "short",
-                                    year: "numeric",
-                                })}
-                            </td>
+                <td className="text-xs">
+                  {new Date(booking.createdAt).toLocaleDateString("en-BD", {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                  })}
+                </td>
 
-                            <td>
-                                {booking.status === "approved" ? (
-                                    <Link
-                                        href={`/dashboard/payment/${booking._id}`}
-                                        className="btn btn-success text-white font-normal btn-sm gap-2"
-                                    >
-                                        <FaCreditCard />
-                                        Pay Now
-                                    </Link>
-                                ) : (
-                                    <button
-                                        className="btn btn-disabled btn-sm gap-2 font-normal"
-                                        disabled
-                                    >
-                                        <FaCreditCard />
-                                        Pay Now
-                                    </button>
-                                )}
-                            </td>
-                            <td>
-                                <button
-                                onClick={() => handleCancelBooking(booking._id)}
-                                 className="btn btn-sm btn-error text-white">
-                                    Cancel
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </Animate>
+                <td>
+                  {booking.status === "approved" ? (
+                    <Link
+                      href={`/dashboard/payment/${booking._id}`}
+                      className="btn btn-success text-white font-normal btn-sm gap-2 rounded-lg"
+                    >
+                      <FaCreditCard />
+                      Pay Now
+                    </Link>
+                  ) : (
+                    <button
+                      className="btn btn-disabled btn-sm gap-2 font-normal rounded-lg"
+                      disabled
+                    >
+                      <FaCreditCard />
+                      Pay Now
+                    </button>
+                  )}
+                </td>
+                <td>
+                  {booking.status === "pending" ? (
+                    <button
+                      onClick={() => handleCancelBooking(booking._id)}
+                      className="btn btn-sm btn-error text-white rounded-lg py-4"
+                    >
+                      <FaTimesCircle />
+                      Cancel
+                    </button>
+                  ) : (
+                    <button
+                      className="btn btn-disabled btn-sm gap-2 font-normal rounded-lg py-4"
+                      disabled
+                    >
+                      Cancel
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Animate>
     );
 };
 
