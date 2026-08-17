@@ -30,6 +30,7 @@ const Login = () => {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(loginSchema),
@@ -67,43 +68,46 @@ const Login = () => {
     }
   };
 
-  const handleDemoLogin = async (role) => {
-    setAuthError(null);
+const handleDemoLogin = async (role) => {
+  setAuthError(null);
+  const credentials =
+    role === "admin"
+      ? {
+          email: "redoangazi.f45@gmail.com",
+          password: "1234aS",
+        }
+      : {
+          email: "redoangazi69@gmail.com",
+          password: "1234aS",
+        };
+  reset({
+    email: credentials.email,
+    password: credentials.password,
+  });
 
-    const credentials =
-      role === "admin"
-        ? {
-            email: "redoangazi.f45@gmail.com",
-            password: "1234aS",
-          }
-        : {
-            email: "redoangazi69@gmail.com",
-            password: "1234aS",
-          };
+  const result = await signIn("credentials", {
+    email: credentials.email,
+    password: credentials.password,
+    redirect: false,
+  });
 
-    const result = await signIn("credentials", {
-      email: credentials.email,
-      password: credentials.password,
-      redirect: false,
+  if (result?.ok) {
+    closeDrawer();
+
+    await Swal.fire({
+      title: `Welcome, ${role === "admin" ? "Admin" : "User"}!`,
+      text: "Demo account logged in successfully.",
+      icon: "success",
+      timer: 1500,
+      showConfirmButton: false,
     });
 
-    if (result?.ok) {
-      closeDrawer();
+    router.refresh();
+  } else {
+    showToast("error", result?.error || "Unable to login with demo account.");
+  }
 
-      await Swal.fire({
-        title: `Welcome, ${role === "admin" ? "Admin" : "User"}!`,
-        text: "Demo account logged in successfully.",
-        icon: "success",
-        timer: 1500,
-        showConfirmButton: false,
-      });
-
-      router.refresh();
-    } else {
-      showToast("error", result?.error || "Unable to login with demo account.");
-    }
-  };
-
+};
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-7">
