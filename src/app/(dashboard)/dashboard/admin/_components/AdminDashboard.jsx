@@ -50,7 +50,7 @@ const AdminDashboard = ({ data }) => {
       </section>
 
       {/* ================= Stats ================= */}
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+      <div className="grid gap-5 grid-cols-2 md:grid-cols-5">
         <StatsCard
           title="Total Users"
           value={stats.totalUsers || 0}
@@ -93,7 +93,7 @@ const AdminDashboard = ({ data }) => {
       </div>
 
       {/* ================= Charts ================= */}
-      <section className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <section className="grid grid-cols-1 gap-6 md:grid-cols-2">
         {/* Booking Chart */}
         <Animate
           type="fadeLeft"

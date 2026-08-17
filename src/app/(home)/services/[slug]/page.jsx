@@ -37,7 +37,7 @@ const ServiceDetails = async ({ params }) => {
         <style>{`html { scroll-behavior: smooth; }`}</style>
 
         {/* Banner */}
-        <section className="sticky top-0 h-screen">
+        <section className="sticky top-0 h-150 md:h-screen">
           <Image
             src={service.image}
             alt={service.title}
@@ -215,7 +215,7 @@ const ServiceDetails = async ({ params }) => {
             </Animate>
           </section>
 
-          <div className="py-20">
+          <div className="md:py-20 pb-10 mx-6 md:mx-24">
             <GiveReview
               serviceId={service._id.toString()}
               serviceName={service.title}

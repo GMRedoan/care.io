@@ -21,25 +21,24 @@ const AdminAllBookingTable = ({ bookings }) => {
   const router = useRouter();
   const [loadingId, setLoadingId] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-    const [search, setSearch] = useState("");
-    const [statusFilter, setStatusFilter] = useState("all");
-  
-      const filteredBookings = useMemo(() => {
-        const searchValue = search.trim().toLowerCase();
-    
-        return bookings.filter((booking) => {
-          const matchesSearch =
-            !searchValue ||
-            booking?.userName?.toLowerCase().includes(searchValue) ||
-            booking?.userEmail?.toLowerCase().includes(searchValue);
-    
-          const matchesStatus =
-            statusFilter === "all" || booking.status === statusFilter;
-    
-          return matchesSearch && matchesStatus;
-        });
-      }, [bookings, search, statusFilter]);
-    
+  const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
+
+  const filteredBookings = useMemo(() => {
+    const searchValue = search.trim().toLowerCase();
+
+    return bookings.filter((booking) => {
+      const matchesSearch =
+        !searchValue ||
+        booking?.userName?.toLowerCase().includes(searchValue) ||
+        booking?.userEmail?.toLowerCase().includes(searchValue);
+
+      const matchesStatus =
+        statusFilter === "all" || booking.status === statusFilter;
+
+      return matchesSearch && matchesStatus;
+    });
+  }, [bookings, search, statusFilter]);
 
   // pagination
   const ITEMS_PER_PAGE = 8;
@@ -83,7 +82,7 @@ const AdminAllBookingTable = ({ bookings }) => {
 
   return (
     <>
-      <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+      <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-center justify-between">
         {/* Search */}
         <div className="relative w-full md:max-w-md">
           <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-sm text-accent" />

@@ -11,7 +11,7 @@ import Animate from "../reusable/Animate";
 export default function AboutSection() {
     return (
         <section
-            id="aboutUs"
+            id="k"
             className="relative bg-base-200 py-24 px-6 md:px-16 overflow-hidden"
         >
             {/* Background Gradient Glow */}

@@ -1,6 +1,7 @@
-import { myPaymentHistory } from '@/server/payments.service';
-import React from 'react';
-import PaymentHistoryTable from './_components/PaymentHistoryTable';
+export const dynamic = "force-dynamic";
+import { myPaymentHistory } from "@/server/payments.service";
+import React from "react";
+import PaymentHistoryTable from "./_components/PaymentHistoryTable";
 
 export const metadata = {
   title: "Payment | Dashboard",
@@ -8,23 +9,23 @@ export const metadata = {
 };
 
 const page = async () => {
-    const result = await myPaymentHistory();
-    const payments = JSON.parse(JSON.stringify(result.data));
-    return (
-      <div>
-        <div className="mb-8">
-          <h1 className="text-3xl font-semibold">
-            Payment <span className="text-primary">History</span>
-          </h1>
+  const result = await myPaymentHistory();
+  const payments = JSON.parse(JSON.stringify(result.data));
+  return (
+    <div>
+      <div className="mb-8">
+        <h1 className="text-3xl font-semibold">
+          Payment <span className="text-primary">History</span>
+        </h1>
 
-          <p className="mt-2 text-sm text-accent">
-            View all your payments and transaction history.
-          </p>
-        </div>
-
-        <PaymentHistoryTable payments={payments} />
+        <p className="mt-2 text-sm text-accent">
+          View all your payments and transaction history.
+        </p>
       </div>
-    );
+
+      <PaymentHistoryTable payments={payments} />
+    </div>
+  );
 };
 
 export default page;

@@ -12,7 +12,7 @@ export async function proxy(request) {
     const decodedToken = await getToken({
         req: request,
         secret: process.env.NEXTAUTH_SECRET,
-        secureCookie: process.env.NODE_ENV === "development",
+        secureCookie: process.env.NODE_ENV === "production",
     })
     const userRole = decodedToken?.role;
     const isProtected = protectedRoutes.some((route) =>
